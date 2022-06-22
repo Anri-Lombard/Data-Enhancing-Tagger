@@ -6,6 +6,7 @@ const app = express();
 
 const router = require("./router");
 
+// Use mongoose to connect nodejs and mongodb
 const mongoose = require("mongoose");
 
 const dotenv = require("dotenv");
@@ -34,7 +35,6 @@ mongoose
 
 // Middleware
 app.use(cors());
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
