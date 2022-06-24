@@ -9,6 +9,8 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Hey there, Rachuel! Here's our playground.
+          Awesome beans. cool beans 
+
         </p>
       </header>
     </div>
