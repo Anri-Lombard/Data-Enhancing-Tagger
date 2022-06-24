@@ -1,23 +1,37 @@
-# Stage1: UI Build
-FROM node:14-slim AS ui-build
-WORKDIR /usr/src
-COPY ui/ ./ui/
-RUN cd ui && npm install && npm run build
+# Production Build
 
-# Stage2: API Build
-FROM node:14-slim AS api-build
-WORKDIR /usr/src
-COPY api/ ./api/
-RUN cd api && npm install && ENVIRONMENT=production npm run build
+# Stage 1: Build react client
+FROM node:14.15.3-alpine3.12 as client
+
+# Working directory be app
+WORKDIR /usr/app/client/
+
+COPY client/package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# copy local files to app folder
+COPY client/ ./
 RUN ls
 
-# Stage3: Packagign the app
-FROM node:14-slim
-WORKDIR /root/
-COPY --from=ui-build /usr/src/ui/build ./ui/build
-COPY --from=api-build /usr/src/api/dist .
+RUN npm run build
+
+# Stage 2 : Build Server
+
+FROM node:14.15.3-alpine3.12
+
+WORKDIR /usr/src/app/
+COPY --from=client /usr/app/client/build/ ./client/build/
 RUN ls
 
-EXPOSE 80
+WORKDIR /usr/src/app/server/
+COPY server/package*.json ./
+RUN npm install -qy
+COPY server/ ./
 
-CMD ["node", "api.bundle.js"]
+ENV PORT 8080
+
+EXPOSE 8080
+
+CMD ["npm", "start"]
