@@ -12,19 +12,19 @@ router.get('/', (req, res) => {
     res.send('Hello World');
 })
 
-router.get('/new', (req, res, next) => {
-    let languages = [
-        {
-         language: 'Spanish'
-        },
-        {
-         language: "French"
-        },
-        {
-         langauge: "German"
-        }
-    ];
-    res.json(languages);
-});
+// router.get('/new', (req, res, next) => {
+//     let languages = [
+//         {
+//          language: 'Spanish'
+//         },
+//         {
+//          language: "French"
+//         },
+//         {
+//          langauge: "German"
+//         }
+//     ];
+//     res.json(languages);
+// });
 
 export default router;

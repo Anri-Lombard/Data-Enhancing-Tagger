@@ -19,7 +19,7 @@ app.use('/api', router);
 app.use('/api/posts', postRouter);
 
 app.get('/', function(req, res){
-  res.send('Hello ! from the Server ');
+  res.send('Hello! from the Server ');
 });
 
 app.listen(PORT, function () {
