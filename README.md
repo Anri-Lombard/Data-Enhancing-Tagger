@@ -1,2 +1,14 @@
-# mern-stack-example
-Example Project on how to create MERN Stack
+# Data Tagger
+Tool a startup could use to manually tag categorical data to rapidly improve the classification accuracy of their machine learning models.
+
+# Usage
+1. Clone and start applications.
+```
+git clone https://github.com/Anri-Lombard/Data-Enhancing-Tagger.git
+docker-compose up
+```
+2. Get users to manually tag data.
+
+# How it works
+1. Users tag data the AI cannot, if 2 agree then data is tagged.
+2. If 2 disagree a final user decides the tag.
