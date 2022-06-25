@@ -64,6 +64,8 @@ export default function Edit() {
   }
   
   // This following section will display the form that takes input from the user to update the data.
+  // We won't need the for for date and description tho, only tag
+  // We also need submit to store away data and continuously retrieve more to tag.
   return (
     <div>
       <h3>Update Tag</h3>
