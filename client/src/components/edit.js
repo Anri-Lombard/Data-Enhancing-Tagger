@@ -22,14 +22,14 @@ export default function Edit() {
         return;
       }
   
-      const record = await response.json();
-      if (!record) {
-        window.alert(`Record with id ${id} not found`);
+      const tag = await response.json();
+      if (!tag) {
+        window.alert(`Tag with id ${id} not found`);
         navigate("/");
         return;
       }
   
-      setForm(record);
+      setForm(tag);
     }
   
     fetchData();
@@ -47,8 +47,11 @@ export default function Edit() {
   async function onSubmit(e) {
     e.preventDefault();
     const editedTag = {
-      date: form.date,
-      description: form.description,
+      // date: form.date,
+      // description: form.description,
+
+      // Just need category
+      category: form.category
     };
   
     // This will send a post request to update the data in the database.
@@ -63,23 +66,11 @@ export default function Edit() {
     navigate("/");
   }
   
-  // This following section will display the form that takes input from the user to update the data.
-  // We won't need the for for date and description tho, only tag
-  // We also need submit to store away data and continuously retrieve more to tag.
+  // Tagging data continuously with amount of tags chosen.
   return (
     <div>
       <h3>Update Tag</h3>
       <form onSubmit={onSubmit}>
-        <div className="form-group">
-          <label htmlFor="name">Date: </label>
-          <input
-            type="text"
-            className="form-control"
-            id="date"
-            value={form.name}
-            onChange={(e) => updateForm({ name: e.target.value })}
-          />
-        </div>
         <div className="form-group">
           <div className="form-check form-check-inline">
             <input

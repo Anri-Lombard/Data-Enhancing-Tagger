@@ -7,11 +7,29 @@ const Tag = (props) => (
  <tr>
    <td>{props.tag.date}</td>
    <td>{props.tag.description}</td>
-   <td>
+   {/* <td>
      <Link className="btn btn-link" to={`/edit/${props.tag.id}`}>Edit</Link>
+   </td> */}
+   <td>
+    <ul>
+      {tagOptions()}
+    </ul>
    </td>
  </tr>
 );
+
+const mostCommonTagsForCompany = ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive"]
+
+function tagOptions() {
+  return mostCommonTagsForCompany.map((tag) => {
+    return (
+      <li>
+        <input type="radio" id={tag} name="tag" value={tag} />
+        <label for={tag}>{tag}</label><br></br>
+      </li>
+    )
+  })
+}
  
 export default function RecordList() {
  const [tags, setTags] = useState([]);
@@ -57,7 +75,7 @@ export default function RecordList() {
          <tr>
            <th>Date</th>
            <th>Descripion</th>
-           <th>Action</th>
+           {/* <th>Action</th> */}
          </tr>
        </thead>
        <tbody>{tagList()}</tbody>

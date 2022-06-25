@@ -15,7 +15,7 @@ services:
       - "8080:8080"
     depends_on:
       - mongo
-    env_file: ./server/.env
+    env_file: ./server/config.env
     environment:
       - NODE_ENV=development
     networks:
