@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
-const PORT = 2000;
+const PORT = 3000;
+
+// TODO: continuously stream data when authenticating users
+
  
 const Tag = (props) => (
  <tr>
    <td>{props.tag.date}</td>
    <td>{props.tag.description}</td>
-   {/* <td>
-     <Link className="btn btn-link" to={`/edit/${props.tag.id}`}>Edit</Link>
-   </td> */}
    <td>
     <ul>
       {tagOptions()}
@@ -18,6 +18,8 @@ const Tag = (props) => (
  </tr>
 );
 
+// TODO: Dynamic tags
+// This maps out all the tags we have, we'll make it dynamic.
 const mostCommonTagsForCompany = ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive"]
 
 function tagOptions() {
@@ -31,13 +33,13 @@ function tagOptions() {
   })
 }
  
-export default function RecordList() {
+export default function TagList() {
  const [tags, setTags] = useState([]);
  
  // This method fetches the tags from the database.
  useEffect(() => {
    async function getTags() {
-     const response = await fetch(`http://localhost:${PORT}/tag/`);
+     const response = await fetch(`http://localhost:${PORT}/tag`);
  
      if (!response.ok) {
        const message = `An error occurred: ${response.statusText}`;
@@ -45,7 +47,10 @@ export default function RecordList() {
        return;
      }
  
+     // TODO: fix parsing error
+     console.log(response.json());
      const tags = await response.json();
+     console.log(tags);
      setTags(tags);
    }
  
