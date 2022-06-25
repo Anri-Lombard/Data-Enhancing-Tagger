@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
 import logo from './logo.svg';
+// import { Route, Routes } from "react-router-dom";
 
-// Will need useEffect hooks to retrieve data from server later on - Anri
-// Use object and rerender anfter each tag and update - Anri
+
 
 function App() {
   return (
@@ -14,6 +14,7 @@ function App() {
           Work in progress...
         </p>
       </header>
+
     </div>
   );
 }
