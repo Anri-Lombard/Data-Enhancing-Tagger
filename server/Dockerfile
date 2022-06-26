@@ -17,6 +17,6 @@ RUN npm install
 COPY . .
 
 # Exports
-EXPOSE 8080
+EXPOSE 2000
 
 CMD ["npm","start"]

@@ -12,7 +12,7 @@ services:
       - ./server/:/usr/src/app
       - /usr/src/app/node_modules
     ports:
-      - "8080:8080"
+      - "2000:2000"
     depends_on:
       - mongo
     env_file: ./server/config.env

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-// import { Link } from "react-router-dom";
 
-const PORT = 3000;
+const PORT = 2000;
 
 // TODO: continuously stream data when authenticating users
 
@@ -10,11 +9,6 @@ const Tag = (props) => (
  <tr>
    <td>{props.tag.date}</td>
    <td>{props.tag.description}</td>
-   <td>
-    <ul>
-      {tagOptions()}
-    </ul>
-   </td>
  </tr>
 );
 
@@ -25,9 +19,9 @@ const mostCommonTagsForCompany = ["tagOne", "tagTwo", "tagThree", "tagFour", "ta
 function tagOptions() {
   return mostCommonTagsForCompany.map((tag) => {
     return (
-      <li>
+      <li key={tag}>
         <input type="radio" id={tag} name="tag" value={tag} />
-        <label for={tag}>{tag}</label><br></br>
+        <label>{tag}</label><br></br>
       </li>
     )
   })
@@ -39,7 +33,7 @@ export default function TagList() {
  // This method fetches the tags from the database.
  useEffect(() => {
    async function getTags() {
-     const response = await fetch(`http://localhost:${PORT}/tag`);
+     const response = await fetch(`http://localhost:${PORT}/tag/`);
  
      if (!response.ok) {
        const message = `An error occurred: ${response.statusText}`;
@@ -48,9 +42,9 @@ export default function TagList() {
      }
  
      // TODO: fix parsing error
-     console.log(response.json());
+    //  const tags1 = response
      const tags = await response.json();
-     console.log(tags);
+     console.log(tags)
      setTags(tags);
    }
  
@@ -70,21 +64,22 @@ export default function TagList() {
      );
    });
  }
- 
+
+ // TODO: Add styling and then the tag data once json is fixed.
  // This following section will display the table with the tags the user hasn't tagged.
  return (
+  // Will need to be a form so we could submit and feed in new data
+  // Don't really need a nav bar TBH
    <div>
-     <h3>Tag List</h3>
-     <table className="table table-striped" style={{ marginTop: 20 }}>
-       <thead>
-         <tr>
-           <th>Date</th>
-           <th>Descripion</th>
-           {/* <th>Action</th> */}
-         </tr>
-       </thead>
-       <tbody>{tagList()}</tbody>
-     </table>
+     <h3>Manual Tagger</h3>
+    <div>
+      <p>Date:</p>
+      <p>Description:</p>
+    </div>
+    <div>
+      {tagOptions()}
+    </div>
+    {tagList()}
    </div>
  );
 }

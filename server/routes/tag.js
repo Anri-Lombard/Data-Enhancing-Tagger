@@ -9,7 +9,7 @@ const tagRoutes = express.Router();
 const dbo = require("../db/conn");
  
 // This help convert the id from string to ObjectId for the _id.
-// const ObjectId = require("mongodb").ObjectId;
+const ObjectId = require("mongodb").ObjectId;
  
  
 // This section will help you get a list of all the records.
@@ -56,7 +56,8 @@ tagRoutes.route("/update/:id").post(function (req, response) {
  let myquery = { id: req.params.id }; 
  let newvalues = {   
    $set: {     
-     ...req.params,
+     date: req.params.date,
+     description: req.params.description,
      category: req.params.category 
    }, 
   }

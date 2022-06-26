@@ -30,8 +30,8 @@ COPY server/package*.json ./
 RUN npm install -qy
 COPY server/ ./
 
-ENV PORT 8080
+ENV PORT 2000
 
-EXPOSE 8080
+EXPOSE 2000
 
 CMD ["npm", "start"]
