@@ -67,10 +67,15 @@ export default function Tagging() {
     // TODO: fix navigate
     // navigate("/", { replace: true });
   }
-  
+
+  // useEffect(() => {
+  //   setChosenCategory(radioChosen);
+
+  // }, [radioChosen])
+
   function onChangeHandler(e) {
-    setChosenCategory(e.target.value);
-    console.log(chosenCategory);
+    console.log(e.target.value);
+    setChosenCategory(e.target.value)
     document.getElementById("tagBtn").disabled = false;
   }
   
@@ -82,7 +87,13 @@ export default function Tagging() {
     return mostCommonTagsForCompany.map((tag) => {
       return (
         <li key={tag}>
-          <input className="radio-inputs" type="radio" id={tag} name="tag" value={tag} onChange={onChangeHandler} />
+          <input 
+            className="radio-inputs" 
+            type="radio" id={tag} 
+            name="tag" 
+            value={tag} 
+            onChange={onChangeHandler} 
+          />
           <label>{tag}</label><br></br>
         </li>
       )
