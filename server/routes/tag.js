@@ -9,7 +9,7 @@ const tagRoutes = express.Router();
 const dbo = require("../db/conn");
  
 // This help convert the id from string to ObjectId for the _id.
-const ObjectId = require("mongodb").ObjectId;
+// const ObjectId = require("mongodb").ObjectId;
  
  
 // This section will help you get a list of all the records.
@@ -52,18 +52,26 @@ tagRoutes.route("/tag").get(function (req, res) {
  
 // This section will help you update a tag by id.
 tagRoutes.route("/update/:id").post(function (req, response) {
+  //TODO: potentially use _id
  let db_connect = dbo.getDb(); 
  let myquery = { id: req.params.id }; 
+ console.log(req.params.id);
  let newvalues = {   
    $set: {
-     id: req.params.id,
-     date: req.params.date,
-     description: req.body.description,
-     balance: req.body.balance,
-     transactionValue: req.body.transactionValue,
+    //  id: req.params.id,
+    //  date: req.params.date,
+    //  description: req.body.description,
+    //  balance: req.body.balance,
+    //  transactionValue: req.body.transactionValue,
      category: req.params.category 
    }, 
   }
+  console.log("Making strides");
+  db_connect.collection("transactions")
+    .update(
+      myquery,
+      newvalues
+    )
 });
  
 // This section will help you delete a tag

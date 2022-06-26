@@ -10,8 +10,9 @@ const PORT = 2000;
 
 export default function Tagging() {
   const [tags, setTags] = useState([]);
-  let tagToUpdate = {};
-  let chosenCategory = "";
+  const [tagToUpdate, setTagToUpdate] = useState({});
+  const [chosenCategory, setChosenCategory] = useState("");
+
   
   const Tag = (props) => (
     <div>
@@ -19,10 +20,12 @@ export default function Tagging() {
       <p>ID: {props.tag.id}</p>
       <p>Date: {props.tag.date}</p>
       <p>Description: {props.tag.description}</p>
+      {/* Use react conditioning for if it has a category */}
+      <p>Current Category: {props.tag.category}</p>
     </div>
-    <form>
+    <form onSubmit={onSubmitHandler}>
       {tagOptions()}
-      <button id="tagBtn" type="submit" onClick={onSubmitHandler} disabled>Tag</button>
+      <button id="tagBtn" type="aubmit" disabled>Tag</button>
     </form>
    </div>
   );
@@ -30,10 +33,10 @@ export default function Tagging() {
   
   const navigate = useNavigate();
   async function onSubmitHandler(e) {
-    
     e.preventDefault()
-  
-    console.log("clicked");
+    
+    // console.log("hi");
+    // console.log("clicked");
   
     // TODO: logic for if already tagged.
   
@@ -45,6 +48,9 @@ export default function Tagging() {
       transactionValue: tagToUpdate.transactionValue,
       category: chosenCategory
     };
+
+    console.log(editedTag);
+    // console.log(JSON.stringify(editedTag));
   
     // This will send a post request to update the data in the database.
     await fetch(`http://localhost:${PORT}/update/${tagToUpdate.id}`, {
@@ -55,13 +61,14 @@ export default function Tagging() {
       },
     });
     
+    // TODO: fix navigate
     navigate("/", { replace: true });
     // navigate("/");
   }
   
   function onChangeHandler(e) {
-  
-    chosenCategory = e.target.value;
+    setChosenCategory(e.target.value);
+    console.log(chosenCategory);
     document.getElementById("tagBtn").disabled = false;
   }
   
@@ -90,6 +97,7 @@ export default function Tagging() {
        window.alert(message);
        return;
      }
+     console.log("Hey");
 
      const tags = await response.json();
 
@@ -104,13 +112,14 @@ export default function Tagging() {
  function getSingleTag() {
   // TODO: Logic to skip data user has tagged
   // get random data
-  const keys = Object.keys(tags);
-  const randomKey =  keys[Math.floor(Math.random() * keys.length)];
+  // const keys = Object.keys(tags);
+  // const randomKey =  keys[Math.floor(Math.random() * keys.length)];
+  const randomKey = 5;
 
   // TODO: fix undefined
   const randomData = tags[randomKey];
   if (randomData !== undefined) {
-    tagToUpdate = randomData;
+    setTagToUpdate(randomData)
     return <Tag tag={randomData} />
   }
  }
