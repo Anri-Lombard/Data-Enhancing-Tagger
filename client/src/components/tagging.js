@@ -127,7 +127,7 @@ export default function Tagging() {
  // This following section will display the table with the tags the user hasn't tagged.
  return (
    <div>
-     <h3>Manual Tagger</h3>
+     <h3>Manual Tagger Styling </h3>
     {getSingleTag()}
    </div>
  );
