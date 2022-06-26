@@ -109,18 +109,26 @@ export default function Tagging() {
    return;
  }, [tags.length]);
 
+ useEffect(() => {
+  const randomKey = 5;
+  const randomData = tags[randomKey];
+  if (randomData !== undefined) {
+    setTagToUpdate(randomData)
+  }
+ }, [tags]);
+
  function getSingleTag() {
   // TODO: Logic to skip data user has tagged
   // get random data
   // const keys = Object.keys(tags);
   // const randomKey =  keys[Math.floor(Math.random() * keys.length)];
-  const randomKey = 5;
+  // const randomKey = 5;
 
   // TODO: fix undefined
-  const randomData = tags[randomKey];
-  if (randomData !== undefined) {
-    setTagToUpdate(randomData)
-    return <Tag tag={randomData} />
+  // const randomData = tags[randomKey];
+  if (tagToUpdate !== undefined) {
+    // setTagToUpdate(randomData)
+    return <Tag tag={tagToUpdate} />
   }
  }
 
