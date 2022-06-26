@@ -53,7 +53,7 @@ export default function Tagging() {
     // console.log(JSON.stringify(editedTag));
   
     // This will send a post request to update the data in the database.
-    await fetch(`http://localhost:${PORT}/update/${tagToUpdate.id}`, {
+    await fetch(`http://localhost:${PORT}/update/${tagToUpdate.id}/`, {
       method: "POST",
       body: JSON.stringify(editedTag),
       headers: {
@@ -63,7 +63,6 @@ export default function Tagging() {
     
     // TODO: fix navigate
     navigate("/", { replace: true });
-    // navigate("/");
   }
   
   function onChangeHandler(e) {

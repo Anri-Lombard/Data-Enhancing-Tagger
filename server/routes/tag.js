@@ -53,7 +53,7 @@ tagRoutes.route("/tag").get(function (req, res) {
 // This section will help you update a tag by id.
 tagRoutes.route("/update/:id").post(function (req, response) {
   //TODO: potentially use _id
- let db_connect = dbo.getDb(); 
+ let db_connect = dbo.getDb("bank-statements"); 
  let myquery = { id: req.params.id }; 
  console.log(req.params.id);
  let newvalues = {   
@@ -63,15 +63,14 @@ tagRoutes.route("/update/:id").post(function (req, response) {
     //  description: req.body.description,
     //  balance: req.body.balance,
     //  transactionValue: req.body.transactionValue,
-     category: req.params.category 
+     category: req.body.category
    }, 
   }
   console.log("Making strides");
-  db_connect.collection("transactions")
-    .update(
-      myquery,
-      newvalues
-    )
+  db_connect.collection("transactions").findOneAndUpdate(
+    myquery,
+    newvalues
+  )
 });
  
 // This section will help you delete a tag
