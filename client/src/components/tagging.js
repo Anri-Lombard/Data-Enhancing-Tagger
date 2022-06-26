@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 const PORT = 2000;
 
@@ -9,13 +9,12 @@ const PORT = 2000;
 
 
 export default function Tagging() {
-  // const navigate = useNavigate();
   const [tags, setTags] = useState([]);
   let tagToUpdate = {};
   let chosenCategory = "";
-
+  
   const Tag = (props) => (
-   <div>
+    <div>
     <div>
       <p>ID: {props.tag.id}</p>
       <p>Date: {props.tag.date}</p>
@@ -29,6 +28,7 @@ export default function Tagging() {
   );
   
   
+  const navigate = useNavigate();
   async function onSubmitHandler(e) {
     
     e.preventDefault()
@@ -54,7 +54,8 @@ export default function Tagging() {
         'Content-Type': 'application/json'
       },
     });
-
+    
+    navigate("/", { replace: true });
     // navigate("/");
   }
   
