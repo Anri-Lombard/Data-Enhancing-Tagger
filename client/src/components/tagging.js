@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const PORT = 2000;
 
@@ -12,7 +12,6 @@ export default function Tagging() {
   const [tags, setTags] = useState([]);
   const [tagToUpdate, setTagToUpdate] = useState({});
   const [chosenCategory, setChosenCategory] = useState("");
-
   
   const Tag = (props) => (
     <div>
@@ -30,13 +29,12 @@ export default function Tagging() {
    </div>
   );
   
+  // const navigate = useNavigate();
   
-  const navigate = useNavigate();
+  
   async function onSubmitHandler(e) {
     e.preventDefault()
-    
-    // console.log("hi");
-    // console.log("clicked");
+    // $tagBtn.disabled = true;
   
     // TODO: logic for if already tagged.
   
@@ -50,8 +48,10 @@ export default function Tagging() {
     };
 
     console.log(editedTag);
-    // console.log(JSON.stringify(editedTag));
   
+    // document.getElementsByClassName("radio-inputs").checked = false;
+    document.getElementById("tagBtn").disabled = true;
+
     // This will send a post request to update the data in the database.
     await fetch(`http://localhost:${PORT}/update/${tagToUpdate.id}/`, {
       method: "POST",
@@ -61,8 +61,9 @@ export default function Tagging() {
       },
     });
     
+    
     // TODO: fix navigate
-    navigate("/", { replace: true });
+    // navigate("/", { replace: true });
   }
   
   function onChangeHandler(e) {
@@ -79,7 +80,7 @@ export default function Tagging() {
     return mostCommonTagsForCompany.map((tag) => {
       return (
         <li key={tag}>
-          <input type="radio" id={tag} name="tag" value={tag} onChange={onChangeHandler} />
+          <input className="radio-inputs" type="radio" id={tag} name="tag" value={tag} onChange={onChangeHandler} />
           <label>{tag}</label><br></br>
         </li>
       )
@@ -109,6 +110,7 @@ export default function Tagging() {
  }, [tags.length]);
 
  useEffect(() => {
+  // Random: items[Math.floor(Math.random()*items.length)]
   const randomKey = 5;
   const randomData = tags[randomKey];
   if (randomData !== undefined) {
@@ -116,19 +118,9 @@ export default function Tagging() {
   }
  }, [tags]);
 
- function getSingleTag() {
-  // TODO: Logic to skip data user has tagged
-  // get random data
-  // const keys = Object.keys(tags);
-  // const randomKey =  keys[Math.floor(Math.random() * keys.length)];
-  // const randomKey = 5;
 
-  // TODO: fix undefined
-  // const randomData = tags[randomKey];
-  if (tagToUpdate !== undefined) {
-    // setTagToUpdate(randomData)
-    return <Tag tag={tagToUpdate} />
-  }
+ function getSingleTag() {
+  return <Tag tag={tagToUpdate} />
  }
 
  // TODO: Add styling and then the tag data once json is fixed.
