@@ -6,10 +6,15 @@ const PORT = 2000;
 
  
 const Tag = (props) => (
- <tr>
-   <td>{props.tag.date}</td>
-   <td>{props.tag.description}</td>
- </tr>
+ <div>
+  <div>
+    <p>Date: {props.date}</p>
+    <p>Description: {props.description}</p>
+  </div>
+  <div>
+    {tagOptions()}
+  </div>
+ </div>
 );
 
 // TODO: Dynamic tags
@@ -27,7 +32,7 @@ function tagOptions() {
   })
 }
  
-export default function TagList() {
+export default function Tagging() {
  const [tags, setTags] = useState([]);
  
  // This method fetches the tags from the database.
@@ -40,11 +45,9 @@ export default function TagList() {
        window.alert(message);
        return;
      }
- 
-     // TODO: fix parsing error
-    //  const tags1 = response
+     
      const tags = await response.json();
-     console.log(tags)
+
      setTags(tags);
    }
  
@@ -52,34 +55,26 @@ export default function TagList() {
  
    return;
  }, [tags.length]);
- 
- // This method will map out the tags on the table
- function tagList() {
-   return tags.map((tag) => {
-     return (
-       <Tag
-         tag={tag}
-         key={tag.id}
-       />
-     );
-   });
+
+ function getSingleTag() {
+  // TODO: Logic to skip data user has tagged
+  // get random data
+  const keys = Object.keys(tags);
+  const randomKey =  keys[Math.floor(Math.random() * keys.length)];
+
+  // TODO: fix undefined
+  const randomData = tags[randomKey];
+  if (randomData !== undefined) {
+    return <Tag date={randomData.date} description={randomData.description} />
+  }
  }
 
  // TODO: Add styling and then the tag data once json is fixed.
  // This following section will display the table with the tags the user hasn't tagged.
  return (
-  // Will need to be a form so we could submit and feed in new data
-  // Don't really need a nav bar TBH
    <div>
      <h3>Manual Tagger</h3>
-    <div>
-      <p>Date:</p>
-      <p>Description:</p>
-    </div>
-    <div>
-      {tagOptions()}
-    </div>
-    {tagList()}
+    {getSingleTag()}
    </div>
  );
 }

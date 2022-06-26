@@ -3,7 +3,7 @@ import './App.css';
 // import logo from './logo.svg';
 // import { Route, Routes } from "react-router-dom";
 
-import TagList from './components/tagList'
+import Tagging from './components/tagging'
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
         </p>
       </header> */}
 
-      <TagList />
+      <Tagging />
 
       {/* <Routes>
         <Route exact path="/" element={<TagList />} />
