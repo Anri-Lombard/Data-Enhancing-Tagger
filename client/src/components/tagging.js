@@ -24,20 +24,22 @@ export default function Tagging() {
     </div>
     <form onSubmit={onSubmitHandler}>
       {tagOptions()}
-      <button id="tagBtn" type="aubmit" disabled>Tag</button>
+      <button id="tagBtn" type="submit" disabled>Tag</button>
     </form>
    </div>
   );
   
   // const navigate = useNavigate();
   
-  
+   
   async function onSubmitHandler(e) {
     e.preventDefault()
+    setTimeout(() => {
+      window.location.reload()
+    }, 500)
     // $tagBtn.disabled = true;
-  
+    
     // TODO: logic for if already tagged.
-  
     const editedTag = {
       id: tagToUpdate.id,
       date: tagToUpdate.date,
@@ -46,12 +48,12 @@ export default function Tagging() {
       transactionValue: tagToUpdate.transactionValue,
       category: chosenCategory
     };
-
+    
     console.log(editedTag);
-  
+    
     // document.getElementsByClassName("radio-inputs").checked = false;
     document.getElementById("tagBtn").disabled = true;
-
+    
     // This will send a post request to update the data in the database.
     await fetch(`http://localhost:${PORT}/update/${tagToUpdate.id}/`, {
       method: "POST",
