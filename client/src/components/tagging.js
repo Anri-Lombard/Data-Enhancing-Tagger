@@ -11,11 +11,23 @@ const Tag = (props) => (
     <p>Date: {props.date}</p>
     <p>Description: {props.description}</p>
   </div>
-  <div>
+  <form>
     {tagOptions()}
-  </div>
+    <button id="tagBtn" type="submit" onClick={onSubmitHandler} disabled>Tag</button>
+  </form>
  </div>
 );
+
+function onSubmitHandler(e) {
+  e.preventDefault()
+
+  console.log("clicked");
+}
+
+function onChangeHandler(e) {
+
+  document.getElementById("tagBtn").disabled = false;
+}
 
 // TODO: Dynamic tags
 // This maps out all the tags we have, we'll make it dynamic.
@@ -25,7 +37,7 @@ function tagOptions() {
   return mostCommonTagsForCompany.map((tag) => {
     return (
       <li key={tag}>
-        <input type="radio" id={tag} name="tag" value={tag} />
+        <input type="radio" id={tag} name="tag" value={tag} onChange={onChangeHandler} />
         <label>{tag}</label><br></br>
       </li>
     )
@@ -45,7 +57,7 @@ export default function Tagging() {
        window.alert(message);
        return;
      }
-     
+
      const tags = await response.json();
 
      setTags(tags);
