@@ -25,16 +25,16 @@ tagRoutes.route("/tag").get(function (req, res) {
 });
  
 // This section will help you get a single tag by id
-tagRoutes.route("/tag/:id").get(function (req, res) {
- let db_connect = dbo.getDb();
- let myquery = { id: req.params.id };
- db_connect
-     .collection("transactions")
-     .findOne(myquery, function (err, result) {
-       if (err) throw err;
-       res.json(result);
-     });
-});
+// tagRoutes.route("/tag/:id").get(function (req, res) {
+//  let db_connect = dbo.getDb();
+//  let myquery = { id: req.params.id };
+//  db_connect
+//      .collection("transactions")
+//      .findOne(myquery, function (err, result) {
+//        if (err) throw err;
+//        res.json(result);
+//      });
+// });
  
 // This section will help you create a new tag.
 // tagRoutes.route("/tag/add").post(function (req, response) {
@@ -55,15 +55,18 @@ tagRoutes.route("/update/:id").post(function (req, response) {
  let db_connect = dbo.getDb(); 
  let myquery = { id: req.params.id }; 
  let newvalues = {   
-   $set: {     
+   $set: {
+     id: req.params.id,
      date: req.params.date,
-     description: req.params.description,
+     description: req.body.description,
+     balance: req.body.balance,
+     transactionValue: req.body.transactionValue,
      category: req.params.category 
    }, 
   }
 });
  
-// This section will help you delete a record
+// This section will help you delete a tag
 // recordRoutes.route("/:id").delete((req, response) => {
 //  let db_connect = dbo.getDb();
 //  let myquery = { _id: ObjectId( req.params.id )};

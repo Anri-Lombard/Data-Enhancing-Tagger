@@ -1,51 +1,83 @@
 import React, { useEffect, useState } from "react";
+// import { useNavigate } from "react-router";
 
 const PORT = 2000;
 
+
 // TODO: continuously stream data when authenticating users
 
- 
-const Tag = (props) => (
- <div>
-  <div>
-    <p>Date: {props.date}</p>
-    <p>Description: {props.description}</p>
-  </div>
-  <form>
-    {tagOptions()}
-    <button id="tagBtn" type="submit" onClick={onSubmitHandler} disabled>Tag</button>
-  </form>
- </div>
-);
 
-function onSubmitHandler(e) {
-  e.preventDefault()
 
-  console.log("clicked");
-}
-
-function onChangeHandler(e) {
-
-  document.getElementById("tagBtn").disabled = false;
-}
-
-// TODO: Dynamic tags
-// This maps out all the tags we have, we'll make it dynamic.
-const mostCommonTagsForCompany = ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive"]
-
-function tagOptions() {
-  return mostCommonTagsForCompany.map((tag) => {
-    return (
-      <li key={tag}>
-        <input type="radio" id={tag} name="tag" value={tag} onChange={onChangeHandler} />
-        <label>{tag}</label><br></br>
-      </li>
-    )
-  })
-}
- 
 export default function Tagging() {
- const [tags, setTags] = useState([]);
+  // const navigate = useNavigate();
+  const [tags, setTags] = useState([]);
+  let tagToUpdate = {};
+  let chosenCategory = "";
+
+  const Tag = (props) => (
+   <div>
+    <div>
+      <p>ID: {props.tag.id}</p>
+      <p>Date: {props.tag.date}</p>
+      <p>Description: {props.tag.description}</p>
+    </div>
+    <form>
+      {tagOptions()}
+      <button id="tagBtn" type="submit" onClick={onSubmitHandler} disabled>Tag</button>
+    </form>
+   </div>
+  );
+  
+  
+  async function onSubmitHandler(e) {
+    
+    e.preventDefault()
+  
+    console.log("clicked");
+  
+    // TODO: logic for if already tagged.
+  
+    const editedTag = {
+      id: tagToUpdate.id,
+      date: tagToUpdate.date,
+      description: tagToUpdate.description,
+      balance: tagToUpdate.balance,
+      transactionValue: tagToUpdate.transactionValue,
+      category: chosenCategory
+    };
+  
+    // This will send a post request to update the data in the database.
+    await fetch(`http://localhost:${PORT}/update/${tagToUpdate.id}`, {
+      method: "POST",
+      body: JSON.stringify(editedTag),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    });
+
+    // navigate("/");
+  }
+  
+  function onChangeHandler(e) {
+  
+    chosenCategory = e.target.value;
+    document.getElementById("tagBtn").disabled = false;
+  }
+  
+  // TODO: Dynamic tags
+  // This maps out all the tags we have, we'll make it dynamic.
+  const mostCommonTagsForCompany = ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive"]
+  
+  function tagOptions() {
+    return mostCommonTagsForCompany.map((tag) => {
+      return (
+        <li key={tag}>
+          <input type="radio" id={tag} name="tag" value={tag} onChange={onChangeHandler} />
+          <label>{tag}</label><br></br>
+        </li>
+      )
+    })
+  }
  
  // This method fetches the tags from the database.
  useEffect(() => {
@@ -77,7 +109,8 @@ export default function Tagging() {
   // TODO: fix undefined
   const randomData = tags[randomKey];
   if (randomData !== undefined) {
-    return <Tag date={randomData.date} description={randomData.description} />
+    tagToUpdate = randomData;
+    return <Tag tag={randomData} />
   }
  }
 
