@@ -8,10 +8,12 @@ const PORT = 2000;
 
 
 
-export default function Tagging() {
+export default function Tagging({ name }) {
   const [tags, setTags] = useState([]);
   const [tagToUpdate, setTagToUpdate] = useState({});
   const [chosenCategory, setChosenCategory] = useState("");
+
+  console.log(name);
   
   const Tag = (props) => (
     <div>

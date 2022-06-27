@@ -8,12 +8,11 @@ export default function Login(props) {
         console.log("LOGIN SUCCESS! Current user: ", res.profileObj);
 
         const profile = res.getBasicProfile();
-        const id = profile.getId();
-        const email = profile.getEmail();
-        console.log(id, email);
+        const userName = profile.getName();
 
         // send login data to parent
         props.isLoggedIn(true)
+        props.name(userName)
     }
 
     const onFailure = (res) => {
