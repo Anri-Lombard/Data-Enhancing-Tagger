@@ -1,10 +1,19 @@
 import { GoogleLogin } from 'react-google-login';
+import React from 'react'
 
 const clientId = "209297339002-8oele42ri4qokv2qefi8n7bds2a9jmjk.apps.googleusercontent.com";
 
-export default function Login() {
+export default function Login(props) {
     const onSuccess = (res) => {
         console.log("LOGIN SUCCESS! Current user: ", res.profileObj);
+
+        const profile = res.getBasicProfile();
+        const id = profile.getId();
+        const email = profile.getEmail();
+        console.log(id, email);
+
+        // send login data to parent
+        props.isLoggedIn(true)
     }
 
     const onFailure = (res) => {
