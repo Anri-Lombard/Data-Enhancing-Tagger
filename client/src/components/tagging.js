@@ -12,6 +12,9 @@ export default function Tagging({ name }) {
   const [tags, setTags] = useState([]);
   const [tagToUpdate, setTagToUpdate] = useState({});
   const [chosenCategory, setChosenCategory] = useState("");
+  const [tagOptions, setTagOptions] = useState(
+    ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive", "other"]
+  )
 
   console.log(name);
   
@@ -25,7 +28,7 @@ export default function Tagging({ name }) {
       <p>Current Category: {props.tag.category}</p>
     </div>
     <form onSubmit={onSubmitHandler}>
-      {tagOptions()}
+      {tagRadios()}
       <button id="tagBtn" type="submit" disabled>Tag</button>
     </form>
    </div>
@@ -83,10 +86,10 @@ export default function Tagging({ name }) {
   
   // TODO: Dynamic tags
   // This maps out all the tags we have, we'll make it dynamic.
-  const mostCommonTagsForCompany = ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive"]
+  // const mostCommonTagsForCompany = ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive"]
   
-  function tagOptions() {
-    return mostCommonTagsForCompany.map((tag) => {
+  function tagRadios() {
+    return tagOptions.map((tag) => {
       return (
         <li key={tag}>
           <input 
@@ -96,7 +99,10 @@ export default function Tagging({ name }) {
             value={tag} 
             onChange={onChangeHandler} 
           />
-          <label>{tag}</label><br></br>
+          <label>{tag}</label>
+
+           {/* TODO: other logic */}
+          {tag === "other" ? <input type="text" name={tag} placeholder="specify" /> : null}
         </li>
       )
     })
