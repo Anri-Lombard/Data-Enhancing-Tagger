@@ -43,7 +43,7 @@ export default function Tagging(props) {
     console.log("name: " + props.name);
     setTimeout(() => {
       window.location.reload()
-    }, 10000)
+    }, 500)
     // $tagBtn.disabled = true;
 
     
