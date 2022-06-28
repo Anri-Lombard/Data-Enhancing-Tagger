@@ -7,6 +7,14 @@ Tool a startup could use to manually tag categorical data to rapidly improve the
 git clone https://github.com/Anri-Lombard/Data-Enhancing-Tagger.git
 docker-compose up
 ```
+But Docker is not working, so for now:
+```
+cd client
+npm i && npm start
+cd ../server
+npm i && npm start
+```
+
 2. Get users to manually tag data.
 
 # How it works

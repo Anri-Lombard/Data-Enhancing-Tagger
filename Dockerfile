@@ -25,7 +25,7 @@ FROM node:14.15.3-alpine3.12
 # COPY --from=client /usr/app/client/build/ ./client/build/
 # RUN ls
 
-WORKDIR /usr/app/server/
+WORKDIR /usr/src/app/server/
 COPY server/package*.json ./
 RUN npm install
 COPY server/ ./

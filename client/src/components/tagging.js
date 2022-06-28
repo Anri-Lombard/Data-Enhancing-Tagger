@@ -7,16 +7,16 @@ const PORT = 2000;
 // TODO: continuously stream data when authenticating users
 
 
-
-export default function Tagging({ name }) {
+// TODO: fix name undefined
+export default function Tagging(props) {
   const [tags, setTags] = useState([]);
   const [tagToUpdate, setTagToUpdate] = useState({});
   const [chosenCategory, setChosenCategory] = useState("");
+
+  // TODO: dynamic
   const [tagOptions, setTagOptions] = useState(
     ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive", "other"]
   )
-
-  console.log(name);
   
   const Tag = (props) => (
     <div>
@@ -26,6 +26,7 @@ export default function Tagging({ name }) {
       <p>Description: {props.tag.description}</p>
       {/* Use react conditioning for if it has a category */}
       <p>Current Category: {props.tag.category}</p>
+      <p>Users Who Tagged: {props.tag.usersTagged}</p>
     </div>
     <form onSubmit={onSubmitHandler}>
       {tagRadios()}
@@ -39,10 +40,12 @@ export default function Tagging({ name }) {
    
   async function onSubmitHandler(e) {
     e.preventDefault()
+    console.log("name: " + props.name);
     setTimeout(() => {
       window.location.reload()
-    }, 500)
+    }, 10000)
     // $tagBtn.disabled = true;
+
     
     // TODO: logic for if already tagged.
     const editedTag = {
@@ -51,10 +54,12 @@ export default function Tagging({ name }) {
       description: tagToUpdate.description,
       balance: tagToUpdate.balance,
       transactionValue: tagToUpdate.transactionValue,
-      category: chosenCategory
+      category: chosenCategory,
+      // TODO: usersTagged array
+      // usersTagged: tagToUpdate.usersTagged == undefined ? usersTaggedArray : tagToUpdate.usersTagged.push(name)
     };
     
-    console.log(editedTag);
+    // console.log(editedTag);
     
     // document.getElementsByClassName("radio-inputs").checked = false;
     document.getElementById("tagBtn").disabled = true;
@@ -79,7 +84,6 @@ export default function Tagging({ name }) {
   // }, [radioChosen])
 
   function onChangeHandler(e) {
-    console.log(e.target.value);
     setChosenCategory(e.target.value)
     document.getElementById("tagBtn").disabled = false;
   }
@@ -118,7 +122,6 @@ export default function Tagging({ name }) {
        window.alert(message);
        return;
      }
-     console.log("Hey");
 
      const tags = await response.json();
 
