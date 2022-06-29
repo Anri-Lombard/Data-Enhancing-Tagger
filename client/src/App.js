@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
 // import logo from './logo.svg';
 import { Route, Routes, Navigate } from "react-router-dom";
+import './App.css';
 
 import Tagging from './components/tagging'
 import Login from './components/login'
 import Logout from './components/logout'
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 import { gapi } from 'gapi-script'
 
