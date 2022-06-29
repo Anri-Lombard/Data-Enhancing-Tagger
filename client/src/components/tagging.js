@@ -11,16 +11,16 @@ const PORT = 2000;
 // TODO: continuously stream data when authenticating users
 
 
-
-export default function Tagging({ name }) {
+// TODO: fix name undefined
+export default function Tagging(props) {
   const [tags, setTags] = useState([]);
   const [tagToUpdate, setTagToUpdate] = useState({});
   const [chosenCategory, setChosenCategory] = useState("");
+
+  // TODO: dynamic
   const [tagOptions, setTagOptions] = useState(
     ["Option 1", "Option 2", "Option 3", "Option 4", "Option 5", "Other"]
   )
-
-  console.log(name);
   
   const Tag = (props) => (
 
@@ -47,10 +47,12 @@ export default function Tagging({ name }) {
    
   async function onSubmitHandler(e) {
     e.preventDefault()
+    console.log("name: " + props.name);
     setTimeout(() => {
       window.location.reload()
     }, 500)
     // $tagBtn.disabled = true;
+
     
     // TODO: logic for if already tagged.
     const editedTag = {
@@ -59,10 +61,12 @@ export default function Tagging({ name }) {
       description: tagToUpdate.description,
       balance: tagToUpdate.balance,
       transactionValue: tagToUpdate.transactionValue,
-      category: chosenCategory
+      category: chosenCategory,
+      // TODO: usersTagged array
+      // usersTagged: tagToUpdate.usersTagged == undefined ? usersTaggedArray : tagToUpdate.usersTagged.push(name)
     };
     
-    console.log(editedTag);
+    // console.log(editedTag);
     
     // document.getElementsByClassName("radio-inputs").checked = false;
     document.getElementById("tagBtn").disabled = true;
@@ -87,7 +91,6 @@ export default function Tagging({ name }) {
   // }, [radioChosen])
 
   function onChangeHandler(e) {
-    console.log(e.target.value);
     setChosenCategory(e.target.value)
     document.getElementById("tagBtn").disabled = false;
   }
@@ -135,7 +138,6 @@ export default function Tagging({ name }) {
        window.alert(message);
        return;
      }
-     console.log("Hey");
 
      const tags = await response.json();
 
@@ -169,7 +171,6 @@ export default function Tagging({ name }) {
    <div className="header">
      <h3>Manual Tagger Styling </h3>
      {getSingleTag()}
-   </div>
    </div>
  );
 }

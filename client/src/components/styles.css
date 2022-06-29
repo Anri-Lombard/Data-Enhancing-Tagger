@@ -1,0 +1,12 @@
+.login-card {
+    color: black;
+    border-radius: 0;
+    background: #0582CA;
+    max-width: 50vh;
+    align-items: center;
+}
+
+.d-flex {
+    height: 10vh;
+    justify-content: space-between;
+}
