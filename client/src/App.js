@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 // import logo from './logo.svg';
-import { Route, Routes, Navigate } from "react-router-dom";
 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link, Routes
+} from "react-router-dom";
+
+
+import NavBar from './components/NavBar'
 import Tagging from './components/tagging'
 import Login from './components/login'
 import Logout from './components/logout'
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 import { gapi } from 'gapi-script'
 
@@ -29,11 +38,14 @@ function App() {
 
   return (
     <div className="App">
+     
       <Routes>
         {/* <Route exact path="/" element={loggedIn ? <Tagging name={userName} /> : <Navigate to="/login" />} />
         <Route exact path="/login">
           loggedIn ? <Navigate to="/" /> : <Login name={setUserName} isLoggedIn={setLoggedIn} />
         </Route> */}
+      
+       
         <Route exact path="/" element={<Tagging />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/logout" element={<Logout />} />

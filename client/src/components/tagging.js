@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
+import './tag.css';
+import  NavBar  from './NavBar.js';
+
 // import { useNavigate } from "react-router-dom";
 
 const PORT = 2000;
+
 
 
 // TODO: continuously stream data when authenticating users
@@ -13,25 +17,29 @@ export default function Tagging({ name }) {
   const [tagToUpdate, setTagToUpdate] = useState({});
   const [chosenCategory, setChosenCategory] = useState("");
   const [tagOptions, setTagOptions] = useState(
-    ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive", "other"]
+    ["Option 1", "Option 2", "Option 3", "Option 4", "Option 5", "Other"]
   )
 
   console.log(name);
   
   const Tag = (props) => (
+
     <div>
     <div>
-      <p>ID: {props.tag.id}</p>
-      <p>Date: {props.tag.date}</p>
-      <p>Description: {props.tag.description}</p>
+      <p  className= "paragraph">ID: {props.tag.id}</p>
+      <p className= "paragraph">Date: {props.tag.date}</p>
+      <p className= "paragraph">Description: {props.tag.description}</p>
       {/* Use react conditioning for if it has a category */}
-      <p>Current Category: {props.tag.category}</p>
+      <p className= "paragraph">Current Category: {props.tag.category}</p>
     </div>
+    <div className="form-box">
     <form onSubmit={onSubmitHandler}>
       {tagRadios()}
       <button id="tagBtn" type="submit" disabled>Tag</button>
     </form>
-   </div>
+    </div>
+    </div>
+   
   );
   
   // const navigate = useNavigate();
@@ -91,7 +99,10 @@ export default function Tagging({ name }) {
   function tagRadios() {
     return tagOptions.map((tag) => {
       return (
-        <li key={tag}>
+
+        <div >
+        <li key={tag} >
+          <label>  
           <input 
             className="radio-inputs" 
             type="radio" id={tag} 
@@ -99,15 +110,21 @@ export default function Tagging({ name }) {
             value={tag} 
             onChange={onChangeHandler} 
           />
-          <label>{tag}</label>
+          <div class="circle"></div>
+          <span>{tag}</span>
+          </label>
+          
 
            {/* TODO: other logic */}
-          {tag === "other" ? <input type="text" name={tag} placeholder="specify" /> : null}
+          {tag === "Other" ? <input type="text" name={tag} placeholder="specify" /> : null}
         </li>
+        </div>
+      
+        
       )
     })
   }
- 
+ /*
  // This method fetches the tags from the database.
  useEffect(() => {
    async function getTags() {
@@ -139,7 +156,7 @@ export default function Tagging({ name }) {
   }
  }, [tags]);
 
-
+*/
  function getSingleTag() {
   return <Tag tag={tagToUpdate} />
  }
@@ -147,9 +164,12 @@ export default function Tagging({ name }) {
  // TODO: Add styling and then the tag data once json is fixed.
  // This following section will display the table with the tags the user hasn't tagged.
  return (
-   <div>
+  <div>
+  <NavBar/>
+   <div className="header">
      <h3>Manual Tagger Styling </h3>
-    {getSingleTag()}
+     {getSingleTag()}
+   </div>
    </div>
  );
 }
