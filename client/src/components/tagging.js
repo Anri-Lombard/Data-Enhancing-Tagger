@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 // import { useNavigate } from "react-router-dom";
 import NavBar from './navbar.js';
+import Footer from './footer.js';
 import '../css/tagging.css'
 
 const PORT = 2000;
@@ -172,6 +173,7 @@ export default function Tagging(props) {
         <h3>Tag Data With Following Details:</h3>
         {getSingleTag()}
       </div>
+      <Footer />
     </>
   );
 }

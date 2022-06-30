@@ -31,6 +31,7 @@
     "nodemon": "^2.0.6",
     "os-browserify": "^0.3.0",
     "path-browserify": "^1.0.1",
+    "react-bootstrap-validation": "^0.1.11",
     "stream-browserify": "^3.0.0",
     "stream-http": "^3.1.1",
     "util": "^0.12.3",
