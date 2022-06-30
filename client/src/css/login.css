@@ -5,12 +5,13 @@ header .header{
 }
 header a img{
   width: 134px;
-margin-top: 4px;
+  margin-top: 4px;
 }
 .login-page {
   width: 60%;
   padding-top: 15%;
   margin: auto;
+  height: 100%;
 
 }
 .login-page .form .login{
@@ -77,4 +78,14 @@ body {
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#linkToLogout {
+  text-decoration: none;
+  color: grey;
+  transition: all 0.2s ease;
+}
+
+#linkToLogout:hover {
+  color: white;
 }
