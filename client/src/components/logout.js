@@ -35,7 +35,7 @@ export default function LogOut() {
                     render={renderProps => (
                         <button onClick={renderProps.onClick} disabled={renderProps.disabled}>YES</button>
                     )}
-                    buttonText="Login"
+                    buttonText="Logout"
                     onSuccess={onSuccess}
                     cookiePolicy={'single_host_origin'}
                 />

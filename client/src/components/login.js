@@ -6,7 +6,7 @@ const clientId = "209297339002-8oele42ri4qokv2qefi8n7bds2a9jmjk.apps.googleuserc
 
 export default function Login(props) {
   const onSuccess = (res) => {
-    console.log("LOGIN SUCCESS! Current user: ", res.profileObj);
+    console.log("LOGIN SUCCESS! Current user: ", res.profileObj.name);
 
     const profile = res.getBasicProfile();
     const userName = profile.getName();
@@ -57,6 +57,7 @@ export default function Login(props) {
           onSuccess={onSuccess}
           onFailure={onFailure}
           cookiePolicy={'single_host_origin'}
+          isSignedIn={true}
         />
 
         {/* </form> */}

@@ -11,7 +11,7 @@ const PORT = 2000;
 
 
 // TODO: fix name undefined
-export default function Tagging(props) {
+export default function Tagging({ name }) {
   const [tags, setTags] = useState([]);
   const [tagToUpdate, setTagToUpdate] = useState({});
   const [chosenCategory, setChosenCategory] = useState("");
@@ -168,7 +168,7 @@ export default function Tagging(props) {
   // This following section will display the table with the tags the user hasn't tagged.
   return (
     <>
-      <NavBar />
+      <NavBar name={name} />
       <div className="header">
         <h3>Tag Data With Following Details:</h3>
         {getSingleTag()}

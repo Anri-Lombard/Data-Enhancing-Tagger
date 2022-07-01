@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import '../css/navbar.css';
 
-const NavBar = () => {
+const NavBar = ({ name }) => {
   return (
     <div className="App">
       <RB.Navbar collapseOnSelect expand="xl" bg="dark" variant="dark">
@@ -15,7 +15,7 @@ const NavBar = () => {
           <Link id="linkToLogout" to="/logout">Logout</Link>
           <RB.Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <RB.Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
-            <RB.Navbar.Text>Signed in as: NameOfUser</RB.Navbar.Text>
+            <RB.Navbar.Text>Signed in as: {name}</RB.Navbar.Text>
           </RB.Navbar.Collapse>
         </RB.Container>
         {/* <img src='../images/tag.png' alt="tag logo" /> */}
