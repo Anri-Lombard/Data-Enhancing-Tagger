@@ -14,7 +14,11 @@ const clientId = "209297339002-8oele42ri4qokv2qefi8n7bds2a9jmjk.apps.googleuserc
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false)
+  // loggedIn = false
   const [userName, setUserName] = useState("")
+  // function setLoggedIn(val) {
+  //   loggedIn = val
+  // }
 
   useEffect(() => {
     function start() {

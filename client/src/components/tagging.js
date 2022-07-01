@@ -15,8 +15,24 @@ export default function Tagging({ name }) {
   const [tags, setTags] = useState([]);
   const [tagToUpdate, setTagToUpdate] = useState({});
   const [chosenCategory, setChosenCategory] = useState("");
+  const [usersTagged, setUsersTagged] = useState([])
   const tagOptions = ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive", "Other"]
 
+  // 1. length of array
+  //    - length 1:
+  //        -- user in array? Move on...
+  //        -- user not array? Tag...
+  //            --- different to 1st: 3rd (2 options) - Dirk dissagree (report...)
+  //            --- same: Tagged - boolean "tagged"
+  //                eg. [Anri: "tagOne"], [Racquel: "tagOne"] == "tagged"
+  //    - length 2 (dissagree):
+  //        -- 2 options: "tagged" = true once chosen
+  // Logic of tagging the tags :) -- The above description is the idea of what we want to achieve :) 
+  // 
+  // bye anri :)
+  // Bye Simba!!!! <3 :)
+
+  
   const Tag = (props) => (
     <div>
       <div>
