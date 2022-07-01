@@ -4,7 +4,7 @@ import '../css/login.css'
 
 const clientId = "209297339002-8oele42ri4qokv2qefi8n7bds2a9jmjk.apps.googleusercontent.com";
 
-export default function Login(props) {
+export default function Login({ name, isLoggedIn }) {
   const onSuccess = (res) => {
     console.log("LOGIN SUCCESS! Current user: ", res.profileObj.name);
 
@@ -12,8 +12,8 @@ export default function Login(props) {
     const userName = profile.getName();
 
     // send login data to parent
-    props.isLoggedIn(true)
-    props.name(userName)
+    isLoggedIn(true)
+    name(userName)
   }
 
   const onFailure = (res) => {
@@ -51,7 +51,7 @@ export default function Login(props) {
         <GoogleLogin
           clientId={clientId}
           render={renderProps => (
-            <button onClick={renderProps.onClick} disabled={renderProps.disabled}>Google</button>
+            <button onClick={renderProps.onClick} disabled={renderProps.disabled}>Continue With Google</button>
           )}
           buttonText="Login"
           onSuccess={onSuccess}

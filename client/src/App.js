@@ -35,7 +35,7 @@ function App() {
         <Route exact path="/login" element={loggedIn ? <Navigate to="/" /> : <Login name={setUserName} isLoggedIn={setLoggedIn} />} />
         {/* <Route exact path="/" element={<Tagging />} />
         <Route exact path="/login" element={<Login />} /> */}
-        <Route exact path="/logout" element={<Logout />} />
+        <Route exact path="/logout" element={loggedIn ? <Logout isLoggedIn={setLoggedIn} /> : <Navigate to="/login" />} />
       </Routes>
     </div>
   );

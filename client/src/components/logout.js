@@ -4,10 +4,11 @@ import '../css/login.css'
 const clientId = "209297339002-8oele42ri4qokv2qefi8n7bds2a9jmjk.apps.googleusercontent.com";
 
 
-export default function LogOut() {
+export default function LogOut({ isLoggedIn }) {
 
     const onSuccess = (res) => {
         console.log("Log out successfull!");
+        isLoggedIn(false);
     }
 
     return (
@@ -30,7 +31,7 @@ export default function LogOut() {
           <input type="password" placeholder="Password" />
           <button>login</button> */}
 
-                <GoogleLogout
+                {/* <GoogleLogout
                     clientId={clientId}
                     render={renderProps => (
                         <button onClick={renderProps.onClick} disabled={renderProps.disabled}>YES</button>
@@ -38,7 +39,16 @@ export default function LogOut() {
                     buttonText="Logout"
                     onSuccess={onSuccess}
                     cookiePolicy={'single_host_origin'}
-                />
+                /> */}
+                <GoogleLogout
+                    render={renderProps => (
+                        <button onClick={renderProps.onClick} disabled={renderProps.disabled}>Yes</button>
+                    )}
+                    clientId={clientId}
+                    buttonText="Logout"
+                    onLogoutSuccess={onSuccess}
+                >
+                </GoogleLogout>
 
                 {/* </form> */}
             </div>
