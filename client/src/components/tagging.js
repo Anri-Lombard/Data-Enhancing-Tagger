@@ -11,12 +11,14 @@ const PORT = 2000;
 
 
 // TODO: fix name undefined
-export default function Tagging({ name }) {
+export default function Tagging({ name, user }) {
   const [tags, setTags] = useState([]);
   const [tagToUpdate, setTagToUpdate] = useState({});
   const [chosenCategory, setChosenCategory] = useState("");
   const [usersTagged, setUsersTagged] = useState([])
   const tagOptions = ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive", "Other"]
+
+  const usersTaggedArray = []
 
   // 1. length of array
   //    - length 1:
@@ -30,16 +32,14 @@ export default function Tagging({ name }) {
   // Logic of tagging the tags :) -- The above description is the idea of what we want to achieve :) 
   // 
   // bye anri :)
-  // Bye Simba!!!! <3 :)
+  // Bye Simba!!!! :)
 
   
   const Tag = (props) => (
     <div>
       <div>
-        {/* <p className="paragraph">ID: {props.tag.id}</p>
-        <p className="paragraph">Date: {props.tag.date}</p> */}
         <p className="paragraph">Description: {props.tag.description}</p>
-        {/* Use react conditioning for if it has a category */}
+    
         <p className="paragraph">Current Category: {props.tag.category}</p>
       </div>
       <div className="form-box">
@@ -53,6 +53,18 @@ export default function Tagging({ name }) {
 
   // const navigate = useNavigate();
 
+
+  // Synchronous
+  // -
+  //  -
+  //   -
+  //    -
+
+  // Asynchronous
+  // -
+  // -
+  // -
+  // -
 
   async function onSubmitHandler(e) {
     e.preventDefault()
@@ -69,12 +81,20 @@ export default function Tagging({ name }) {
       description: tagToUpdate.description,
       balance: tagToUpdate.balance,
       transactionValue: tagToUpdate.transactionValue,
-      category: chosenCategory,
+      category: chosenCategory, // This is only specified if it is fully tagged
       // TODO: usersTagged array
-      // usersTagged: tagToUpdate.usersTagged == undefined ? usersTaggedArray : tagToUpdate.usersTagged.push(name)
+      usersTagged: tagToUpdate.usersTagged === undefined ? usersTaggedArray.push(user) : tagToUpdate.usersTagged.push(user),
+      // tagged: ...
     };
 
-    // console.log(editedTag);
+    // empty
+    // Racquel tags: now it is [RacquelID] OR [RacquelID: "RacquelTag"]
+    // [RacquelID: "RacquelTag"]
+    // Simba tags: now it is [RacquelID: "RacquelTag", SimbaID: "SimbaTag"]
+
+    // 2 arrays:
+    // category && usersTagged
+    // user in index 0 has tag in index 0
 
     // document.getElementsByClassName("radio-inputs").checked = false;
     document.getElementById("tagBtn").disabled = true;
@@ -110,19 +130,6 @@ export default function Tagging({ name }) {
   function tagRadios() {
     return tagOptions.map((tag) => {
       return (
-        // <li key={tag}>
-        //   <input
-        //     className="radio-inputs"
-        //     type="radio" id={tag}
-        //     name="tag"
-        //     value={tag}
-        //     onChange={onChangeHandler}
-        //   />
-        //   <label>{tag}</label>
-
-        //   {/* TODO: other logic */}
-        //   {tag === "other" ? <input type="text" name={tag} placeholder="specify" /> : null}
-        // </li>
         <li key={tag} >
           <label>  
           <input 
@@ -137,14 +144,12 @@ export default function Tagging({ name }) {
           </label>
           
 
-           {/* TODO: other logic */}
           {tag.toLowerCase() === "other" ? <input type="text" name={tag} placeholder="specify" /> : null}
         </li>
       )
     })
   }
 
-  // This method fetches the tags from the database.
   useEffect(() => {
     async function getTags() {
       const response = await fetch(`http://localhost:${PORT}/tag/`);
@@ -167,7 +172,7 @@ export default function Tagging({ name }) {
 
 
   useEffect(() => {
-    // Random: items[Math.floor(Math.random()*items.length)]
+   
     const randomKey = 5;
     const randomData = tags[randomKey];
     if (randomData !== undefined) {

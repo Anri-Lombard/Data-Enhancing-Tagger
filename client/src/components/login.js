@@ -4,16 +4,18 @@ import '../css/login.css'
 
 const clientId = "209297339002-8oele42ri4qokv2qefi8n7bds2a9jmjk.apps.googleusercontent.com";
 
-export default function Login({ name, isLoggedIn }) {
+export default function Login({ name, isLoggedIn, userID }) {
   const onSuccess = (res) => {
     console.log("LOGIN SUCCESS! Current user: ", res.profileObj.name);
 
     const profile = res.getBasicProfile();
-    const userName = profile.getName();
+    const userGoogleName = profile.getName();
+    const userGoogleID = profile.getId();
 
     // send login data to parent
     isLoggedIn(true)
-    name(userName)
+    name(userGoogleName)
+    userID(userGoogleID)
   }
 
   const onFailure = (res) => {

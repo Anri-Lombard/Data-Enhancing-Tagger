@@ -16,30 +16,11 @@ export default function LogOut({ isLoggedIn }) {
             <div class="form">
                 <div class="login">
                     <div class="login-header">
-                        {/* <img
-              src='https://th.bing.com/th/id/OIP.0bj7uDYd162yEJvtZGq7qAHaB1?pid=ImgDet&rs=1'
-              height='30'
-              alt=''
-              loading='lazy'
-            /> */}
+                        {}
                         <h3>ARE YOU SURE YOU WANT TO LOGOUT?</h3>
-                        {/* <p>Enter Username and Password.</p> */}
+                       
                     </div>
                 </div>
-                {/* <form class="login-form"> */}
-                {/* <input type="text" placeholder="Username" />
-          <input type="password" placeholder="Password" />
-          <button>login</button> */}
-
-                {/* <GoogleLogout
-                    clientId={clientId}
-                    render={renderProps => (
-                        <button onClick={renderProps.onClick} disabled={renderProps.disabled}>YES</button>
-                    )}
-                    buttonText="Logout"
-                    onSuccess={onSuccess}
-                    cookiePolicy={'single_host_origin'}
-                /> */}
                 <GoogleLogout
                     render={renderProps => (
                         <button onClick={renderProps.onClick} disabled={renderProps.disabled}>Yes</button>
@@ -50,13 +31,7 @@ export default function LogOut({ isLoggedIn }) {
                 >
                 </GoogleLogout>
 
-                {/* </form> */}
             </div>
         </div>
-        // <GoogleLogout
-        //     client_id={clientId}
-        //     buttonText="Logout"
-        //     onLogoutSuccess={onSuccess}
-        // />
     )
 }

@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import '../css/navbar.css';
 
-const NavBar = ({ name }) => {
+const NavBar = ({ name, user }) => {
   return (
     <div className="App">
       <RB.Navbar collapseOnSelect expand="xl" bg="dark" variant="dark">
@@ -18,24 +18,6 @@ const NavBar = ({ name }) => {
             <RB.Navbar.Text>Signed in as: {name}</RB.Navbar.Text>
           </RB.Navbar.Collapse>
         </RB.Container>
-        {/* <img src='../images/tag.png' alt="tag logo" /> */}
-        {/* <h1>Manual Tagger</h1>
-          <RB.Nav className="mr-auto">
-            <Link to="/logout">
-              <RB.Nav.Link href="#logout">logout</RB.Nav.Link>
-            </Link>
-            <RB.NavDropdown title="DropDown" id="collasible-nav-dropdown">
-              <RB.NavDropdown.Item href="#action/3.1">Link 1</RB.NavDropdown.Item>
-              <RB.NavDropdown.Item href="#action/3.2">Link 2</RB.NavDropdown.Item>
-              <RB.NavDropdown.Item href="#action/3.3">Link 3</RB.NavDropdown.Item>
-              <RB.NavDropdown.Divider />
-              <RB.NavDropdown.Item href="#action/3.4">Link 4</RB.NavDropdown.Item>
-            </RB.NavDropdown>
-          </RB.Nav>
-          <RB.Nav>
-
-          </RB.Nav>
-        </RB.Navbar.Collapse> */}
       </RB.Navbar>
     </div>
   )
