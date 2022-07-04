@@ -16,7 +16,7 @@ export default function Tagging({ name, user }) {
   const [tagToUpdate, setTagToUpdate] = useState({});
   const [chosenCategory, setChosenCategory] = useState("");
   const [usersTagged, setUsersTagged] = useState([])
-
+ // to do list
   // Add tons more options
   // the options will be outlined by Dirk 
   //* find out the display of the tags 
