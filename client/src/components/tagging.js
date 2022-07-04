@@ -16,7 +16,10 @@ export default function Tagging({ name, user }) {
   const [tagToUpdate, setTagToUpdate] = useState({});
   const [chosenCategory, setChosenCategory] = useState("");
   const [usersTagged, setUsersTagged] = useState([])
-  // create a search function 
+ // to do list
+  // Add tons more options
+  // the options will be outlined by Dirk 
+  //* find out the display of the tags 
   const tagOptions = ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive", "Other"]
 
   const usersTaggedArray = []
@@ -31,9 +34,6 @@ export default function Tagging({ name, user }) {
   //    - length 2 (dissagree):
   //        -- 2 options: "tagged" = true once chosen
   // Logic of tagging the tags :) -- The above description is the idea of what we want to achieve :) 
-  // 
-  // bye anri :)
-  // Bye Simba!!!! :)
 
   
   const Tag = (props) => (
@@ -71,7 +71,7 @@ export default function Tagging({ name, user }) {
     e.preventDefault()
     setTimeout(() => {
       window.location.reload()
-    }, 500)
+    }, 1000)
     // $tagBtn.disabled = true;
 
 
@@ -131,6 +131,9 @@ export default function Tagging({ name, user }) {
   function tagRadios() {
     return tagOptions.map((tag) => {
       return (
+        // div with scrollbar functionality
+
+        //div
         <li key={tag} >
           <label>  
           <input 
@@ -143,10 +146,8 @@ export default function Tagging({ name, user }) {
           <div class="circle"></div>
           <span>{tag}</span>
           </label>
-          
-
-          {tag.toLowerCase() === "other" ? <input type="text" name={tag} placeholder="specify" /> : null}
         </li>
+        // div
       )
     })
   }
