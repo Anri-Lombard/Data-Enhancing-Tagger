@@ -16,6 +16,7 @@ export default function Tagging({ name, user }) {
   const [tagToUpdate, setTagToUpdate] = useState({});
   const [chosenCategory, setChosenCategory] = useState("");
   const [usersTagged, setUsersTagged] = useState([])
+  // create a search function 
   const tagOptions = ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive", "Other"]
 
   const usersTaggedArray = []
