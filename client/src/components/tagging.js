@@ -22,7 +22,7 @@ export default function Tagging({ name, user }) {
   //* find out the display of the tags 
   const tagOptions = ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive", "Other"]
 
-  const usersTaggedArray = []
+  const usersTaggedArray = ["Peter", "Jack", "Jill"]
 
   // 1. length of array
   //    - length 1:
@@ -40,8 +40,8 @@ export default function Tagging({ name, user }) {
     <div>
       <div>
         <p className="paragraph">Description: {props.tag.description}</p>
-    
         <p className="paragraph">Current Category: {props.tag.category}</p>
+        <p className="paragraph">Users Tagged: {props.tag.usersTagged === undefined ? "No One" : props.tag.usersTagged}</p>
       </div>
       <div className="form-box">
         <form onSubmit={onSubmitHandler}>
@@ -68,10 +68,11 @@ export default function Tagging({ name, user }) {
   // -
 
   async function onSubmitHandler(e) {
-    e.preventDefault()
+    e.preventDefault();
     setTimeout(() => {
+      console.log(user)
       window.location.reload()
-    }, 1000)
+    }, 500)
     // $tagBtn.disabled = true;
 
 
@@ -84,7 +85,7 @@ export default function Tagging({ name, user }) {
       transactionValue: tagToUpdate.transactionValue,
       category: chosenCategory, // This is only specified if it is fully tagged
       // TODO: usersTagged array
-      usersTagged: tagToUpdate.usersTagged === undefined ? usersTaggedArray.push(user) : tagToUpdate.usersTagged.push(user),
+      usersTagged: usersTaggedArray,
       // tagged: ...
     };
 
@@ -184,6 +185,8 @@ export default function Tagging({ name, user }) {
 
 
   function getSingleTag() {
+    console.log(typeof(tagToUpdate.usersTagged))
+    console.log(tagToUpdate.usersTagged)
     return <Tag tag={tagToUpdate} />
   }
 
