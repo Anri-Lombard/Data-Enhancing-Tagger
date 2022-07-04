@@ -2,7 +2,7 @@
 Tool a startup could use to manually tag categorical data to rapidly improve the classification accuracy of their machine learning models.
 
 # Usage
-1. Clone and start applications.
+1. Clone and start applications with docker.
 2. Run:
 ```
 git clone https://github.com/Anri-Lombard/Data-Enhancing-Tagger.git
