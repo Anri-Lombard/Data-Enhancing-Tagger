@@ -3,3 +3,6 @@ npm-debug.log
 client/src/compiled/
 # dist folder
 dist
+package-lock.json
+package.json
+client/.eslintcache
