@@ -8,6 +8,8 @@ Tool a startup could use to manually tag categorical data to rapidly improve the
 git clone https://github.com/Anri-Lombard/Data-Enhancing-Tagger.git
 docker-compose up
 ```
+
+
 But if you do not have docker installed:
 ```
 cd client
