@@ -22,7 +22,14 @@ export default function Tagging({ name, user }) {
   //* find out the display of the tags 
   const tagOptions = ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive", "Other"]
 
-  const usersTaggedArray = ["Peter", "Jack", "Jill"]
+  const usersTaggedArray = new Array(user)
+
+  // console.log("0");
+  // console.log("1 " + typeof(user));
+  // console.log("2 " + name === undefined);
+  // console.log("3 " + user)
+  // console.log("4 " + typeof(new Array(user)));
+  // console.log(new Array(user)[0]);
 
   // 1. length of array
   //    - length 1:
@@ -70,7 +77,7 @@ export default function Tagging({ name, user }) {
   async function onSubmitHandler(e) {
     e.preventDefault();
     setTimeout(() => {
-      console.log(user)
+      // console.log(user)
       window.location.reload()
     }, 500)
     // $tagBtn.disabled = true;
@@ -185,8 +192,8 @@ export default function Tagging({ name, user }) {
 
 
   function getSingleTag() {
-    console.log(typeof(tagToUpdate.usersTagged))
-    console.log(tagToUpdate.usersTagged)
+    // console.log(typeof(tagToUpdate.usersTagged))
+    // console.log(tagToUpdate.usersTagged)
     return <Tag tag={tagToUpdate} />
   }
 
