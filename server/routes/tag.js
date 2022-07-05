@@ -68,7 +68,7 @@ tagRoutes.route("/update/:id").post(function (req, response) {
     //  balance: req.body.balance,
     //  transactionValue: req.body.transactionValue,
      category: req.body.category,
-    //  usersTagged: req.body.usersTagged,
+     usersTagged: req.body.usersTagged,
     //  tagged: req.body.tagged
    }, 
   }
