@@ -22,6 +22,7 @@ export default function Tagging({ name, user }) {
   //* find out the display of the tags 
   const tagOptions = ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive", "Other"]
 
+  // const usersTaggedArray = new Array(user)
   const usersTaggedArray = new Array(user)
 
   // console.log("0");
@@ -48,7 +49,7 @@ export default function Tagging({ name, user }) {
       <div>
         <p className="paragraph">Description: {props.tag.description}</p>
         <p className="paragraph">Current Category: {props.tag.category}</p>
-        <p className="paragraph">Users Tagged: {props.tag.usersTagged === undefined ? "No One" : props.tag.usersTagged}</p>
+        <p className="paragraph">Number of Users Who Tagged: {props.tag.usersTagged === undefined || props.tag.usersTagged === null ? "No One" : props.tag.usersTagged.length}</p>
       </div>
       <div className="form-box">
         <form onSubmit={onSubmitHandler}>
