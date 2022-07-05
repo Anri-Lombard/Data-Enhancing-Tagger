@@ -8,7 +8,7 @@
 body {
   background-color: #000000;
   background-image: linear-gradient(45deg, #000000, #000000);
-  font-family: "Roboto", sans-serif;
+  font-family: "Lucida Console", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -22,7 +22,7 @@ body {
   margin: 150px auto;
   padding: 0px;
   border-radius: 8px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lucida Console", sans-serif;
 
 
 }
@@ -32,7 +32,7 @@ body {
   font-style: italic;
   font-size: 140 px;
   color: darkturquoise;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lucida Console", sans-serif;
 
 
 }
@@ -46,7 +46,7 @@ body {
   padding: 30px;
   text-align: left;
   box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.2), 0 5px 5px 0 rgba(255, 255, 255, 0.24);
-  font-family: "Roboto", sans-serif;
+  font-family: "Lucida Console", sans-serif;
 
 
 
@@ -59,7 +59,7 @@ body {
   margin-bottom: 10px;
   padding-left: 55px;
   position: relative;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lucida Console", sans-serif;
 
 }
 
@@ -107,7 +107,7 @@ body {
   color: rgb(255, 255, 255);
   font-size: 15pt;
   line-height: 15pt;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lucida Console", sans-serif;
 }
 
 
@@ -116,14 +116,14 @@ body {
   color: rgb(125, 244, 133);
   font-size: 30px;
   text-align: left;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lucida Console", sans-serif;
 
 }
 
 h3 {
   text-align: center;
   border: grey;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lucida Console", sans-serif;
 }
 
 
@@ -166,7 +166,7 @@ li {
 }
 
 #tagBtn {
-  font-family: "Roboto", sans-serif;
+  font-family: "Lucida Console", sans-serif;
   text-transform: uppercase;
   outline: 0;
   background-color: #000000;
@@ -182,7 +182,7 @@ li {
 }
 
 #tagBtn:hover {
-  font-family: "Roboto", sans-serif;
+  font-family: "Lucida Console", sans-serif;
   text-transform: uppercase;
   outline: 0;
   background-color: #000000;
