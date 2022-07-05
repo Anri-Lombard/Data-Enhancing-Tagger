@@ -20,7 +20,15 @@ export default function Tagging({ name, user }) {
   // Add tons more options
   // the options will be outlined by Dirk 
   //* find out the display of the tags 
-  const tagOptions = ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive", "Other"]
+
+  // TODO: Add category attribute
+  const tagOptions = (tagToUpdate.usersTagged === undefined || tagToUpdate.usersTagged === null) ? 
+                    ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive", "Other"] :
+                    (
+                      (tagToUpdate.usersTagged.length < 2) ?
+                      ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive", "Other"] :
+                      ["SpecificTagOne", "SpecificTagTwo"]
+                    )
 
   // const usersTaggedArray = new Array(user)
   const usersTaggedArray = new Array(user)
@@ -60,8 +68,6 @@ export default function Tagging({ name, user }) {
     </div>
   );
 
-  // const navigate = useNavigate();
-
 
   // Synchronous
   // -
@@ -78,10 +84,8 @@ export default function Tagging({ name, user }) {
   async function onSubmitHandler(e) {
     e.preventDefault();
     setTimeout(() => {
-      // console.log(user)
       window.location.reload()
-    }, 500)
-    // $tagBtn.disabled = true;
+    }, 200)
 
 
     // TODO: logic for if already tagged.
@@ -92,7 +96,8 @@ export default function Tagging({ name, user }) {
       balance: tagToUpdate.balance,
       transactionValue: tagToUpdate.transactionValue,
       category: chosenCategory, // This is only specified if it is fully tagged
-      // TODO: usersTagged array
+
+      // TODO: Add users who tag if they haven't
       usersTagged: usersTaggedArray,
       // tagged: ...
     };
@@ -132,10 +137,6 @@ export default function Tagging({ name, user }) {
     setChosenCategory(e.target.value)
     document.getElementById("tagBtn").disabled = false;
   }
-
-  // TODO: Dynamic tags
-  // This maps out all the tags we have, we'll make it dynamic.
-  // const mostCommonTagsForCompany = ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive"]
 
   function tagRadios() {
     return tagOptions.map((tag) => {
@@ -183,6 +184,9 @@ export default function Tagging({ name, user }) {
 
 
   useEffect(() => {
+
+    // TODO: Only show data not tagged by user
+    // TODO: Find effective algorithm for this
    
     const randomKey = 5;
     const randomData = tags[randomKey];
