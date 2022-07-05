@@ -20,9 +20,25 @@ export default function Tagging({ name, user }) {
   // Add tons more options
   // the options will be outlined by Dirk 
   //* find out the display of the tags 
-  const tagOptions = ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive", "Other"]
 
-  const usersTaggedArray = ["Peter", "Jack", "Jill"]
+  // TODO: Add category attribute
+  const tagOptions = (tagToUpdate.usersTagged === undefined || tagToUpdate.usersTagged === null) ? 
+                    ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive", "Other"] :
+                    (
+                      (tagToUpdate.usersTagged.length < 2) ?
+                      ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive", "Other"] :
+                      ["SpecificTagOne", "SpecificTagTwo"]
+                    )
+
+  // const usersTaggedArray = new Array(user)
+  const usersTaggedArray = new Array(user)
+
+  // console.log("0");
+  // console.log("1 " + typeof(user));
+  // console.log("2 " + name === undefined);
+  // console.log("3 " + user)
+  // console.log("4 " + typeof(new Array(user)));
+  // console.log(new Array(user)[0]);
 
   // 1. length of array
   //    - length 1:
@@ -41,7 +57,7 @@ export default function Tagging({ name, user }) {
       <div>
         <p className="paragraph">Description: {props.tag.description}</p>
         <p className="paragraph">Current Category: {props.tag.category}</p>
-        <p className="paragraph">Users Tagged: {props.tag.usersTagged === undefined ? "No One" : props.tag.usersTagged}</p>
+        <p className="paragraph">Number of Users Who Tagged: {props.tag.usersTagged === undefined || props.tag.usersTagged === null ? "No One" : props.tag.usersTagged.length}</p>
       </div>
       <div className="form-box">
         <form onSubmit={onSubmitHandler}>
@@ -51,8 +67,6 @@ export default function Tagging({ name, user }) {
       </div>
     </div>
   );
-
-  // const navigate = useNavigate();
 
 
   // Synchronous
@@ -70,10 +84,8 @@ export default function Tagging({ name, user }) {
   async function onSubmitHandler(e) {
     e.preventDefault();
     setTimeout(() => {
-      console.log(user)
       window.location.reload()
-    }, 500)
-    // $tagBtn.disabled = true;
+    }, 200)
 
 
     // TODO: logic for if already tagged.
@@ -84,7 +96,8 @@ export default function Tagging({ name, user }) {
       balance: tagToUpdate.balance,
       transactionValue: tagToUpdate.transactionValue,
       category: chosenCategory, // This is only specified if it is fully tagged
-      // TODO: usersTagged array
+
+      // TODO: Add users who tag if they haven't
       usersTagged: usersTaggedArray,
       // tagged: ...
     };
@@ -124,10 +137,6 @@ export default function Tagging({ name, user }) {
     setChosenCategory(e.target.value)
     document.getElementById("tagBtn").disabled = false;
   }
-
-  // TODO: Dynamic tags
-  // This maps out all the tags we have, we'll make it dynamic.
-  // const mostCommonTagsForCompany = ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive"]
 
   function tagRadios() {
     return tagOptions.map((tag) => {
@@ -175,6 +184,9 @@ export default function Tagging({ name, user }) {
 
 
   useEffect(() => {
+
+    // TODO: Only show data not tagged by user
+    // TODO: Find effective algorithm for this
    
     const randomKey = 5;
     const randomData = tags[randomKey];
@@ -185,8 +197,8 @@ export default function Tagging({ name, user }) {
 
 
   function getSingleTag() {
-    console.log(typeof(tagToUpdate.usersTagged))
-    console.log(tagToUpdate.usersTagged)
+    // console.log(typeof(tagToUpdate.usersTagged))
+    // console.log(tagToUpdate.usersTagged)
     return <Tag tag={tagToUpdate} />
   }
 
