@@ -30,6 +30,37 @@ export default function Tagging({ name, user }) {
                       ["SpecificTagOne", "SpecificTagTwo"]
                     )
 
+  // TODO:
+  // 1. Boolean = if 2 users tagged + 2 categories are the same, then true (tagged completely)
+  //    else if 2 users tagged + 2 categories not the same, then decision state.
+  // 2. Search algorithm for untagged data
+  //    - If tagged by user, don't show for user.
+  //    - if tagged completely, don't show to anyone.
+  //    ---- Obviously, as data gets more, this can become inefficient.
+  // 3. DONE SCREEN - no data to tag.
+  //
+  //
+  // Potential solutions:
+  // - R: Add untagged data to queue and supply in order of queue. (add where boolean is false)
+  /* - S: Instead of giving the users all the data all at once, how about we do it in batches where a single user gets say 30 pieces of data and works on them and those 30 are marked as "currently engaged"
+      - so in addition to checking if the user is in the "usersTagged" array, we also search for a "currently engaged" marker that we reset just as the user logs out
+      - Logic in SQL: select * from Data where user not in usersTagged and not currentlyEngaged limit 30;
+      - Limit could be arbitrary based on what we think shoudl be the right volume for a single sitting.
+  */
+
+
+  // xxxxxxxxxxxx--
+  // xxxxxxxxxxxxx-
+  // xxxxxxxxxxxxxx
+
+  // xxxxxxxxxxxx--
+  // User logs in.
+  // --
+  // -
+  // Problem: 2 users have it in their queues (when tagging together)
+  // Concurently programming.
+  // DONE
+
   // const usersTaggedArray = new Array(user)
   // const usersTaggedArray = ["1"]
   const usersTaggedArray = ["1", "2"]
