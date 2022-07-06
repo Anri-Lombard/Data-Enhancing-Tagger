@@ -5,6 +5,8 @@ import '../css/tagging.css'
 
 const PORT = 2000;
 
+// TODO: figure out how to make user array - not object
+
 
 // TODO: continuously stream data when authenticating users
 
@@ -56,6 +58,20 @@ export default function Tagging({ name, user }) {
       - Limit could be arbitrary based on what we think shoudl be the right volume for a single sitting.
   */
 
+  // - Mongodb updates in real time - along with app.
+  // - Curently tagging: thisUser...
+  // --- Next piece button
+  // PROBLEM: We fetch data only on loading, not continuously.
+
+  // What we know: categories and users, when to show data to user, we can lead random data continuously.
+  // What we don't know: how to make sure a single user works on a piece of data at a time.
+  // To move forward: use 5 piences of json data for testing - move bigger later.
+
+  // 1. Use only 10 json data in mongodb
+  // 2. Implement logic
+  // 3. Try to f everything up together.
+
+
 
   // xxxxxxxxxxxx--
   // xxxxxxxxxxxxx-
@@ -72,6 +88,7 @@ export default function Tagging({ name, user }) {
   // const usersTaggedArray = new Array(user)
   // const usersTaggedArray = ["1"]
   const usersTaggedArray = ["1", "2"]
+  // const usersTaggedArray = ["1", "2", "3"]
   const userCategoriesArray = []
 
   // console.log("0");
@@ -168,7 +185,9 @@ export default function Tagging({ name, user }) {
       category: chosenCategory, // This is only specified if it is fully tagged
 
       // TODO: Add users who tag if they haven't
-      usersTagged: usersTaggedArray,
+      // TODO: logic for too many users
+      usersTagged: tagToUpdate.usersTagged === null || tagToUpdate.usersTagged === undefined ?
+                    new Array(user) : tagToUpdate.usersTagged.push(user),
       userCategories: userCategoriesArray
       // tagged: ...
     };
@@ -195,30 +214,40 @@ export default function Tagging({ name, user }) {
     });
   }
 
+  let targetValue = ""
+
+  // useEffect(() => {
+  //   setChosenCategory(targetValue)
+  //   console.log(targetValue, chosenCategory)
+  //   document.getElementById("tagBtn").disabled = false;
+  // }, [targetValue, chosenCategory])
+
   function onChangeHandler(e) {
 
     // TODO: fix double click?
+    // targetValue = e.target.value;
     setChosenCategory(e.target.value)
     document.getElementById("tagBtn").disabled = false;
+    
   }
 
   function tagRadios() {
     return tagOptions.map((tag) => {
+
       return (
         // div with scrollbar functionality
 
         //div
+        // added the checked attribute for all tags which is then by default added to the last tag which is "other".
         <li key={tag} >
-          <label>  
           <input 
-            className="radio-inputs" 
+            className="btn btn-check" 
             type="radio" id={tag} 
-            name="tag" 
+            name="tag" autoComplete="off"
             value={tag} 
-            onChange={onChangeHandler} 
+            onChange={onChangeHandler}
           />
-          <div className="circle"></div>
-          <span>{tag}</span>
+          <label className="btn btn-outline-primary" htmlFor={tag}>{tag}
           </label>
         </li>
         // div
@@ -252,6 +281,8 @@ export default function Tagging({ name, user }) {
     // TODO: Only show data not tagged by user
     // TODO: Find effective algorithm for this
    
+    // boolean logic
+    // TODO: algorithm for searching!!!!!!!!!!!!!!
     const randomKey = 5;
     const randomData = tags[randomKey];
     if (randomData !== undefined) {
@@ -278,5 +309,8 @@ export default function Tagging({ name, user }) {
       <Footer />
     </>
   );
+<<<<<<< HEAD
+=======
   }
+>>>>>>> origin/main
 }
