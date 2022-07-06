@@ -5,6 +5,8 @@ import '../css/tagging.css'
 
 const PORT = 2000;
 
+// TODO: !!!! n
+
 
 // TODO: continuously stream data when authenticating users
 
@@ -150,7 +152,9 @@ export default function Tagging({ name, user }) {
       category: chosenCategory, // This is only specified if it is fully tagged
 
       // TODO: Add users who tag if they haven't
-      usersTagged: usersTaggedArray,
+      // TODO: logic for too many users
+      usersTagged: tagToUpdate.usersTagged === null || tagToUpdate.usersTagged === undefined ?
+                    new Array(user) : tagToUpdate.usersTagged.push(user),
       userCategories: userCategoriesArray
       // tagged: ...
     };
@@ -210,7 +214,7 @@ export default function Tagging({ name, user }) {
             value={tag} 
             onChange={onChangeHandler}
           />
-          <label className="btn btn-outline-primary" for={tag}>{tag}
+          <label className="btn btn-outline-primary" htmlFor={tag}>{tag}
           </label>
         </li>
         // div
