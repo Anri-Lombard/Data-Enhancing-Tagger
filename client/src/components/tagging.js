@@ -309,4 +309,8 @@ export default function Tagging({ name, user }) {
       <Footer />
     </>
   );
+<<<<<<< HEAD
+=======
+  }
+>>>>>>> origin/main
 }
