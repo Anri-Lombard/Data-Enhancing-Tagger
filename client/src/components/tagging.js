@@ -48,6 +48,20 @@ export default function Tagging({ name, user }) {
       - Limit could be arbitrary based on what we think shoudl be the right volume for a single sitting.
   */
 
+  // - Mongodb updates in real time - along with app.
+  // - Curently tagging: thisUser...
+  // --- Next piece button
+  // PROBLEM: We fetch data only on loading, not continuously.
+
+  // What we know: categories and users, when to show data to user, we can lead random data continuously.
+  // What we don't know: how to make sure a single user works on a piece of data at a time.
+  // To move forward: use 5 piences of json data for testing - move bigger later.
+
+  // 1. Use only 10 json data in mongodb
+  // 2. Implement logic
+  // 3. Try to f everything up together.
+
+
 
   // xxxxxxxxxxxx--
   // xxxxxxxxxxxxx-
@@ -61,9 +75,10 @@ export default function Tagging({ name, user }) {
   // Concurently programming.
   // DONE
 
-  // const usersTaggedArray = new Array(user)
+  const usersTaggedArray = new Array(user)
   // const usersTaggedArray = ["1"]
-  const usersTaggedArray = ["1", "2"]
+  // const usersTaggedArray = ["1", "2"]
+  // const usersTaggedArray = ["1", "2", "3"]
   const userCategoriesArray = []
 
   // console.log("0");
@@ -86,7 +101,7 @@ export default function Tagging({ name, user }) {
 
   
   const Tag = (props) => (
-    <div className="main-container-text">
+    <div>
       <div>
         <p className="paragraph">Description: {props.tag.description}</p>
         <p className="paragraph">Current Category: {props.tag.category}</p>
@@ -162,15 +177,26 @@ export default function Tagging({ name, user }) {
     });
   }
 
+  let targetValue = ""
+
+  // useEffect(() => {
+  //   setChosenCategory(targetValue)
+  //   console.log(targetValue, chosenCategory)
+  //   document.getElementById("tagBtn").disabled = false;
+  // }, [targetValue, chosenCategory])
+
   function onChangeHandler(e) {
 
     // TODO: fix double click?
+    // targetValue = e.target.value;
     setChosenCategory(e.target.value)
     document.getElementById("tagBtn").disabled = false;
+    
   }
 
   function tagRadios() {
     return tagOptions.map((tag) => {
+
       return (
         // div with scrollbar functionality
 
@@ -218,6 +244,8 @@ export default function Tagging({ name, user }) {
     // TODO: Only show data not tagged by user
     // TODO: Find effective algorithm for this
    
+    // boolean logic
+    // TODO: algorithm for searching!!!!!!!!!!!!!!
     const randomKey = 5;
     const randomData = tags[randomKey];
     if (randomData !== undefined) {
@@ -237,7 +265,7 @@ export default function Tagging({ name, user }) {
   return (
     <>
       <NavBar name={name} />
-      <div className="header main-container-text">
+      <div className="header">
         <h3>Tag Data With Following Details:</h3>
         {getSingleTag()}
       </div>

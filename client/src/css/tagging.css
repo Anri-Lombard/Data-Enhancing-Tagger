@@ -14,11 +14,9 @@ body {
 
 * {
   box-sizing: border-box;
-}
-
-.main-container-text {
   font-family: "Lucida Console", sans-serif;
 }
+
 .form-box-one {
   max-width: 400px;
   margin: 150px auto;
