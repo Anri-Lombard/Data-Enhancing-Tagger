@@ -86,7 +86,7 @@ export default function Tagging({ name, user }) {
 
   
   const Tag = (props) => (
-    <div>
+    <div className="main-container-text">
       <div>
         <p className="paragraph">Description: {props.tag.description}</p>
         <p className="paragraph">Current Category: {props.tag.category}</p>
@@ -175,17 +175,16 @@ export default function Tagging({ name, user }) {
         // div with scrollbar functionality
 
         //div
+        // added the checked attribute for all tags which is then by default added to the last tag which is "other".
         <li key={tag} >
-          <label>  
           <input 
-            className="radio-inputs" 
+            className="btn btn-check" 
             type="radio" id={tag} 
-            name="tag" 
+            name="tag" autoComplete="off"
             value={tag} 
-            onChange={onChangeHandler} 
+            onChange={onChangeHandler}
           />
-          <div className="circle"></div>
-          <span>{tag}</span>
+          <label className="btn btn-outline-primary" for={tag}>{tag}
           </label>
         </li>
         // div
@@ -238,7 +237,7 @@ export default function Tagging({ name, user }) {
   return (
     <>
       <NavBar name={name} />
-      <div className="header">
+      <div className="header main-container-text">
         <h3>Tag Data With Following Details:</h3>
         {getSingleTag()}
       </div>
