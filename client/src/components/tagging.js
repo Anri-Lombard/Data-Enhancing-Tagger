@@ -309,5 +309,4 @@ export default function Tagging({ name, user }) {
       <Footer />
     </>
   );
-  }
 }
