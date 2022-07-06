@@ -12,17 +12,6 @@ const PORT = 2000;
 
 
 export default function Tagging({ name, user }) {
-  const [tags, setTags] = useState([]);
-  const [tagToUpdate, setTagToUpdate] = useState({});
-  const [chosenCategory, setChosenCategory] = useState("");
-  // const [usersTagged, setUsersTagged] = useState([])
-  // const [categoriesChosenByUsers, setCategoriesChosenByUsers] = useState([])
-  
-  // TODO:
-  // Add tons more options
-  // the options will be outlined by Dirk 
-  //* find out the display of the tags 
-
   // TODO: Add category attribute
   const tagOptions = (tagToUpdate.usersTagged === undefined || tagToUpdate.usersTagged === null) ? 
                     ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive", "Other"] :
@@ -31,6 +20,25 @@ export default function Tagging({ name, user }) {
                       ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive", "Other"] :
                       ["SpecificTagOne", "SpecificTagTwo"]
                     )
+
+  const [tags, setTags] = useState([]);
+  const [tagToUpdate, setTagToUpdate] = useState({});
+  const [chosenCategory, setChosenCategory] = useState("");
+  // this will display the options to choose from and will be changed
+  const [visibleOption, setVisibleOptions] = useState(tagOptions)
+  const [query, setQuery] = useState('');
+  // tags = variable = [] initially
+  // setTags = function = function setTags(val) {}
+
+
+  // const [usersTagged, setUsersTagged] = useState([])
+  // const [categoriesChosenByUsers, setCategoriesChosenByUsers] = useState([])
+  
+  // TODO:
+  // Add tons more options
+  // the options will be outlined by Dirk 
+  //* find out the display of the tags 
+
 
   // TODO:
   // 1. Boolean = if 2 users tagged + 2 categories are the same, then true (tagged completely)
@@ -101,6 +109,24 @@ export default function Tagging({ name, user }) {
   //        -- 2 options: "tagged" = true once chosen
   // Logic of tagging the tags :) -- The above description is the idea of what we want to achieve :) 
 
+
+  // filter function 
+  const filter = (e) => {
+    const keyword = e.target.value;
+
+    if (keyword !== '') {
+      const results = tagOptions.filter((user) => {
+        return user.name.toLowerCase().startsWith(keyword.toLowerCase());
+        // Use the toLowerCase() method to make it case-insensitive
+      });
+      setFoundUsers(results);
+    } else {
+      setFoundUsers(USERS);
+      // If the text field is empty, show all users
+    }
+
+    setQuery(keyword);
+  };
   
   const Tag = (props) => (
     <div>
@@ -111,6 +137,13 @@ export default function Tagging({ name, user }) {
         <p className="paragraph">User Categories: {props.tag.userCategories === undefined || props.tag.userCategories === null ? "No Categories" : props.tag.userCategories}</p>
       </div>
       <div className="form-box">
+        <input
+          type="search"
+          value={query}
+          onChange={filter}
+          className="input"
+          placeholder="Filter"
+        />
         <form onSubmit={onSubmitHandler}>
           {tagRadios()}
           <button id="tagBtn" type="submit" disabled>Tag</button>
@@ -276,4 +309,5 @@ export default function Tagging({ name, user }) {
       <Footer />
     </>
   );
+  }
 }

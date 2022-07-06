@@ -134,7 +134,7 @@ h3 {
 }
 
 input[type=text] {
-  font-family: "Roboto", sans-serif;
+  font-family: "Lucida Console", sans-serif;
   outline: 0;
   background: #f2f2f2;
   width: 100%;
@@ -190,4 +190,8 @@ li {
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
+}
+
+.styleInfo  {
+  padding-right:'10px'
 }
