@@ -5,7 +5,7 @@ import '../css/tagging.css'
 
 const PORT = 2000;
 
-// TODO: !!!! n
+// TODO: figure out how to make user array - not object
 
 
 // TODO: continuously stream data when authenticating users
@@ -77,9 +77,9 @@ export default function Tagging({ name, user }) {
   // Concurently programming.
   // DONE
 
-  const usersTaggedArray = new Array(user)
+  // const usersTaggedArray = new Array(user)
   // const usersTaggedArray = ["1"]
-  // const usersTaggedArray = ["1", "2"]
+  const usersTaggedArray = ["1", "2"]
   // const usersTaggedArray = ["1", "2", "3"]
   const userCategoriesArray = []
 
