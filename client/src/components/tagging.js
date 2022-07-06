@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import { useNavigate } from "react-router-dom";
 import NavBar from './navbar.js';
 import Footer from './footer.js';
 import '../css/tagging.css'
@@ -10,28 +9,70 @@ const PORT = 2000;
 // TODO: continuously stream data when authenticating users
 
 
-// TODO: fix name undefined
 export default function Tagging({ name, user }) {
-  const [tags, setTags] = useState([]);
-  const [tagToUpdate, setTagToUpdate] = useState({});
-  const [chosenCategory, setChosenCategory] = useState("");
-  const [usersTagged, setUsersTagged] = useState([])
- // to do list
-  // Add tons more options
-  // the options will be outlined by Dirk 
-  //* find out the display of the tags 
-
   // TODO: Add category attribute
   const tagOptions = (tagToUpdate.usersTagged === undefined || tagToUpdate.usersTagged === null) ? 
                     ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive", "Other"] :
                     (
-                      (tagToUpdate.usersTagged.length < 2) ?
+                      (tagToUpdate.usersTagged.length <= 2) ?
                       ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive", "Other"] :
                       ["SpecificTagOne", "SpecificTagTwo"]
                     )
 
+  const [tags, setTags] = useState([]);
+  const [tagToUpdate, setTagToUpdate] = useState({});
+  const [chosenCategory, setChosenCategory] = useState("");
+  // this will display the options to choose from and will be changed
+  const [visibleOption, setVisibleOptions] = useState(tagOptions)
+  const [query, setQuery] = useState('');
+  // tags = variable = [] initially
+  // setTags = function = function setTags(val) {}
+
+
+  // const [usersTagged, setUsersTagged] = useState([])
+  // const [categoriesChosenByUsers, setCategoriesChosenByUsers] = useState([])
+  
+  // TODO:
+  // Add tons more options
+  // the options will be outlined by Dirk 
+  //* find out the display of the tags 
+
+
+  // TODO:
+  // 1. Boolean = if 2 users tagged + 2 categories are the same, then true (tagged completely)
+  //    else if 2 users tagged + 2 categories not the same, then decision state.
+  // 2. Search algorithm for untagged data
+  //    - If tagged by user, don't show for user.
+  //    - if tagged completely, don't show to anyone.
+  //    ---- Obviously, as data gets more, this can become inefficient.
+  // 3. DONE SCREEN - no data to tag.
+  //
+  //
+  // Potential solutions:
+  // - R: Add untagged data to queue and supply in order of queue. (add where boolean is false)
+  /* - S: Instead of giving the users all the data all at once, how about we do it in batches where a single user gets say 30 pieces of data and works on them and those 30 are marked as "currently engaged"
+      - so in addition to checking if the user is in the "usersTagged" array, we also search for a "currently engaged" marker that we reset just as the user logs out
+      - Logic in SQL: select * from Data where user not in usersTagged and not currentlyEngaged limit 30;
+      - Limit could be arbitrary based on what we think shoudl be the right volume for a single sitting.
+  */
+
+
+  // xxxxxxxxxxxx--
+  // xxxxxxxxxxxxx-
+  // xxxxxxxxxxxxxx
+
+  // xxxxxxxxxxxx--
+  // User logs in.
+  // --
+  // -
+  // Problem: 2 users have it in their queues (when tagging together)
+  // Concurently programming.
+  // DONE
+
   // const usersTaggedArray = new Array(user)
-  const usersTaggedArray = new Array(user)
+  // const usersTaggedArray = ["1"]
+  const usersTaggedArray = ["1", "2"]
+  const userCategoriesArray = []
 
   // console.log("0");
   // console.log("1 " + typeof(user));
@@ -51,6 +92,24 @@ export default function Tagging({ name, user }) {
   //        -- 2 options: "tagged" = true once chosen
   // Logic of tagging the tags :) -- The above description is the idea of what we want to achieve :) 
 
+
+  // filter function 
+  const filter = (e) => {
+    const keyword = e.target.value;
+
+    if (keyword !== '') {
+      const results = tagOptions.filter((user) => {
+        return user.name.toLowerCase().startsWith(keyword.toLowerCase());
+        // Use the toLowerCase() method to make it case-insensitive
+      });
+      setFoundUsers(results);
+    } else {
+      setFoundUsers(USERS);
+      // If the text field is empty, show all users
+    }
+
+    setQuery(keyword);
+  };
   
   const Tag = (props) => (
     <div>
@@ -58,8 +117,16 @@ export default function Tagging({ name, user }) {
         <p className="paragraph">Description: {props.tag.description}</p>
         <p className="paragraph">Current Category: {props.tag.category}</p>
         <p className="paragraph">Number of Users Who Tagged: {props.tag.usersTagged === undefined || props.tag.usersTagged === null ? "No One" : props.tag.usersTagged.length}</p>
+        <p className="paragraph">User Categories: {props.tag.userCategories === undefined || props.tag.userCategories === null ? "No Categories" : props.tag.userCategories}</p>
       </div>
       <div className="form-box">
+        <input
+          type="search"
+          value={query}
+          onChange={filter}
+          className="input"
+          placeholder="Filter"
+        />
         <form onSubmit={onSubmitHandler}>
           {tagRadios()}
           <button id="tagBtn" type="submit" disabled>Tag</button>
@@ -83,6 +150,9 @@ export default function Tagging({ name, user }) {
 
   async function onSubmitHandler(e) {
     e.preventDefault();
+
+    userCategoriesArray.push(chosenCategory)
+
     setTimeout(() => {
       window.location.reload()
     }, 200)
@@ -99,6 +169,7 @@ export default function Tagging({ name, user }) {
 
       // TODO: Add users who tag if they haven't
       usersTagged: usersTaggedArray,
+      userCategories: userCategoriesArray
       // tagged: ...
     };
 
@@ -122,18 +193,11 @@ export default function Tagging({ name, user }) {
         'Content-Type': 'application/json'
       },
     });
-
-
-    // TODO: fix navigate
-    // navigate("/", { replace: true });
   }
 
-  // useEffect(() => {
-  //   setChosenCategory(radioChosen);
-
-  // }, [radioChosen])
-
   function onChangeHandler(e) {
+
+    // TODO: fix double click?
     setChosenCategory(e.target.value)
     document.getElementById("tagBtn").disabled = false;
   }
@@ -153,7 +217,7 @@ export default function Tagging({ name, user }) {
             value={tag} 
             onChange={onChangeHandler} 
           />
-          <div class="circle"></div>
+          <div className="circle"></div>
           <span>{tag}</span>
           </label>
         </li>
@@ -214,4 +278,5 @@ export default function Tagging({ name, user }) {
       <Footer />
     </>
   );
+  }
 }
