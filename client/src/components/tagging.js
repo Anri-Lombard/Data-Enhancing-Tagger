@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import { useNavigate } from "react-router-dom";
 import NavBar from './navbar.js';
 import Footer from './footer.js';
 import '../css/tagging.css'
@@ -10,13 +9,14 @@ const PORT = 2000;
 // TODO: continuously stream data when authenticating users
 
 
-// TODO: fix name undefined
 export default function Tagging({ name, user }) {
   const [tags, setTags] = useState([]);
   const [tagToUpdate, setTagToUpdate] = useState({});
   const [chosenCategory, setChosenCategory] = useState("");
-  const [usersTagged, setUsersTagged] = useState([])
- // to do list
+  // const [usersTagged, setUsersTagged] = useState([])
+  // const [categoriesChosenByUsers, setCategoriesChosenByUsers] = useState([])
+  
+  // TODO:
   // Add tons more options
   // the options will be outlined by Dirk 
   //* find out the display of the tags 
@@ -30,8 +30,10 @@ export default function Tagging({ name, user }) {
                       ["SpecificTagOne", "SpecificTagTwo"]
                     )
 
-  // const usersTaggedArray = new Array(user)
   const usersTaggedArray = new Array(user)
+  // const usersTaggedArray = ["1"]
+  // const usersTaggedArray = ["1", "2"]
+  const userCategoriesArray = []
 
   // console.log("0");
   // console.log("1 " + typeof(user));
@@ -58,6 +60,7 @@ export default function Tagging({ name, user }) {
         <p className="paragraph">Description: {props.tag.description}</p>
         <p className="paragraph">Current Category: {props.tag.category}</p>
         <p className="paragraph">Number of Users Who Tagged: {props.tag.usersTagged === undefined || props.tag.usersTagged === null ? "No One" : props.tag.usersTagged.length}</p>
+        <p className="paragraph">User Categories: {props.tag.userCategories === undefined || props.tag.userCategories === null ? "No Categories" : props.tag.userCategories}</p>
       </div>
       <div className="form-box">
         <form onSubmit={onSubmitHandler}>
@@ -83,6 +86,9 @@ export default function Tagging({ name, user }) {
 
   async function onSubmitHandler(e) {
     e.preventDefault();
+
+    userCategoriesArray.push(chosenCategory)
+
     setTimeout(() => {
       window.location.reload()
     }, 200)
@@ -99,6 +105,7 @@ export default function Tagging({ name, user }) {
 
       // TODO: Add users who tag if they haven't
       usersTagged: usersTaggedArray,
+      userCategories: userCategoriesArray
       // tagged: ...
     };
 
@@ -122,18 +129,11 @@ export default function Tagging({ name, user }) {
         'Content-Type': 'application/json'
       },
     });
-
-
-    // TODO: fix navigate
-    // navigate("/", { replace: true });
   }
 
-  // useEffect(() => {
-  //   setChosenCategory(radioChosen);
-
-  // }, [radioChosen])
-
   function onChangeHandler(e) {
+
+    // TODO: fix double click?
     setChosenCategory(e.target.value)
     document.getElementById("tagBtn").disabled = false;
   }
@@ -153,7 +153,7 @@ export default function Tagging({ name, user }) {
             value={tag} 
             onChange={onChangeHandler} 
           />
-          <div class="circle"></div>
+          <div className="circle"></div>
           <span>{tag}</span>
           </label>
         </li>

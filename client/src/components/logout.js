@@ -11,6 +11,7 @@ export default function LogOut({ isLoggedIn }) {
         isLoggedIn(false);
     }
 
+    // TODO: Racquel change as she wants and adds a "NO" button
     return (
         <div class="login-page">
             <div class="form">
