@@ -196,3 +196,7 @@ li {
   transition: all 0.3 ease;
   cursor: pointer;
 }
+
+.styleInfo  {
+  padding-right:'10px'
+}
