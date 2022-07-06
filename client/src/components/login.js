@@ -23,32 +23,13 @@ export default function Login({ name, isLoggedIn, userID }) {
   }
 
   return (
-    // <GoogleLogin
-    //   client_id={clientId}
-    //   buttonText="Login"
-    //   onSuccess={onSuccess}
-    //   onFailure={onFailure}
-    //   cookiePolicy={'single_host_origin'}
-    //   isSignedIn={true}
-    // />
-    <div class="login-page">
-      <div class="form">
-        <div class="login">
-          <div class="login-header">
-            {/* <img
-              src='https://th.bing.com/th/id/OIP.0bj7uDYd162yEJvtZGq7qAHaB1?pid=ImgDet&rs=1'
-              height='30'
-              alt=''
-              loading='lazy'
-            /> */}
+    <div className="login-page">
+      <div className="form">
+        <div className="login">
+          <div className="login-header">
             <h3>LOGIN</h3>
-            {/* <p>Enter Username and Password.</p> */}
           </div>
         </div>
-        {/* <form class="login-form"> */}
-        {/* <input type="text" placeholder="Username" />
-          <input type="password" placeholder="Password" />
-          <button>login</button> */}
 
         <GoogleLogin
           clientId={clientId}
@@ -61,8 +42,6 @@ export default function Login({ name, isLoggedIn, userID }) {
           cookiePolicy={'single_host_origin'}
           isSignedIn={true}
         />
-
-        {/* </form> */}
       </div>
     </div>
   )
