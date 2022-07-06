@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import NavBar from './navbar.js';
 import Footer from './footer.js';
 import '../css/tagging.css'
+import './jsonFilesfortags/tagInfo.js'
 
 const PORT = 2000;
 
@@ -51,8 +52,33 @@ export default function Tagging({ name, user }) {
   //        -- 2 options: "tagged" = true once chosen
   // Logic of tagging the tags :) -- The above description is the idea of what we want to achieve :) 
 
+  //functons for the search bar 
+
+
+
+
+    // the value of the search field '=
+    const [name1, setName] = useState('');
+
+    // the search result
+    const [foundUsers, setFoundUsers] = useState(USERS);
   
-  const Tag = (props) => (
+    const filter = (e) => {
+    const keyword = e.target.value;
+    if (keyword !== '') {
+      const results = USERS.filter((user) => {
+        return user.name.toLowerCase().startsWith(keyword.toLowerCase());
+        // Use the toLowerCase() method to make it case-insensitive
+      });
+      setFoundUsers(results);
+    } else {
+      setFoundUsers(USERS);
+      // If the text field is empty, show all users
+    }
+
+    setName(keyword);
+  };
+    const Tag = (props) => (
     <div>
       <div>
         <p className="paragraph">Description: {props.tag.description}</p>
@@ -210,6 +236,27 @@ export default function Tagging({ name, user }) {
       <div className="header">
         <h3>Tag Data With Following Details:</h3>
         {getSingleTag()}
+        <div className="container">
+      <input
+        type="search"
+        value={name}
+        onChange={filter}
+        className="input"
+        placeholder="Filter"
+      />
+
+      <div className="user-list">
+        {foundUsers && foundUsers.length > 0 ? (
+          foundUsers.map((user) => (
+            <li key={user.id} className="user">
+              <span className="user-name1">{user.name}</span>
+            </li>
+          ))
+        ) : (
+          <h1>No results found!</h1>
+        )}
+      </div>
+    </div>
       </div>
       <Footer />
     </>
