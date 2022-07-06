@@ -13,13 +13,12 @@ export default function LogOut({ isLoggedIn }) {
 
     // TODO: Racquel change as she wants and adds a "NO" button
     return (
-        <div class="login-page">
-            <div class="form">
-                <div class="login">
-                    <div class="login-header">
+        <div className="login-page">
+            <div className="form">
+                <div className="login">
+                    <div className="login-header">
                         {}
                         <h3>ARE YOU SURE YOU WANT TO LOGOUT?</h3>
-                       
                     </div>
                 </div>
                 <GoogleLogout

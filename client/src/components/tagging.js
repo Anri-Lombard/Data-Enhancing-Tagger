@@ -25,14 +25,14 @@ export default function Tagging({ name, user }) {
   const tagOptions = (tagToUpdate.usersTagged === undefined || tagToUpdate.usersTagged === null) ? 
                     ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive", "Other"] :
                     (
-                      (tagToUpdate.usersTagged.length < 2) ?
+                      (tagToUpdate.usersTagged.length <= 2) ?
                       ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive", "Other"] :
                       ["SpecificTagOne", "SpecificTagTwo"]
                     )
 
-  const usersTaggedArray = new Array(user)
+  // const usersTaggedArray = new Array(user)
   // const usersTaggedArray = ["1"]
-  // const usersTaggedArray = ["1", "2"]
+  const usersTaggedArray = ["1", "2"]
   const userCategoriesArray = []
 
   // console.log("0");
