@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import NavBar from './navbar.js';
 import Footer from './footer.js';
 import '../css/tagging.css'
-import Information from './jsonFilesfortags/tagInfo';
 
 const PORT = 2000;
 
@@ -52,12 +51,8 @@ export default function Tagging({ name, user }) {
   //        -- 2 options: "tagged" = true once chosen
   // Logic of tagging the tags :) -- The above description is the idea of what we want to achieve :) 
 
-
-  //---------------------------------------------------------creating the search bar fucntionaluty-----------------------
-
-
-
-    const Tag = (props) => (
+  
+  const Tag = (props) => (
     <div>
       <div>
         <p className="paragraph">Description: {props.tag.description}</p>
@@ -72,20 +67,6 @@ export default function Tagging({ name, user }) {
       </div>
     </div>
   );
-
-  const items = Information.map(data=>{
-    return(
-    <div>
-      <ul>
-        <li style={{position:'relative',left:'10vh'}}>
-          <span className="styleInfo">{data.name}</span>
-          <span className="styleInfo">{data.age}</span>
-          <span className="styleInfo">{data.country}</span>
-        </li>
-      </ul>
-    </div>
-    )
-  })
 
 
   // Synchronous
@@ -228,10 +209,9 @@ export default function Tagging({ name, user }) {
       <NavBar name={name} />
       <div className="header">
         <h3>Tag Data With Following Details:</h3>
-        {items}
         {getSingleTag()}
-        
       </div>
+      <Footer />
     </>
   );
 }
