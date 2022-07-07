@@ -225,15 +225,11 @@ li {
   justify-content: space-between;
 }
 
-.user-id {
-  color: red;
-  margin-right: 20px;
-}
 
-.user-name {
-  color: blue;
-}
 
-.user-age {
-  margin-left: auto;
+.headingAdjustments{
+  font-family:"Lucida Console";
+  color:black;
+  text-align: centre;
+
 }

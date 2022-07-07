@@ -269,7 +269,7 @@ export default function Tagging({ name, user }) {
               </li>
             ))
           ) : (
-            <h1>No results found!</h1>
+            <h4 className="headingAdjustments">No results found!</h4>
           )}
         </div>
 
@@ -339,7 +339,7 @@ export default function Tagging({ name, user }) {
             value={query}
             onChange={filter}
             className="input form-control"
-            placeholder="Filter"
+            placeholder="Search"
             ref={queryInput}
             autoFocus
           /> 
