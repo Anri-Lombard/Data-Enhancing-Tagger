@@ -39,16 +39,21 @@ body {
   position: relative;
   z-index: 1;
   background: #FFFFFF;
-  border-radius: 20px;
+  border-radius: 10px 10px 0 0;
   max-width: 370px;
-  margin: 10px auto;
+  margin: 10px auto 0px;
   padding: 30px;
   text-align: left;
   box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.2), 0 5px 5px 0 rgba(255, 255, 255, 0.24);
-
-
 }
 
+.search-box {
+  max-width: 370px;
+  margin: 0px auto;
+  border-radius: 0 0 20px 20px;
+  padding: 0;
+  border: 0px;
+}
 
 .form-box label {
   display: block;
