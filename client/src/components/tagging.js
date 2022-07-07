@@ -109,7 +109,7 @@ export default function Tagging({ name, user }) {
   //        -- 2 options: "tagged" = true once chosen
   // Logic of tagging the tags :) -- The above description is the idea of what we want to achieve :) 
 
-
+/*
   // filter function 
   const filter = (e) => {
     const keyword = e.target.value;
@@ -127,7 +127,7 @@ export default function Tagging({ name, user }) {
 
     setQuery(keyword);
   };
-  
+  */
   const Tag = (props) => (
     <div>
       <div>
@@ -136,6 +136,7 @@ export default function Tagging({ name, user }) {
         <p className="paragraph">Number of Users Who Tagged: {props.tag.usersTagged === undefined || props.tag.usersTagged === null ? "No One" : props.tag.usersTagged.length}</p>
         <p className="paragraph">User Categories: {props.tag.userCategories === undefined || props.tag.userCategories === null ? "No Categories" : props.tag.userCategories}</p>
       </div>
+      <!--
       <div className="form-box">
         <input
           type="search"
@@ -143,7 +144,7 @@ export default function Tagging({ name, user }) {
           onChange={filter}
           className="input"
           placeholder="Filter"
-        />
+        /> 
         <form onSubmit={onSubmitHandler}>
           {tagRadios()}
           <button id="tagBtn" type="submit" disabled>Tag</button>
