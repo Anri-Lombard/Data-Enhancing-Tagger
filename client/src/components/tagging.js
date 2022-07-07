@@ -110,14 +110,14 @@ export default function Tagging({ name, user }) {
   //        -- 2 options: "tagged" = true once chosen
   // Logic of tagging the tags :) -- The above description is the idea of what we want to achieve :) 
 
-/*
+
   // filter function 
   const filter = (e) => {
     const keyword = e.target.value;
 
     if (keyword !== '') {
       const results = tagOptions.filter((option) => {
-        return option.toLowerCase().startsWith(keyword.toLowerCase());
+        return option.toLowerCase().includes(keyword.toLowerCase());
         // Use the toLowerCase() method to make it case-insensitive
       });
       setVisibleOptions(results);
@@ -128,7 +128,7 @@ export default function Tagging({ name, user }) {
 
     setQuery(keyword);
   };
-  */
+
   const Tag = (props) => (
     <div>
       <div>
@@ -140,13 +140,15 @@ export default function Tagging({ name, user }) {
     
       <div className="form-box">
         {/* TODO: fix continuous typing error */}
+        <div className="form-outline">
         <input
           type="search"
           value={query}
           onChange={filter}
-          className="input"
+          className="input form-control"
           placeholder="Filter"
         /> 
+        </div>
         <form onSubmit={onSubmitHandler}>
           {tagRadios()}
           <button id="tagBtn" type="submit" disabled>Tag</button>
@@ -259,9 +261,16 @@ export default function Tagging({ name, user }) {
         <div className="user-list">
           {visibleOption && visibleOption.length > 0 ? (
             visibleOption.map((option) => (
-              <li key={option} className="user">
-                <span className="user-id">{option}</span>
-                
+               <li key={option} >
+                <input 
+                  className="btn btn-check" 
+                  type="radio" id={option} 
+                  name="tag" autoComplete="off"
+                  value={option} 
+                  onChange={onChangeHandler}
+                />
+                <label className="btn btn-outline-primary" htmlFor={option}>{option}
+                </label>
               </li>
             ))
           ) : (
