@@ -1,3 +1,10 @@
 .textStyle{
     font-family: "Lucida Console";
 }
+
+div.navbar-box.container {
+    margin: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    min-height: 40px;
+}

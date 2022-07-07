@@ -335,6 +335,7 @@ export default function Tagging({ name, user }) {
             onChange={filter}
             className="input form-control"
             placeholder="Filter"
+            autoFocus
           /> 
         </div>
 
