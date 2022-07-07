@@ -140,15 +140,6 @@ export default function Tagging({ name, user }) {
     
       <div className="form-box">
         {/* TODO: fix continuous typing error */}
-        <div className="form-outline">
-        <input
-          type="search"
-          value={query}
-          onChange={filter}
-          className="input form-control"
-          placeholder="Filter"
-        /> 
-        </div>
         <form onSubmit={onSubmitHandler}>
           {tagRadios()}
           <button id="tagBtn" type="submit" disabled>Tag</button>
@@ -333,6 +324,15 @@ export default function Tagging({ name, user }) {
       <div className="header">
         <h3>Tag Data With Following Details:</h3>
         {getSingleTag()}
+          <div className="form-box search-box">
+            <input
+              type="search"
+              value={query}
+              onChange={filter}
+              className="input form-control"
+              placeholder="Filter"
+            /> 
+        </div>
       </div>
       <Footer />
     </>
