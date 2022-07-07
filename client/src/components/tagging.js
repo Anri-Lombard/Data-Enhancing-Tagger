@@ -13,6 +13,8 @@ const PORT = 2000;
 
 export default function Tagging({ name, user }) {
   // TODO: Add category attribute
+  const [tagToUpdate, setTagToUpdate] = useState({});
+
   const tagOptions = (tagToUpdate.usersTagged === undefined || tagToUpdate.usersTagged === null) ? 
                     ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive", "Other"] :
                     (
@@ -22,7 +24,6 @@ export default function Tagging({ name, user }) {
                     )
 
   const [tags, setTags] = useState([]);
-  const [tagToUpdate, setTagToUpdate] = useState({});
   const [chosenCategory, setChosenCategory] = useState("");
   // this will display the options to choose from and will be changed
   const [visibleOption, setVisibleOptions] = useState(tagOptions)
@@ -115,13 +116,13 @@ export default function Tagging({ name, user }) {
     const keyword = e.target.value;
 
     if (keyword !== '') {
-      const results = tagOptions.filter((user) => {
-        return user.name.toLowerCase().startsWith(keyword.toLowerCase());
+      const results = tagOptions.filter((option) => {
+        return option.toLowerCase().startsWith(keyword.toLowerCase());
         // Use the toLowerCase() method to make it case-insensitive
       });
-      setFoundUsers(results);
+      setVisibleOptions(results);
     } else {
-      setFoundUsers(USERS);
+      setVisibleOptions(tagOptions);
       // If the text field is empty, show all users
     }
 
@@ -136,8 +137,9 @@ export default function Tagging({ name, user }) {
         <p className="paragraph">Number of Users Who Tagged: {props.tag.usersTagged === undefined || props.tag.usersTagged === null ? "No One" : props.tag.usersTagged.length}</p>
         <p className="paragraph">User Categories: {props.tag.userCategories === undefined || props.tag.userCategories === null ? "No Categories" : props.tag.userCategories}</p>
       </div>
-      <!--
+    
       <div className="form-box">
+        {/* TODO: fix continuous typing error */}
         <input
           type="search"
           value={query}
@@ -233,27 +235,43 @@ export default function Tagging({ name, user }) {
   }
 
   function tagRadios() {
-    return tagOptions.map((tag) => {
-
+    // return tagOptions.map((tag) => {
       return (
         // div with scrollbar functionality
 
         //div
-        // added the checked attribute for all tags which is then by default added to the last tag which is "other".
-        <li key={tag} >
-          <input 
-            className="btn btn-check" 
-            type="radio" id={tag} 
-            name="tag" autoComplete="off"
-            value={tag} 
-            onChange={onChangeHandler}
-          />
-          <label className="btn btn-outline-primary" htmlFor={tag}>{tag}
-          </label>
-        </li>
+        // <li key={tag} >
+        //   <label>  
+        //   <input 
+        //     className="radio-inputs" 
+        //     type="radio" id={tag} 
+        //     name="tag" 
+        //     value={tag} 
+        //     onChange={onChangeHandler} 
+        //   />
+          
+        //   <div className="circle"></div>
+        //   <span>{tag}</span>
+        //   </label>
+        // </li>
         // div
+
+        <div className="user-list">
+          {visibleOption && visibleOption.length > 0 ? (
+            visibleOption.map((option) => (
+              <li key={option} className="user">
+                <span className="user-id">{option}</span>
+                
+              </li>
+            ))
+          ) : (
+            <h1>No results found!</h1>
+          )}
+        </div>
+
+        
       )
-    })
+    // })
   }
 
   useEffect(() => {
@@ -310,5 +328,7 @@ export default function Tagging({ name, user }) {
       <Footer />
     </>
   );
-  
 }
+
+
+
