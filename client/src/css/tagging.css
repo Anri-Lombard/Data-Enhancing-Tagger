@@ -8,13 +8,13 @@
 body {
   background-color: #000000;
   background-image: linear-gradient(45deg, #000000, #000000);
-  font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 * {
   box-sizing: border-box;
+  font-family: "Lucida Console", sans-serif;
 }
 
 .form-box-one {
@@ -22,7 +22,6 @@ body {
   margin: 150px auto;
   padding: 0px;
   border-radius: 8px;
-  font-family: "Roboto", sans-serif;
 
 
 }
@@ -32,7 +31,6 @@ body {
   font-style: italic;
   font-size: 140 px;
   color: darkturquoise;
-  font-family: "Roboto", sans-serif;
 
 
 }
@@ -41,13 +39,12 @@ body {
   position: relative;
   z-index: 1;
   background: #FFFFFF;
+  border-radius: 20px;
   max-width: 300px;
   margin: 10px auto;
   padding: 30px;
   text-align: left;
   box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.2), 0 5px 5px 0 rgba(255, 255, 255, 0.24);
-  font-family: "Roboto", sans-serif;
-
 
 
 }
@@ -57,9 +54,9 @@ body {
   display: block;
   /* cursor: progress; */
   margin-bottom: 10px;
-  padding-left: 55px;
+  /* TODO: removed the padded for alignment. Maybe instead of adding padding, we can make the label and the radio inline to prevent alignment complications */
+  /* padding-left: 55px; */
   position: relative;
-  font-family: "Roboto", sans-serif;
 
 }
 
@@ -107,7 +104,8 @@ body {
   color: rgb(255, 255, 255);
   font-size: 15pt;
   line-height: 15pt;
-  font-family: "Roboto", sans-serif;
+  text-align: center;
+  /* aligned text */
 }
 
 
@@ -116,14 +114,13 @@ body {
   color: rgb(125, 244, 133);
   font-size: 30px;
   text-align: left;
-  font-family: "Roboto", sans-serif;
+
 
 }
 
 h3 {
   text-align: center;
   border: grey;
-  font-family: "Roboto", sans-serif;
 }
 
 
@@ -137,7 +134,7 @@ h3 {
 }
 
 input[type=text] {
-  font-family: "Roboto", sans-serif;
+  font-family: "Lucida Console", sans-serif;
   outline: 0;
   background: #f2f2f2;
   width: 100%;
@@ -166,7 +163,6 @@ li {
 }
 
 #tagBtn {
-  font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
   background-color: #000000;
@@ -182,7 +178,6 @@ li {
 }
 
 #tagBtn:hover {
-  font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
   background-color: #000000;
@@ -195,4 +190,8 @@ li {
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
+}
+
+.styleInfo  {
+  padding-right:'10px'
 }
