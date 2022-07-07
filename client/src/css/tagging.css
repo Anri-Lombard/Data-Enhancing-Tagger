@@ -14,11 +14,7 @@ body {
 
 * {
   box-sizing: border-box;
-<<<<<<< HEAD
-  font-family: "Lucida Console", "Lucida", sans-serif !important;
-=======
   font-family: "Lucida Console", sans-serif;
->>>>>>> origin/main
 }
 
 .form-box-one {
@@ -49,12 +45,6 @@ body {
   padding: 30px;
   text-align: left;
   box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.2), 0 5px 5px 0 rgba(255, 255, 255, 0.24);
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> origin/main
 }
 
 .search-box {
@@ -119,11 +109,8 @@ body {
   color: rgb(255, 255, 255);
   font-size: 15pt;
   line-height: 15pt;
-<<<<<<< HEAD
-=======
   text-align: center;
   /* aligned text */
->>>>>>> origin/main
 }
 
 
@@ -132,10 +119,6 @@ body {
   color: rgb(125, 244, 133);
   font-size: 30px;
   text-align: left;
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/main
 
 }
 
@@ -213,11 +196,6 @@ li {
   cursor: pointer;
 }
 
-<<<<<<< HEAD
-@font-face {
-  font-family: "Lucida";
-  src: url("../fonts/Lucida-Font/LSANS.TTF")
-=======
 .styleInfo  {
   padding-right:'10px'
 }
@@ -258,5 +236,4 @@ li {
 
 .user-age {
   margin-left: auto;
->>>>>>> origin/main
 }
