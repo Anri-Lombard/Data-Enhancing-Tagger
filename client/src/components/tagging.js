@@ -342,6 +342,7 @@ export default function Tagging({ name, user }) {
             className="input form-control"
             placeholder="Filter"
             ref={queryInput}
+            autoFocus
           /> 
         </div>
 

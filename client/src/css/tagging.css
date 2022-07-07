@@ -39,10 +39,10 @@ body {
   position: relative;
   z-index: 1;
   background: #FFFFFF;
-  border-radius: 10px 10px 0 0;
+  border-radius: 0 0 10px 10px;
   max-width: 370px;
   margin: 10px auto 0px;
-  padding: 30px;
+  padding: 5px 30px 30px;
   text-align: left;
   box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.2), 0 5px 5px 0 rgba(255, 255, 255, 0.24);
 }
@@ -50,7 +50,7 @@ body {
 .search-box {
   max-width: 370px;
   margin: 0px auto;
-  border-radius: 0 0 20px 20px;
+  border-radius: 20px 20px 0 0;
   padding: 0;
   border: 0px;
 }
