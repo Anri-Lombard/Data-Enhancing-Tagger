@@ -12,18 +12,6 @@ import { gapi } from 'gapi-script'
 
 const clientId = "209297339002-8oele42ri4qokv2qefi8n7bds2a9jmjk.apps.googleusercontent.com";
 
-const USERS = [
-  { id: 1, name: 'Andy', age: 32 },
-  { id: 2, name: 'Bob', age: 30 },
-  { id: 3, name: 'Tom Hulk', age: 40 },
-  { id: 4, name: 'Tom Hank', age: 50 },
-  { id: 5, name: 'Audra', age: 30 },
-  { id: 6, name: 'Anna', age: 68 },
-  { id: 7, name: 'Tom', age: 34 },
-  { id: 8, name: 'Tom Riddle', age: 28 },
-  { id: 9, name: 'Bolo', age: 23 },
-];
-
 function App() {
   const [loggedIn, setLoggedIn] = useState(false)
   const [userName, setUserName] = useState("")
