@@ -110,7 +110,7 @@ export default function Tagging({ name, user }) {
   //        -- 2 options: "tagged" = true once chosen
   // Logic of tagging the tags :) -- The above description is the idea of what we want to achieve :) 
 
-/*
+
   // filter function 
   const filter = (e) => {
     const keyword = e.target.value;
@@ -128,7 +128,7 @@ export default function Tagging({ name, user }) {
 
     setQuery(keyword);
   };
-  */
+  
   const Tag = (props) => (
     <div>
       <div>
