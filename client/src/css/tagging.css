@@ -14,7 +14,11 @@ body {
 
 * {
   box-sizing: border-box;
+<<<<<<< HEAD
   font-family: "Lucida Console", "Lucida", sans-serif !important;
+=======
+  font-family: "Lucida Console", sans-serif;
+>>>>>>> origin/main
 }
 
 .form-box-one {
@@ -39,22 +43,34 @@ body {
   position: relative;
   z-index: 1;
   background: #FFFFFF;
-  max-width: 300px;
-  margin: 10px auto;
+  border-radius: 10px 10px 0 0;
+  max-width: 370px;
+  margin: 10px auto 0px;
   padding: 30px;
   text-align: left;
   box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.2), 0 5px 5px 0 rgba(255, 255, 255, 0.24);
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> origin/main
 }
 
+.search-box {
+  max-width: 370px;
+  margin: 0px auto;
+  border-radius: 0 0 20px 20px;
+  padding: 0;
+  border: 0px;
+}
 
 .form-box label {
   display: block;
   /* cursor: progress; */
   margin-bottom: 10px;
-  padding-left: 55px;
+  /* TODO: removed the padded for alignment. Maybe instead of adding padding, we can make the label and the radio inline to prevent alignment complications */
+  /* padding-left: 55px; */
   position: relative;
 
 }
@@ -103,6 +119,11 @@ body {
   color: rgb(255, 255, 255);
   font-size: 15pt;
   line-height: 15pt;
+<<<<<<< HEAD
+=======
+  text-align: center;
+  /* aligned text */
+>>>>>>> origin/main
 }
 
 
@@ -111,6 +132,10 @@ body {
   color: rgb(125, 244, 133);
   font-size: 30px;
   text-align: left;
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/main
 
 }
 
@@ -130,7 +155,7 @@ h3 {
 }
 
 input[type=text] {
-  font-family: "Roboto", sans-serif;
+  font-family: "Lucida Console", sans-serif;
   outline: 0;
   background: #f2f2f2;
   width: 100%;
@@ -188,7 +213,50 @@ li {
   cursor: pointer;
 }
 
+<<<<<<< HEAD
 @font-face {
   font-family: "Lucida";
   src: url("../fonts/Lucida-Font/LSANS.TTF")
+=======
+.styleInfo  {
+  padding-right:'10px'
+}
+
+
+.container {
+  padding-top: 30px;
+  width: 300px;
+  margin: auto;
+}
+
+.input {
+  padding: 5px 15px;
+  width: 300px;
+}
+
+.user-list {
+  margin-top: 30px;
+}
+
+.user {
+  list-style: none;
+  margin: 10px 0;
+  padding: 10px;
+  background: #eee;
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-id {
+  color: red;
+  margin-right: 20px;
+}
+
+.user-name {
+  color: blue;
+}
+
+.user-age {
+  margin-left: auto;
+>>>>>>> origin/main
 }

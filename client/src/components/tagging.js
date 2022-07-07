@@ -5,14 +5,33 @@ import '../css/tagging.css'
 
 const PORT = 2000;
 
+// TODO: figure out how to make user array - not object
+
 
 // TODO: continuously stream data when authenticating users
 
 
 export default function Tagging({ name, user }) {
-  const [tags, setTags] = useState([]);
+  // TODO: Add category attribute
   const [tagToUpdate, setTagToUpdate] = useState({});
+
+  const tagOptions = (tagToUpdate.usersTagged === undefined || tagToUpdate.usersTagged === null) ? 
+                    ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive", "Other"] :
+                    (
+                      (tagToUpdate.usersTagged.length <= 2) ?
+                      ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive", "Other"] :
+                      ["SpecificTagOne", "SpecificTagTwo"]
+                    )
+
+  const [tags, setTags] = useState([]);
   const [chosenCategory, setChosenCategory] = useState("");
+  // this will display the options to choose from and will be changed
+  const [visibleOption, setVisibleOptions] = useState(tagOptions)
+  const [query, setQuery] = useState('');
+  // tags = variable = [] initially
+  // setTags = function = function setTags(val) {}
+
+
   // const [usersTagged, setUsersTagged] = useState([])
   // const [categoriesChosenByUsers, setCategoriesChosenByUsers] = useState([])
   
@@ -21,14 +40,6 @@ export default function Tagging({ name, user }) {
   // the options will be outlined by Dirk 
   //* find out the display of the tags 
 
-  // TODO: Add category attribute
-  const tagOptions = (tagToUpdate.usersTagged === undefined || tagToUpdate.usersTagged === null) ? 
-                    ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive", "Other"] :
-                    (
-                      (tagToUpdate.usersTagged.length <= 2) ?
-                      ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive", "Other"] :
-                      ["SpecificTagOne", "SpecificTagTwo"]
-                    )
 
   // TODO:
   // 1. Boolean = if 2 users tagged + 2 categories are the same, then true (tagged completely)
@@ -48,6 +59,20 @@ export default function Tagging({ name, user }) {
       - Limit could be arbitrary based on what we think shoudl be the right volume for a single sitting.
   */
 
+  // - Mongodb updates in real time - along with app.
+  // - Curently tagging: thisUser...
+  // --- Next piece button
+  // PROBLEM: We fetch data only on loading, not continuously.
+
+  // What we know: categories and users, when to show data to user, we can lead random data continuously.
+  // What we don't know: how to make sure a single user works on a piece of data at a time.
+  // To move forward: use 5 piences of json data for testing - move bigger later.
+
+  // 1. Use only 10 json data in mongodb
+  // 2. Implement logic
+  // 3. Try to f everything up together.
+
+
 
   // xxxxxxxxxxxx--
   // xxxxxxxxxxxxx-
@@ -64,6 +89,7 @@ export default function Tagging({ name, user }) {
   // const usersTaggedArray = new Array(user)
   // const usersTaggedArray = ["1"]
   const usersTaggedArray = ["1", "2"]
+  // const usersTaggedArray = ["1", "2", "3"]
   const userCategoriesArray = []
 
   // console.log("0");
@@ -84,7 +110,25 @@ export default function Tagging({ name, user }) {
   //        -- 2 options: "tagged" = true once chosen
   // Logic of tagging the tags :) -- The above description is the idea of what we want to achieve :) 
 
-  
+
+  // filter function 
+  const filter = (e) => {
+    const keyword = e.target.value;
+
+    if (keyword !== '') {
+      const results = tagOptions.filter((option) => {
+        return option.toLowerCase().includes(keyword.toLowerCase());
+        // Use the toLowerCase() method to make it case-insensitive
+      });
+      setVisibleOptions(results);
+    } else {
+      setVisibleOptions(tagOptions);
+      // If the text field is empty, show all users
+    }
+
+    setQuery(keyword);
+  };
+
   const Tag = (props) => (
     <div>
       <div>
@@ -93,7 +137,9 @@ export default function Tagging({ name, user }) {
         <p className="paragraph">Number of Users Who Tagged: {props.tag.usersTagged === undefined || props.tag.usersTagged === null ? "No One" : props.tag.usersTagged.length}</p>
         <p className="paragraph">User Categories: {props.tag.userCategories === undefined || props.tag.userCategories === null ? "No Categories" : props.tag.userCategories}</p>
       </div>
+    
       <div className="form-box">
+        {/* TODO: fix continuous typing error */}
         <form onSubmit={onSubmitHandler}>
           {tagRadios()}
           <button id="tagBtn" type="submit" disabled>Tag</button>
@@ -135,7 +181,9 @@ export default function Tagging({ name, user }) {
       category: chosenCategory, // This is only specified if it is fully tagged
 
       // TODO: Add users who tag if they haven't
-      usersTagged: usersTaggedArray,
+      // TODO: logic for too many users
+      usersTagged: tagToUpdate.usersTagged === null || tagToUpdate.usersTagged === undefined ?
+                    new Array(user) : tagToUpdate.usersTagged.push(user),
       userCategories: userCategoriesArray
       // tagged: ...
     };
@@ -162,35 +210,68 @@ export default function Tagging({ name, user }) {
     });
   }
 
+  let targetValue = ""
+
+  // useEffect(() => {
+  //   setChosenCategory(targetValue)
+  //   console.log(targetValue, chosenCategory)
+  //   document.getElementById("tagBtn").disabled = false;
+  // }, [targetValue, chosenCategory])
+
   function onChangeHandler(e) {
 
     // TODO: fix double click?
+    // targetValue = e.target.value;
     setChosenCategory(e.target.value)
     document.getElementById("tagBtn").disabled = false;
+    
   }
 
   function tagRadios() {
-    return tagOptions.map((tag) => {
+    // return tagOptions.map((tag) => {
       return (
         // div with scrollbar functionality
 
         //div
-        <li key={tag} >
-          <label>  
-          <input 
-            className="radio-inputs" 
-            type="radio" id={tag} 
-            name="tag" 
-            value={tag} 
-            onChange={onChangeHandler} 
-          />
-          <div className="circle"></div>
-          <span>{tag}</span>
-          </label>
-        </li>
+        // <li key={tag} >
+        //   <label>  
+        //   <input 
+        //     className="radio-inputs" 
+        //     type="radio" id={tag} 
+        //     name="tag" 
+        //     value={tag} 
+        //     onChange={onChangeHandler} 
+        //   />
+          
+        //   <div className="circle"></div>
+        //   <span>{tag}</span>
+        //   </label>
+        // </li>
         // div
+
+        <div className="user-list">
+          {visibleOption && visibleOption.length > 0 ? (
+            visibleOption.map((option) => (
+               <li key={option} >
+                <input 
+                  className="btn btn-check" 
+                  type="radio" id={option} 
+                  name="tag" autoComplete="off"
+                  value={option} 
+                  onChange={onChangeHandler}
+                />
+                <label className="btn btn-outline-primary" htmlFor={option}>{option}
+                </label>
+              </li>
+            ))
+          ) : (
+            <h1>No results found!</h1>
+          )}
+        </div>
+
+        
       )
-    })
+    // })
   }
 
   useEffect(() => {
@@ -219,6 +300,8 @@ export default function Tagging({ name, user }) {
     // TODO: Only show data not tagged by user
     // TODO: Find effective algorithm for this
    
+    // boolean logic
+    // TODO: algorithm for searching!!!!!!!!!!!!!!
     const randomKey = 5;
     const randomData = tags[randomKey];
     if (randomData !== undefined) {
@@ -241,8 +324,20 @@ export default function Tagging({ name, user }) {
       <div className="header">
         <h3>Tag Data With Following Details:</h3>
         {getSingleTag()}
+          <div className="form-box search-box">
+            <input
+              type="search"
+              value={query}
+              onChange={filter}
+              className="input form-control"
+              placeholder="Filter"
+            /> 
+        </div>
       </div>
       <Footer />
     </>
   );
 }
+
+
+
