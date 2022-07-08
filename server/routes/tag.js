@@ -83,6 +83,32 @@ tagRoutes.route("/update/:id").post(function (req, response) {
     newvalues
   )
 });
+
+// Update many to not be tagged if tag is undefined
+tagRoutes.route("/update/").post(function (req, response) {
+  // ?
+ let db_connect = dbo.getDb("bank-statements"); 
+ let myquery = { id: req.params.id }; 
+ console.log(req.params.id);
+ let newvalues = {   
+   $set: {
+    //  id: req.params.id,
+    //  date: req.params.date,
+    //  description: req.body.description,
+    //  balance: req.body.balance,
+    //  transactionValue: req.body.transactionValue,
+     category: req.body.category,
+     usersTagged: req.body.usersTagged,
+     userCategories: req.body.userCategories,
+     tagged: req.body.tagged
+   }, 
+  }
+  
+  db_connect.collection("transactions").findOneAndUpdate(
+    myquery,
+    newvalues
+  )
+});
  
 // This section will help you delete a tag
 // recordRoutes.route("/:id").delete((req, response) => {
