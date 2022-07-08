@@ -10,8 +10,8 @@ export default function Tagging({ name, user }) {
 
   // hardcoded for now
   let dataTagged = false;
-  let userCategoriesArray = ["tagOne"]
-  const usersTaggedArray = ["1", "2"]
+  let userCategoriesArray = []
+  const usersTaggedArray = new Array(user)
   let editedTag = [];
   let tagOptions = ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive"];
 
@@ -25,12 +25,11 @@ export default function Tagging({ name, user }) {
   }
     
   const [tags, setTags] = useState([]);
+  const [oneTag, setOneTag] = useState();
   const [chosenCategory, setChosenCategory] = useState("");
   // this will display the options to choose from and will be changed
   const [visibleOption, setVisibleOptions] = useState(tagOptions)
   const [query, setQuery] = useState('');
-
-  console.log(tagOptions);
 
   // TODO: Add tons more options
   // the options will be outlined by Dirk 
@@ -81,6 +80,10 @@ export default function Tagging({ name, user }) {
     setTimeout(() => {
       window.location.reload()
     }, 200)
+
+    userCategoriesArray = tagToUpdate.userCategories.length === 0 ? 
+                          new Array(chosenCategory) : 
+                          tagToUpdate.userCategories.push(chosenCategory);
 
     if (userCategoriesArray !== undefined || userCategoriesArray.length >= 2) {
       if (userCategoriesArray.length === 2) {
@@ -146,9 +149,29 @@ export default function Tagging({ name, user }) {
     )
   }
 
+  // useEffect(() => {
+  //   async function getTags() {
+  //     const response = await fetch(`http://localhost:${PORT}/tag/`);
+
+  //     if (!response.ok) {
+  //       const message = `An error occurred: ${response.statusText}`;
+  //       window.alert(message);
+  //       return;
+  //     }
+
+  //     const tags = await response.json();
+
+  //     setTags(tags);
+  //   }
+
+  //   getTags();
+
+  //   return;
+  // }, [tags.length]);
+
   useEffect(() => {
-    async function getTags() {
-      const response = await fetch(`http://localhost:${PORT}/tag/`);
+    async function getOneTag() {
+      const response = await fetch(`http://localhost:${PORT}/tag/one`);
 
       if (!response.ok) {
         const message = `An error occurred: ${response.statusText}`;
@@ -156,32 +179,30 @@ export default function Tagging({ name, user }) {
         return;
       }
 
-      const tags = await response.json();
+      const tag = await response.json();
 
-      setTags(tags);
+      setOneTag(tag);
     }
 
-    getTags();
+    getOneTag();
 
+    
     return;
-  }, [tags.length]);
+  }, []);
 
   useEffect(() => {
-
-    const randomKey = 5;
-    const randomData = tags[randomKey];
-    if (randomData !== undefined) {
-      setTagToUpdate(randomData)
+    console.log(oneTag)
+    if (oneTag !== undefined && oneTag !== null) {
+      setTagToUpdate(oneTag)
     }
-
-  }, [tags]);
-
+  }, [oneTag]);
+  
 
   // this needs to change when we implement getting single tag instead of an array
   function getSingleTag() {
     return <Tag tag={tagToUpdate} />
   }
-
+  
   return (
     <>
       <NavBar name={name} />
