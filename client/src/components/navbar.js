@@ -10,7 +10,7 @@ const NavBar = ({ name, user }) => {
   return (
     <div className="App">
       <RB.Navbar collapseOnSelect expand="xl" bg="dark" variant="dark">
-        <RB.Container>
+        <RB.Container className="navbar-box">
           <RB.Navbar.Brand className="textStyle">Manual Tagger</RB.Navbar.Brand>
           <Link id="linkToLogout" to="/logout" className="textStyle" >Logout</Link>
           <RB.Navbar.Toggle aria-controls="responsive-navbar-nav" />

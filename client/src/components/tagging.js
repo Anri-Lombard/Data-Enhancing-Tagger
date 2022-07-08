@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import NavBar from './navbar.js';
 import Footer from './footer.js';
 import '../css/tagging.css'
@@ -30,6 +30,8 @@ export default function Tagging({ name, user }) {
   const [query, setQuery] = useState('');
   // tags = variable = [] initially
   // setTags = function = function setTags(val) {}
+
+  const queryInput = useRef();
 
 
   // const [usersTagged, setUsersTagged] = useState([])
@@ -110,6 +112,9 @@ export default function Tagging({ name, user }) {
   //        -- 2 options: "tagged" = true once chosen
   // Logic of tagging the tags :) -- The above description is the idea of what we want to achieve :) 
 
+  useEffect(() => {
+    queryInput.current.focus();
+  }, [])
 
   // filter function 
   const filter = (e) => {
@@ -138,22 +143,12 @@ export default function Tagging({ name, user }) {
         <p className="paragraph">User Categories: {props.tag.userCategories === undefined || props.tag.userCategories === null ? "No Categories" : props.tag.userCategories}</p>
       </div>
     
-      <div className="form-box">
-        {/* TODO: fix continuous typing error */}
-        <div className="form-outline">
-        <input
-          type="search"
-          value={query}
-          onChange={filter}
-          className="input form-control"
-          placeholder="Search"
-        /> 
-        </div>
+      {/* <div className="form-box">
         <form onSubmit={onSubmitHandler}>
           {tagRadios()}
           <button id="tagBtn" type="submit" disabled>Tag</button>
         </form>
-      </div>
+      </div> */}
     </div>
   );
 
@@ -191,8 +186,9 @@ export default function Tagging({ name, user }) {
 
       // TODO: Add users who tag if they haven't
       // TODO: logic for too many users
-      usersTagged: tagToUpdate.usersTagged === null || tagToUpdate.usersTagged === undefined ?
-                    new Array(user) : tagToUpdate.usersTagged.push(user),
+      // usersTagged: tagToUpdate.usersTagged === null || tagToUpdate.usersTagged === undefined ?
+      //               new Array(user) : tagToUpdate.usersTagged.push(user),
+      usersTagged: usersTaggedArray,
       userCategories: userCategoriesArray
       // tagged: ...
     };
@@ -330,9 +326,33 @@ export default function Tagging({ name, user }) {
   return (
     <>
       <NavBar name={name} />
+
       <div className="header">
         <h3>Tag Data With Following Details:</h3>
+
+        {/* Details */}
         {getSingleTag()}
+
+        {/* Filter */}
+        <div className="form-box search-box">
+          <input
+            type="search"
+            value={query}
+            onChange={filter}
+            className="input form-control"
+            placeholder="Search"
+            ref={queryInput}
+            autoFocus
+          /> 
+        </div>
+
+        {/* Options */}
+        <div className="form-box">
+          <form onSubmit={onSubmitHandler}>
+            {tagRadios()}
+            <button id="tagBtn" type="submit" disabled>Tag</button>
+          </form>
+        </div>
       </div>
       <Footer />
     </>
