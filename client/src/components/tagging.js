@@ -340,7 +340,7 @@ export default function Tagging({ name, user }) {
             value={query}
             onChange={filter}
             className="input form-control"
-            placeholder="Filter"
+            placeholder="Search"
             ref={queryInput}
             autoFocus
           /> 
