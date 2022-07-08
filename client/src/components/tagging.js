@@ -146,7 +146,7 @@ export default function Tagging({ name, user }) {
           value={query}
           onChange={filter}
           className="input form-control"
-          placeholder="Filter"
+          placeholder="Search"
         /> 
         </div>
         <form onSubmit={onSubmitHandler}>

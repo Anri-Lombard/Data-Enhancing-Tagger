@@ -212,24 +212,40 @@ li {
   margin-top: 30px;
 }
 
-.user {
-  list-style: none;
-  margin: 10px 0;
-  padding: 10px;
-  background: #eee;
-  display: flex;
-  justify-content: space-between;
+.btn {
+  padding: 14px 24px;
+  border: 0 none;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-.user-id {
-  color: red;
-  margin-right: 20px;
+.btn:focus, .btn:active:focus, .btn.active:focus {
+  outline: 0 none;
 }
 
-.user-name {
-  color: blue;
+.btn-primary {
+  background: white;
+  color: #ffffff;
 }
 
-.user-age {
-  margin-left: auto;
+.btn-outline-primary, .btn-outline-primary:active, .btn-outline-primary:visited {
+  background-color: white !important;
+  color:black !important;
+  border-color: #000000 !important;
+
+}
+
+.btn-outline-primary:hover{
+  background-image: linear-gradient(45deg, #19e9df, #2fe77b) !important;
+  border-color: #000000 !important;
+  color:white !important;
+  
+}
+
+
+
+.btn-primary:active, .btn-primary.active {
+  background: #007299;
+  box-shadow: none;
 }
