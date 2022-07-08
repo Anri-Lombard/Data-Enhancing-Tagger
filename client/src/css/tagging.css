@@ -254,8 +254,13 @@ li {
   box-shadow: none;
 }
 
-.results{
+.Results_found{
   text-align: left;
   color: black;
   font-family: Lucida Console;
+}
+.form-control{
+  border-color: rgba(126, 239, 104, 0.8) !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(126, 239, 104, 0.6) !important;
+  outline: 0 none !important;
 }
