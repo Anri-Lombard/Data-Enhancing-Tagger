@@ -137,10 +137,10 @@ export default function Tagging({ name, user }) {
   const Tag = (props) => (
     <div>
       <div>
-        <p className="paragraph">Description: {props.tag.description}</p>
-        <p className="paragraph">Current Category: {props.tag.category}</p>
-        <p className="paragraph">Number of Users Who Tagged: {props.tag.usersTagged === undefined || props.tag.usersTagged === null ? "No One" : props.tag.usersTagged.length}</p>
-        <p className="paragraph">User Categories: {props.tag.userCategories === undefined || props.tag.userCategories === null ? "No Categories" : props.tag.userCategories}</p>
+        <p className="paragraph"><u>Description</u>: {props.tag.description}</p>
+        <p className="paragraph"><u>Current Category</u>: {props.tag.category}</p>
+        <p className="paragraph"><u>Number of Users Who Tagged</u>: {props.tag.usersTagged === undefined || props.tag.usersTagged === null ? "No One" : props.tag.usersTagged.length}</p>
+        <p className="paragraph"><u>User Categories</u>: {props.tag.userCategories === undefined || props.tag.userCategories === null ? "No Categories" : props.tag.userCategories}</p>
       </div>
     
       {/* <div className="form-box">
