@@ -240,6 +240,31 @@ li {
 
 }
 
+<<<<<<< HEAD
+.user-age {
+  margin-left: auto;
+}
+.btn {
+  padding: 14px 24px;
+  border: 0 none;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.btn:focus, .btn:active:focus, .btn.active:focus {
+  outline: 0 none;
+}
+
+.btn-primary {
+  background: green;
+  color: #ffffff;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+  background: #33a6cc;
+}
+=======
 .btn-outline-primary:hover{
   background-image: linear-gradient(45deg, #19e9df, #2fe77b) !important;
   border-color: #000000 !important;
@@ -248,6 +273,7 @@ li {
 }
 
 
+>>>>>>> origin/main
 
 .btn-primary:active, .btn-primary.active {
   background: #007299;
