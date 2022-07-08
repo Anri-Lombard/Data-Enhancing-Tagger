@@ -270,7 +270,7 @@ export default function Tagging({ name, user }) {
               </li>
             ))
           ) : (
-            <h1>No results found!</h1>
+            <h6 className="results">No results found!</h6>
           )}
         </div>
 

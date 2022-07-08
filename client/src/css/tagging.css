@@ -255,3 +255,9 @@ li {
   background: #007299;
   box-shadow: none;
 }
+
+.results{
+  text-align: left;
+  color: black;
+  font-family: Lucida Console;
+}
