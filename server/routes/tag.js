@@ -29,9 +29,11 @@ tagRoutes.route("/tag").get(function (req, res) {
 });
  
 // This section will help you get a single tag by id
-// tagRoutes.route("/tag/:id").get(function (req, res) {
-//  let db_connect = dbo.getDb();
-//  let myquery = { id: req.params.id };
+// tagRoutes.route("/tag").get(function (req, res) {
+//  let db_connect = dbo.getDb("bank-statements");
+
+//  // search for undefined?
+//  let myquery = { tagged: false };
 //  db_connect
 //      .collection("transactions")
 //      .findOne(myquery, function (err, result) {
@@ -53,7 +55,9 @@ tagRoutes.route("/tag").get(function (req, res) {
 //    response.json(res);
 //  });
 // });
- 
+
+
+// TODO: updateMany: tagged = false
 // This section will help you update a tag by id.
 tagRoutes.route("/update/:id").post(function (req, response) {
   // ?
@@ -69,8 +73,8 @@ tagRoutes.route("/update/:id").post(function (req, response) {
     //  transactionValue: req.body.transactionValue,
      category: req.body.category,
      usersTagged: req.body.usersTagged,
-     userCategories: req.body.userCategories
-    //  tagged: req.body.tagged
+     userCategories: req.body.userCategories,
+     tagged: req.body.tagged
    }, 
   }
   
