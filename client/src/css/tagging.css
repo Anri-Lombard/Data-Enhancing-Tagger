@@ -216,21 +216,61 @@ li {
   margin-top: 30px;
 }
 
-.user {
-  list-style: none;
-  margin: 10px 0;
-  padding: 10px;
-  background: #eee;
-  display: flex;
-  justify-content: space-between;
-  color:pink;
+.btn {
+  padding: 14px 24px;
+  border: 0 none;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
+.btn:focus, .btn:active:focus, .btn.active:focus {
+  outline: 0 none;
+}
 
+.btn-primary {
+  background: white;
+  color: #ffffff;
+}
 
-.headingAdjustments{
-  font-family:"Lucida Console";
-  color:black;
-  text-align: centre;
+.btn-outline-primary, .btn-outline-primary:active {
+  background-color: white !important;
+  color:black !important;
+  border-color: #000000 !important;
+
+}
+
+.btn-outline-primary:hover{
+  background-image: linear-gradient(45deg, #328f8a, #08ac4b) !important;
+  border-color: white !important;
+  color:white !important;
+  transition: color .2s ease;
+  transition: background-image .2s ease;
+  
+}
+
+.btn-primary:active, .btn-primary.active {
+  background: #000000;
+  box-shadow: none;
+}
+
+.Results_found{
+  text-align: left;
+  color: black;
+  font-family: Lucida Console;
+}
+.form-control{
+  border-color: rgba(126, 239, 104, 0.8) !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(126, 239, 104, 0.6) !important;
+  outline: 0 none !important;
+}
+
+.btn-check:checked +label{
+
+  border-color: black !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px black !important;
+  color: black!important; 
+  background-image: linear-gradient(45deg, #328f8a, #08ac4b) !important;
+  
 
 }
