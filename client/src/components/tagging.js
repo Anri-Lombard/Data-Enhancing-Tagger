@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import NavBar from './navbar.js';
 import Footer from './footer.js';
-import '../css/tagging.css'
+import '../css/tagging.css';
+import Tag from './tag.js';
+import TagRadios from './tagRadios.js';
 
 const PORT = 2000;
 
@@ -16,19 +18,12 @@ export default function Tagging({ name, user }) {
   let tagOptions = ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive"];
 
   // tagOptions logic
-  if (userCategoriesArray !== undefined || userCategoriesArray.length >= 2) {
-    if (userCategoriesArray.length === 2) {
-      if (userCategoriesArray[0] !== userCategoriesArray[1]) {
-        tagOptions = [userCategoriesArray[0], userCategoriesArray[1]]
-      }
-    }
-  }
-    
+  
   const [tags, setTags] = useState([]);
   const [oneTag, setOneTag] = useState();
   const [chosenCategory, setChosenCategory] = useState("");
   // this will display the options to choose from and will be changed
-  const [visibleOption, setVisibleOptions] = useState(tagOptions)
+  const [visibleOptions, setVisibleOptions] = useState(tagOptions)
   const [query, setQuery] = useState('');
 
   // TODO: Add tons more options
@@ -63,39 +58,34 @@ export default function Tagging({ name, user }) {
     setQuery(keyword);
   };
 
-  const Tag = (props) => (
-    <div>
-      <div>
-        <p className="paragraph"><u>Description</u>: {props.tag.description}</p>
-        <p className="paragraph"><u>Current Category</u>: {props.tag.category}</p>
-        <p className="paragraph"><u>Number of Users Who Tagged</u>: {props.tag.usersTagged === undefined || props.tag.usersTagged === null ? "No One" : props.tag.usersTagged.length}</p>
-        <p className="paragraph"><u>User Categories</u>: {props.tag.userCategories === undefined || props.tag.userCategories === null ? "No Categories" : props.tag.userCategories}</p>
-      </div>
-    </div>
-  );
-
 
   async function onSubmitHandler(e) {
     e.preventDefault();
     setTimeout(() => {
       window.location.reload()
     }, 200)
-
-    userCategoriesArray = tagToUpdate.userCategories.length === 0 ? 
-                          new Array(chosenCategory) : 
-                          tagToUpdate.userCategories.push(chosenCategory);
-
-    if (userCategoriesArray !== undefined || userCategoriesArray.length >= 2) {
-      if (userCategoriesArray.length === 2) {
-        if (userCategoriesArray[0] !== userCategoriesArray[1]) {
+    
+    if (tagToUpdate.userCategories !== undefined) {
+      userCategoriesArray = tagToUpdate.userCategories.length === 0 ? 
+                            new Array(chosenCategory) : 
+                            tagToUpdate.userCategories.push(chosenCategory);
+      
+      if (userCategoriesArray.length >= 2) {
+        if (userCategoriesArray.length === 2) {
+          if (userCategoriesArray[0] !== userCategoriesArray[1]) {
+            tagOptions = [userCategoriesArray[0], userCategoriesArray[1]]
+            dataTagged = true;
+            setChosenCategory(userCategoriesArray[1]);
+          }
+        } else if (userCategoriesArray === 3) {
           dataTagged = true;
-          setChosenCategory(userCategoriesArray[1]);
+          setChosenCategory(userCategoriesArray[2]);
         }
       } else {
-        dataTagged = true;
-        setChosenCategory(userCategoriesArray[2]);
+        setChosenCategory(userCategoriesArray[0])
       }
     }
+                          
 
     editedTag = {
       id: tagToUpdate.id,
@@ -125,50 +115,6 @@ export default function Tagging({ name, user }) {
     document.getElementById("tagBtn").disabled = false;
   }
 
-  function tagRadios() {
-    return (
-      <div className="user-list">
-        {visibleOption && visibleOption.length > 0 ? (
-          visibleOption.map((option) => (
-            <li key={option}>
-              <input
-                className="btn btn-check"
-                type="radio" id={option}
-                name="tag" autoComplete="off"
-                value={option}
-                onChange={onChangeHandler}
-              />
-              <label className="btn btn-outline-primary" htmlFor={option}>{option}
-              </label>
-            </li>
-          ))
-        ) : (
-          <p className ="Results_found">No results found!</p>
-        )}
-      </div>
-    )
-  }
-
-  // useEffect(() => {
-  //   async function getTags() {
-  //     const response = await fetch(`http://localhost:${PORT}/tag/`);
-
-  //     if (!response.ok) {
-  //       const message = `An error occurred: ${response.statusText}`;
-  //       window.alert(message);
-  //       return;
-  //     }
-
-  //     const tags = await response.json();
-
-  //     setTags(tags);
-  //   }
-
-  //   getTags();
-
-  //   return;
-  // }, [tags.length]);
-
   useEffect(() => {
     async function getOneTag() {
       const response = await fetch(`http://localhost:${PORT}/tag/one`);
@@ -183,9 +129,9 @@ export default function Tagging({ name, user }) {
 
       setOneTag(tag);
     }
-
+    
     getOneTag();
-
+    
     
     return;
   }, []);
@@ -197,7 +143,11 @@ export default function Tagging({ name, user }) {
     }
   }, [oneTag]);
   
-
+  function getUpdatedTagRadios() {
+    console.log("visibleOptions: " + visibleOptions);
+    return <TagRadios visibleOptions={visibleOptions} onChangeHandler={onChangeHandler} />
+  }
+  
   // this needs to change when we implement getting single tag instead of an array
   function getSingleTag() {
     return <Tag tag={tagToUpdate} />
@@ -228,11 +178,12 @@ export default function Tagging({ name, user }) {
         {/* Options */}
         <div className="form-box">
           <form onSubmit={onSubmitHandler}>
-            {tagRadios()}
+            {getUpdatedTagRadios()}
             <button id="tagBtn" type="submit" disabled>Tag</button>
           </form>
         </div>
       </div>
+
       <Footer />
     </>
   );
