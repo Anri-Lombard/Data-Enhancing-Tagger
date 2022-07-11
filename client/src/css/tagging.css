@@ -261,7 +261,7 @@ li {
 }
 .form-control{
   border-color: rgba(126, 239, 104, 0.8) !important;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(126, 239, 104, 0.6) !important;
+  box-shadow: linear-gradient(45deg, #328f8a, #08ac4b)!important;
   outline: 0 none !important;
 }
 
@@ -273,4 +273,9 @@ li {
   background-image: linear-gradient(45deg, #328f8a, #08ac4b) !important;
   
 
+}
+
+.form-box::after{
+  height: 100%;
+  width: 45%;
 }

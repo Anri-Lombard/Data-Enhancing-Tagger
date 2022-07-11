@@ -1,5 +1,6 @@
 .textStyle{
     font-family: "Lucida Console";
+    
 }
 
 div.navbar-box.container {
@@ -8,3 +9,4 @@ div.navbar-box.container {
     padding-bottom: 5px;
     min-height: 40px;
 }
+
