@@ -62,7 +62,6 @@ export default function Tagging({ name, user }) {
 
     setQuery(keyword);
   };
-
   const Tag = (props) => (
     <div>
       <div>
