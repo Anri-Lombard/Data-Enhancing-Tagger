@@ -241,7 +241,7 @@ li {
 }
 
 .btn-outline-primary:hover{
-  background-image: linear-gradient(45deg, #328f8a, #08ac4b) !important;
+  background-image: linear-gradient(45deg, #19e9df, #2fe77b) !important;
   border-color: white !important;
   color:white !important;
   transition: color .2s ease;
@@ -268,8 +268,8 @@ li {
 .btn-check:checked +label{
 
   border-color: black !important;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px black !important;
-  color: black!important; 
+  color: white !important;
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.075) inset, 0 0 0px black !important;
   background-image: linear-gradient(45deg, #328f8a, #08ac4b) !important;
   
 
