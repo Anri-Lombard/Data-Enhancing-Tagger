@@ -28,19 +28,19 @@ tagRoutes.route("/tag").get(function (req, res) {
    });
 });
  
-// This section will help you get a single tag by id
-// tagRoutes.route("/tag").get(function (req, res) {
-//  let db_connect = dbo.getDb("bank-statements");
+// This section will help you get a single tag
+tagRoutes.route("/tag/one").get(function (req, res) {
+  
+ let db_connect = dbo.getDb("bank-statements");
 
-//  // search for undefined?
-//  let myquery = { tagged: false };
-//  db_connect
-//      .collection("transactions")
-//      .findOne(myquery, function (err, result) {
-//        if (err) throw err;
-//        res.json(result);
-//      });
-// });
+ let myquery = { tagged: false || undefined };
+ db_connect
+     .collection("transactions")
+     .findOne(myquery, function (err, result) {
+       if (err) throw err;
+       res.json(result);
+     });
+});
  
 // This section will help you create a new tag.
 // tagRoutes.route("/tag/add").post(function (req, response) {
@@ -85,30 +85,25 @@ tagRoutes.route("/update/:id").post(function (req, response) {
 });
 
 // Update many to not be tagged if tag is undefined
-tagRoutes.route("/update/").post(function (req, response) {
-  // ?
- let db_connect = dbo.getDb("bank-statements"); 
- let myquery = { id: req.params.id }; 
- console.log(req.params.id);
- let newvalues = {   
-   $set: {
-    //  id: req.params.id,
-    //  date: req.params.date,
-    //  description: req.body.description,
-    //  balance: req.body.balance,
-    //  transactionValue: req.body.transactionValue,
-     category: req.body.category,
-     usersTagged: req.body.usersTagged,
-     userCategories: req.body.userCategories,
-     tagged: req.body.tagged
-   }, 
-  }
+// tagRoutes.route("/update/").post(function (req, response) {
+//   // ?
+//  let db_connect = dbo.getDb("bank-statements"); 
+//  let myquery = { id: req.params.id }; 
+//  console.log(req.params.id);
+//  let newvalues = {   
+//    $set: {
+//      category: req.body.category,
+//      usersTagged: req.body.usersTagged,
+//      userCategories: req.body.userCategories,
+//      tagged: req.body.tagged
+//    }, 
+//   }
   
-  db_connect.collection("transactions").findOneAndUpdate(
-    myquery,
-    newvalues
-  )
-});
+//   db_connect.collection("transactions").findOneAndUpdate(
+//     myquery,
+//     newvalues
+//   )
+// });
  
 // This section will help you delete a tag
 // recordRoutes.route("/:id").delete((req, response) => {
