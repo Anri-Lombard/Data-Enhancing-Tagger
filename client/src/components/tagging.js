@@ -153,7 +153,7 @@ export default function Tagging({ name, user }) {
   }, [oneTag]);
 
   function getUpdatedTagRadios() {
-    return <TagRadios visibleOptions={visibleOptions} onChangeHandler={onChangeHandler} />
+    return <TagRadios tagToUpdate={tagToUpdate} visibleOptions={visibleOptions} onChangeHandler={onChangeHandler} />
   }
 
   // this needs to change when we implement getting single tag instead of an array
