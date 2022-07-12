@@ -64,18 +64,20 @@ export default function Tagging({ name, user }) {
     }, 200)
 
     // userCategories
-    userCategoriesArray = tagToUpdate.userCategories === undefined ?
-      new Array(chosenCategory) :
+    if (tagToUpdate.userCategories === undefined) {
+      userCategoriesArray = new Array(chosenCategory);
+    } else {
       tagToUpdate.userCategories.push(chosenCategory);
-    console.log(typeof(tagToUpdate.userCategories))
-    console.log(typeof(userCategoriesArray))
+      userCategoriesArray = tagToUpdate.userCategories;
+    }
 
     // usersTagged
-    usersTaggedArray = tagToUpdate.usersTagged === undefined ?
-      new Array(user) :
+    if (tagToUpdate.usersTagged === undefined) {
+      usersTaggedArray = new Array(user);
+    } else {
       tagToUpdate.usersTagged.push(user);
-    console.log(typeof(tagToUpdate.usersTaggedArray));
-    console.log(typeof(usersTaggedArray))
+      usersTaggedArray = tagToUpdate.usersTagged;
+    }
 
     if (userCategoriesArray.length === 1) {
       setChosenCategory(userCategoriesArray[0])
