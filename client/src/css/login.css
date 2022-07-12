@@ -89,3 +89,7 @@ body {
 #linkToLogout:hover {
   color: white;
 }
+
+.button{
+  margin-top: 10px;
+}
