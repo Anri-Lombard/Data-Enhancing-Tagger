@@ -12,14 +12,12 @@ export default function Tagging({ name, user }) {
 
   // hardcoded for now
   let dataTagged = false;
-  let userCategoriesArray = []
-  const usersTaggedArray = new Array(user)
+  let userCategoriesArray = [];
+  let usersTaggedArray = [];
   let editedTag = [];
-  let tagOptions = ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive"];
+  let tagOptions = ["tagOne", "tagTwo", "tagThree", "tagFour", "tagFive", "tagSix", "tagSeven", "tagEight"];
 
   // tagOptions logic
-  
-  const [tags, setTags] = useState([]);
   const [oneTag, setOneTag] = useState();
   const [chosenCategory, setChosenCategory] = useState("");
   // this will display the options to choose from and will be changed
@@ -64,29 +62,38 @@ export default function Tagging({ name, user }) {
     setTimeout(() => {
       window.location.reload()
     }, 200)
-    
-    if (tagToUpdate.userCategories !== undefined) {
-      userCategoriesArray = tagToUpdate.userCategories.length === 0 ? 
-                            new Array(chosenCategory) : 
-                            tagToUpdate.userCategories.push(chosenCategory);
-      
-      if (userCategoriesArray.length >= 2) {
-        if (userCategoriesArray.length === 2) {
-          if (userCategoriesArray[0] !== userCategoriesArray[1]) {
-            tagOptions = [userCategoriesArray[0], userCategoriesArray[1]]
-            dataTagged = true;
-            setChosenCategory(userCategoriesArray[1]);
-          }
-        } else if (userCategoriesArray === 3) {
-          dataTagged = true;
-          setChosenCategory(userCategoriesArray[2]);
-        }
-      } else {
-        setChosenCategory(userCategoriesArray[0])
-      }
-    }
-                          
 
+    // userCategories
+    userCategoriesArray = tagToUpdate.userCategories === undefined ?
+      new Array(chosenCategory) :
+      tagToUpdate.userCategories.push(chosenCategory);
+    console.log(typeof(tagToUpdate.userCategories))
+    console.log(typeof(userCategoriesArray))
+
+    // usersTagged
+    usersTaggedArray = tagToUpdate.usersTagged === undefined ?
+      new Array(user) :
+      tagToUpdate.usersTagged.push(user);
+    console.log(typeof(tagToUpdate.usersTaggedArray));
+    console.log(typeof(usersTaggedArray))
+
+    if (userCategoriesArray.length === 1) {
+      setChosenCategory(userCategoriesArray[0])
+    } else if (userCategoriesArray.length === 2) {
+      if (userCategoriesArray[0] !== userCategoriesArray[1]) {
+        // Decision state
+        tagOptions = [userCategoriesArray[0], userCategoriesArray[1]]
+        setChosenCategory(userCategoriesArray[1]);
+      } else {
+        // Agrees
+        dataTagged = true;
+      }
+    } else {
+      dataTagged = true;
+      setChosenCategory(userCategoriesArray[2]);
+    }
+
+    // userCategoriesArray is undefined
     editedTag = {
       id: tagToUpdate.id,
       date: tagToUpdate.date,
@@ -129,10 +136,10 @@ export default function Tagging({ name, user }) {
 
       setOneTag(tag);
     }
-    
+
     getOneTag();
-    
-    
+
+
     return;
   }, []);
 
@@ -142,17 +149,16 @@ export default function Tagging({ name, user }) {
       setTagToUpdate(oneTag)
     }
   }, [oneTag]);
-  
+
   function getUpdatedTagRadios() {
-    console.log("visibleOptions: " + visibleOptions);
     return <TagRadios visibleOptions={visibleOptions} onChangeHandler={onChangeHandler} />
   }
-  
+
   // this needs to change when we implement getting single tag instead of an array
   function getSingleTag() {
     return <Tag tag={tagToUpdate} />
   }
-  
+
   return (
     <>
       <NavBar name={name} />
@@ -178,7 +184,9 @@ export default function Tagging({ name, user }) {
         {/* Options */}
         <div className="form-box">
           <form onSubmit={onSubmitHandler}>
-            {getUpdatedTagRadios()}
+            <div className="form-box-static">
+              {getUpdatedTagRadios()}
+            </div>
             <button id="tagBtn" type="submit" disabled>Tag</button>
           </form>
         </div>

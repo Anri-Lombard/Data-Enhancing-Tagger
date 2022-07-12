@@ -47,6 +47,20 @@ body {
   box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.2), 0 5px 5px 0 rgba(255, 255, 255, 0.24);
 }
 
+.form-box-static {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  border-radius: 0 0 10px 10px;
+  max-width: 370px;
+  height: 260px;
+  overflow-y: scroll;
+  /* margin: 10px auto 0px; */
+  /* padding: 5px 30px 30px; */
+  text-align: left;
+  box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.2), 0 5px 5px 0 rgba(255, 255, 255, 0.24);
+}
+
 .search-box {
   max-width: 370px;
   margin: 0px auto;
@@ -275,7 +289,27 @@ li {
 
 }
 
-.form-box::after{
-  height: 100%;
-  width: 45%;
+.form-box-static::-webkit-scrollbar {
+  width: 10px;
+  padding-left: 15%;
+}
+
+.form-box-static::-webkit-scrollbar-track {
+  background: rgb(179, 177, 177);
+  border-radius: 10px;
+}
+
+.form-box-static::-webkit-scrollbar-thumb {
+  background: rgb(136, 136, 136);
+  border-radius: 10px;
+}
+
+.form-box-static::-webkit-scrollbar-thumb:hover {
+  background: rgb(100, 100, 100);
+  border-radius: 10px;
+}
+
+.form-box-static::-webkit-scrollbar-thumb:active {
+  background: rgb(68, 68, 68);
+  border-radius: 10px;
 }
