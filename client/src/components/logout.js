@@ -9,6 +9,7 @@ import {
   Link
 } from "react-router-dom";
 import '../css/navbar.css';
+import Login from './login';
 
 const clientId = "209297339002-8oele42ri4qokv2qefi8n7bds2a9jmjk.apps.googleusercontent.com";
 
@@ -52,7 +53,10 @@ export default function LogOut({ isLoggedIn }) {
                 </GoogleLogout>
                 <div>
                 <button onClick={navigateToHomePage} className="button">No</button> 
-                
+                <Routes>
+                <Route path="/login" element={<Login />} />
+          
+                </Routes>
                 </div>
 
 
