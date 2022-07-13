@@ -1,4 +1,6 @@
-export default function Tag(props) {
+import React from 'react';
+
+const Tag = React.memo((props) => {
     return (
         <div>
             <div>
@@ -9,4 +11,6 @@ export default function Tag(props) {
             </div>
         </div>
     )
-}
+})
+
+export default Tag;

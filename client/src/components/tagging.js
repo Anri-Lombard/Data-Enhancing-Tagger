@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import NavBar from './navbar.js';
 import Footer from './footer.js';
-import '../css/tagging.css';
 import Tag from './tag.js';
 import TagRadios from './tagRadios.js';
+import '../css/tagging.css';
 
 const PORT = 2000;
 
-export default function Tagging({ name, user }) {
+const Tagging = React.memo(({ name, user }) => {
   const [tagToUpdate, setTagToUpdate] = useState({});
 
   // hardcoded for now
@@ -197,7 +197,6 @@ export default function Tagging({ name, user }) {
       <Footer />
     </>
   );
-}
+})
 
-
-
+export default Tagging;

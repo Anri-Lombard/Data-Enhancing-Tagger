@@ -1,17 +1,12 @@
-export default function TagRadios(props) {
+import React from 'react';
+
+const TagRadios = (props) => {
     const tag = props.tagToUpdate;
     const userCategoriesArray = tag.userCategories;
 
     let visibleOptions = props.visibleOptions;
 
-    console.log("tag");
-    console.log(tag);
-    console.log("uc");
-    console.log(userCategoriesArray);
-    // console.log(userCategoriesArray);
-
     if (userCategoriesArray !== undefined) {
-        console.log("HI");
         if (userCategoriesArray.length === 2) {
             if (userCategoriesArray[0] !== userCategoriesArray[1]) {
               // Decision state
@@ -41,4 +36,6 @@ export default function TagRadios(props) {
             )}
         </div>
     )
-}
+};
+
+export default TagRadios;
