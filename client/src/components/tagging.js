@@ -172,12 +172,12 @@ const Tagging = React.memo(({ name, user }) => {
         {getSingleTag()}
 
         {/* Filter */}
-        <div className="form-box search-box">
+        <div className="form-box search-box shadow-none">
           <input
             type="search"
             value={query}
             onChange={filter}
-            className="input form-control"
+            className="input form-control shadow-none"
             placeholder="Search"
             autoFocus
           />
