@@ -1,4 +1,6 @@
-export default function TagRadios(props) {
+import React from 'react';
+
+const TagRadios = (props) => {
     const tag = props.tagToUpdate;
     const userCategoriesArray = tag.userCategories;
 
@@ -41,4 +43,6 @@ export default function TagRadios(props) {
             )}
         </div>
     )
-}
+};
+
+export default TagRadios;

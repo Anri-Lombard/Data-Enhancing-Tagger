@@ -1,8 +1,8 @@
 import React from "react";
 import { GoogleLogout } from 'react-google-login';
+import { useNavigate } from 'react-router-dom';
 import '../css/login.css'
 import '../css/navbar.css';
-import { useNavigate } from 'react-router-dom';
 import '../css/navbar.css';
 
 const clientId = "209297339002-8oele42ri4qokv2qefi8n7bds2a9jmjk.apps.googleusercontent.com";
@@ -18,11 +18,9 @@ const LogOut = React.memo(({ isLoggedIn }) => {
     const navigate = useNavigate();
 
     const navigateToHomePage = () => {
-        // 👇️ navigate to /contacts
         navigate('/login');
     };
 
-    // TODO: Racquel change as she wants and adds a "NO" button
     return (
         <div className="login-page">
             <div className="form">

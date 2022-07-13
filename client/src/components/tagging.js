@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import NavBar from './navbar.js';
 import Footer from './footer.js';
-import '../css/tagging.css';
 import Tag from './tag.js';
 import TagRadios from './tagRadios.js';
+import '../css/tagging.css';
 
 const PORT = 2000;
 
