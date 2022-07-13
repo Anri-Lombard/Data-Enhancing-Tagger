@@ -1,8 +1,29 @@
 export default function TagRadios(props) {
+    const tag = props.tagToUpdate;
+    const userCategoriesArray = tag.userCategories;
+
+    let visibleOptions = props.visibleOptions;
+
+    console.log("tag");
+    console.log(tag);
+    console.log("uc");
+    console.log(userCategoriesArray);
+    // console.log(userCategoriesArray);
+
+    if (userCategoriesArray !== undefined) {
+        console.log("HI");
+        if (userCategoriesArray.length === 2) {
+            if (userCategoriesArray[0] !== userCategoriesArray[1]) {
+              // Decision state
+              visibleOptions = [userCategoriesArray[0], userCategoriesArray[1]]
+            }
+        }
+    }
+
     return (
         <div className="user-list">
-            {props.visibleOptions && props.visibleOptions.length > 0 ? (
-            props.visibleOptions.map((option) => (
+            {visibleOptions && visibleOptions.length > 0 ? (
+            visibleOptions.map((option) => (
                 <li key={option}>
                 <input
                     className="btn btn-check"

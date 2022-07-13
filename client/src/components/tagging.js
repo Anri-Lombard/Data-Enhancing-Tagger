@@ -64,18 +64,20 @@ const Tagging = React.memo(({ name, user }) => {
     }, 200)
 
     // userCategories
-    userCategoriesArray = tagToUpdate.userCategories === undefined ?
-      new Array(chosenCategory) :
+    if (tagToUpdate.userCategories === undefined) {
+      userCategoriesArray = new Array(chosenCategory);
+    } else {
       tagToUpdate.userCategories.push(chosenCategory);
-    console.log(typeof(tagToUpdate.userCategories))
-    console.log(typeof(userCategoriesArray))
+      userCategoriesArray = tagToUpdate.userCategories;
+    }
 
     // usersTagged
-    usersTaggedArray = tagToUpdate.usersTagged === undefined ?
-      new Array(user) :
+    if (tagToUpdate.usersTagged === undefined) {
+      usersTaggedArray = new Array(user);
+    } else {
       tagToUpdate.usersTagged.push(user);
-    console.log(typeof(tagToUpdate.usersTaggedArray));
-    console.log(typeof(usersTaggedArray))
+      usersTaggedArray = tagToUpdate.usersTagged;
+    }
 
     if (userCategoriesArray.length === 1) {
       setChosenCategory(userCategoriesArray[0])
@@ -151,7 +153,7 @@ const Tagging = React.memo(({ name, user }) => {
   }, [oneTag]);
 
   function getUpdatedTagRadios() {
-    return <TagRadios visibleOptions={visibleOptions} onChangeHandler={onChangeHandler} />
+    return <TagRadios tagToUpdate={tagToUpdate} visibleOptions={visibleOptions} onChangeHandler={onChangeHandler} />
   }
 
   // this needs to change when we implement getting single tag instead of an array
