@@ -2,21 +2,11 @@ import React from "react";
 import { GoogleLogout } from 'react-google-login';
 import '../css/login.css'
 import '../css/navbar.css';
-import React from 'react';
-import * as RB from "react-bootstrap";
 import {Routes, Route, useNavigate} from 'react-router-dom';
-import {
-  BrowserRouter as Router,
-  Link
-} from "react-router-dom";
 import '../css/navbar.css';
 import Login from './login';
 
 const clientId = "209297339002-8oele42ri4qokv2qefi8n7bds2a9jmjk.apps.googleusercontent.com";
-
- 
-
-
 
 const LogOut = React.memo(({ isLoggedIn }) => {
 
