@@ -1,12 +1,13 @@
+import React from "react";
 import { GoogleLogout } from 'react-google-login';
 import '../css/login.css'
 
 const clientId = "209297339002-8oele42ri4qokv2qefi8n7bds2a9jmjk.apps.googleusercontent.com";
 
 
-export default function LogOut({ isLoggedIn }) {
+const LogOut = React.memo(({ isLoggedIn }) => {
 
-    const onSuccess = (res) => {
+    const onSuccess = () => {
         console.log("Log out successfull!");
         isLoggedIn(false);
     }
@@ -34,4 +35,6 @@ export default function LogOut({ isLoggedIn }) {
             </div>
         </div>
     )
-}
+});
+
+export default LogOut;

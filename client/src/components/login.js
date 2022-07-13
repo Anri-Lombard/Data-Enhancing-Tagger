@@ -4,7 +4,7 @@ import '../css/login.css'
 
 const clientId = "209297339002-8oele42ri4qokv2qefi8n7bds2a9jmjk.apps.googleusercontent.com";
 
-export default function Login({ name, isLoggedIn, userID }) {
+const Login = React.memo(({ name, isLoggedIn, userID }) => {
   const onSuccess = (res) => {
     console.log("LOGIN SUCCESS! Current user: ", res.profileObj.name);
 
@@ -45,4 +45,6 @@ export default function Login({ name, isLoggedIn, userID }) {
       </div>
     </div>
   )
-}
+});
+
+export default Login;

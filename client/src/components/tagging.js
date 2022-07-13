@@ -7,7 +7,7 @@ import TagRadios from './tagRadios.js';
 
 const PORT = 2000;
 
-export default function Tagging({ name, user }) {
+const Tagging = React.memo(({ name, user }) => {
   const [tagToUpdate, setTagToUpdate] = useState({});
 
   // hardcoded for now
@@ -195,7 +195,6 @@ export default function Tagging({ name, user }) {
       <Footer />
     </>
   );
-}
+})
 
-
-
+export default Tagging;
