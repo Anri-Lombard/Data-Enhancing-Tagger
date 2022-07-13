@@ -289,7 +289,9 @@ li {
 
 }
 
-.form-box-static::-webkit-scrollbar {
+/* TODO: fix for windows */
+
+/* .form-box-static::-webkit-scrollbar {
   width: 10px;
   padding-left: 15%;
 }
@@ -312,4 +314,4 @@ li {
 .form-box-static::-webkit-scrollbar-thumb:active {
   background: rgb(68, 68, 68);
   border-radius: 10px;
-}
+} */

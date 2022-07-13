@@ -6,14 +6,7 @@ const TagRadios = (props) => {
 
     let visibleOptions = props.visibleOptions;
 
-    console.log("tag");
-    console.log(tag);
-    console.log("uc");
-    console.log(userCategoriesArray);
-    // console.log(userCategoriesArray);
-
     if (userCategoriesArray !== undefined) {
-        console.log("HI");
         if (userCategoriesArray.length === 2) {
             if (userCategoriesArray[0] !== userCategoriesArray[1]) {
               // Decision state
