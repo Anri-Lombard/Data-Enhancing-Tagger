@@ -15,13 +15,7 @@ const Tagging = React.memo(({ name, user }) => {
   let userCategoriesArray = [];
   let usersTaggedArray = [];
   let editedTag = [];
-  let tagOptions = ["Income","Salary/Wages", "Investment","Returned Purchase","Bonus","Interest Income",,"Reimbursement","Rental Income","Cash","Check"," Arts","Music","Dating","Movies & DVDs","Newspaper & Magazines","Social Club","Sport", "Games","TV"," Tuition","Student Loan","Books & Supplies","Pets","General Shopping","Department Store","Clothing","Home","Books"
-  ,"Electronics & Software","Hobbies","Sporting Goods","Hair","Laundry","Beauty","Spa & Massage", "Dentist","Doctor", "Eye care","Pharmacy","Gym","Pets","Sports", "Gift","Charity","Equities","Bonds","Bank products","Retirement","Annuities","Real-estate", "Television","Home Phone","Internet","Mobile Phone","Utility Bill","Car Insurance","Car Payment","Parking","Public transport","Service & Repairs","Taxi",
-  "Fuel"," Air Travel","Hotel","Rental Car","Vacation","Service Fee","Late Fee","Finance Charge","ATM Fee","Bank Fee","Commissions",
-  "Advertising","Financial Services", "Office Supplies","Printing","Shipping","Legal"," Advisory and Consulting","Financial Services",
-  "Lawyer","Tax","Betting","Lottery"
-  ,"Casino", "Rent","Mortgage","Secured loans","Property taxes","Repairs & Maintenance"," Pension payments","Long Term insurance","Short term insurance",
-  "Insurance (short/long)","Health insurance"]
+  let tagOptions = ["Income","Salary/Wages", "Investment","Returned Purchase","Bonus","Interest Income","Reimbursement","Rental Income","Cash","Check"," Arts","Music","Dating","Movies & DVDs","Newspaper & Magazines","Social Club","Sport", "Games","TV"," Tuition","Student Loan","Books & Supplies","Pets","General Shopping","Department Store","Clothing","Home","Books","Electronics & Software","Hobbies","Sporting Goods","Hair","Laundry","Beauty","Spa & Massage", "Dentist","Doctor", "Eye care","Pharmacy","Gym","Pets","Sports", "Gift","Charity","Equities","Bonds","Bank products","Retirement","Annuities","Real-estate", "Television","Home Phone","Internet","Mobile Phone","Utility Bill","Car Insurance","Car Payment","Parking","Public transport","Service & Repairs","Taxi","Fuel"," Air Travel","Hotel","Rental Car","Vacation","Service Fee","Late Fee","Finance Charge","ATM Fee","Bank Fee","Commissions","Advertising","Financial Services", "Office Supplies","Printing","Shipping","Legal"," Advisory and Consulting","Financial Services","Lawyer","Tax","Betting","Lottery","Casino", "Rent","Mortgage","Secured loans","Property taxes","Repairs & Maintenance"," Pension payments","Long Term insurance","Short term insurance","Insurance (short/long)","Health insurance"]
   // tagOptions logic
   const [oneTag, setOneTag] = useState();
   const [chosenCategory, setChosenCategory] = useState("");
