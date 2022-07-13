@@ -10,6 +10,7 @@ body {
   background-image: linear-gradient(45deg, #000000, #000000);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
 }
 
 * {
@@ -55,6 +56,7 @@ body {
   max-width: 370px;
   height: 260px;
   overflow-y: scroll;
+
   /* margin: 10px auto 0px; */
   /* padding: 5px 30px 30px; */
   text-align: left;
@@ -330,7 +332,9 @@ li {
 
 .form-box-static::-webkit-scrollbar-track:hover {
   background-color: #f4f4f4
+  
 }
+
 
 /* scrollbar itself */
 .form-box-static::-webkit-scrollbar-thumb {
