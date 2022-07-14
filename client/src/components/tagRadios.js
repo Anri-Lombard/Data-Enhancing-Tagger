@@ -15,6 +15,9 @@ const TagRadios = (props) => {
         }
     }
 
+    // console.log("Winnie the poo");
+    // console.log(visibleOptions);
+
     return (
         <div className="user-list">
             {visibleOptions && visibleOptions.length > 0 ? (
