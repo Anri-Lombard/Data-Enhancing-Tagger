@@ -14,7 +14,7 @@ const Tagging = React.memo(({ name, user }) => {
 
   useEffect(() => {
     dispatch('filter', "");
-  }, [])
+  }, [state.tagToUpdate])
 
   useEffect(() => {
     async function getOneTag() {
@@ -32,7 +32,7 @@ const Tagging = React.memo(({ name, user }) => {
     }
 
     getOneTag();
-  }, [state.visibleOptions]);
+  }, [state.visibleOptions, state.tagToUpdate]);
 
 
   const filter = (e) => {

@@ -33,7 +33,9 @@ tagRoutes.route("/tag/one").get(function (req, res) {
   
  let db_connect = dbo.getDb("bank-statements");
 
- let myquery = { $or: [{tagged: false}, {tagged: undefined}] };
+ // TODO $and
+//  let myquery = { $or: [{tagged: false}, {tagged: undefined}] };
+ let myquery = { tagged: true };
  db_connect
      .collection("transactions")
      .findOne(myquery, function (err, result) {
