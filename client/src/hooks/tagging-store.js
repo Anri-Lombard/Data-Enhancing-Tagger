@@ -1,5 +1,4 @@
 import { initStore } from './store';
-import { useEffect, useState } from 'react';
 
 const configureStore = () => {
     const actions = {
@@ -11,17 +10,12 @@ const configureStore = () => {
                     return option.toLowerCase().includes(keyword.toLowerCase());
                 });
                 updatedVisibleOptions = results
-                // setVisibleOptions(results);
             } else {
-                // setVisibleOptions(tagOptions);
                 updatedVisibleOptions = curState.tagOptions
             }
-            // setQuery(keyword);
             const updatedQuery = keyword;
 
-            // console.log("Updated query stuff:");
-            // console.log(updatedVisibleOptions);
-            // console.log(updatedQuery);
+            console.log("Hi");
 
             return {
                 ...curState,
@@ -98,47 +92,10 @@ const configureStore = () => {
             }
         },
         setTagToUpdate: (curState, tag) => {
-
-            // const tagToUpdate = fetch(`http://localhost:${PORT}/tag/one`)
-            //     .then(res => (res.ok ? res : Promise.reject(res)))
-            //     .then(res => {
-            //         return res.json().then((data) => {
-            //             console.log("Genius");
-            //             console.log(data);
-            //             return data;
-            //         })
-            //     })
-            // console.log("Genius2");
-            // console.log(tagToUpdate);
             return {
                 ...curState,
                 tagToUpdate: tag
             }
-            // fetchData()
-            // console.log(curState.tagToUpdate);
-            // const thing1 = fetchData().then(data => data);
-            // console.log(thing1);
-            // return {
-            //     ...curState,
-            //     visibleOptions: ["Joke", "On", "You"]
-            // }
-            // fetchData();
-            // console.log("That");
-            // console.log(fetchData());
-            
-            // async function updateIt() {
-            //     const tagToUpdate = await fetchData();
-            //     console.log("There");
-            //     console.log(tagToUpdate);
-                
-            //     return {
-            //         ...curState,
-            //         visibleOptions: ["Joke", "On", "You"],
-            //         // tagToUpdate: updatedTagToUpdate,
-            //     }
-            // }
-
-            // updateIt();
         },
         setChosenCategory: (curState, category) => {
             return {
