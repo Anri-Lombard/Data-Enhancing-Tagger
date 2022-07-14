@@ -98,6 +98,8 @@ const configureStore = () => {
             }
         },
         getOneTag: (curState, PORT) => {
+            let tagToUpdate = {}
+
             async function fetchData() {
                 const response = await fetch(`http://localhost:${PORT}/tag/one`);
 
@@ -108,127 +110,127 @@ const configureStore = () => {
                 }
 
                 const tag = await response.json();
-                const updatedTagToUpdate = tag;
+                tagToUpdate = tag;
 
-                console.log("There");
-                console.log(updatedTagToUpdate);
-                console.log(curState.tagToUpdate);
+                // console.log(updatedTagToUpdate);
+                // console.log(curState.tagToUpdate);
             }
-
+            
             fetchData();
-
+            console.log("There");
+            console.log(tagToUpdate);
 
             return {
-            ...curState,
-            visibleOptions: ["Joke", "On", "You"],
-            tagToUpdate: updatedTagToUpdate,
-        }
-    },
+                ...curState,
+                visibleOptions: ["Joke", "On", "You"],
+                // tagToUpdate: updatedTagToUpdate,
+            }
+        },
         setChosenCategory: (curState, category) => {
             return {
-        ...curState,
-        chosenCategory: category,
-    }
-}
+                ...curState,
+                chosenCategory: category,
+            }
+        }
     };
-initStore(actions, {
-    visibleOptions: [],
-    chosenCategory: "",
-    query: "",
-    tagToUpdate: {},
-    tagOptions: [
-        "Income",
-        "Salary/Wages",
-        "Investment",
-        "Returned Purchase",
-        "Bonus",
-        "Interest Income",
-        "Reimbursement",
-        "Rental Income",
-        "Cash", "Check",
-        "Arts", "Music",
-        "Dating",
-        "Movies & DVDs",
-        "Newspaper & Magazines",
-        "Social Club",
-        "Sport",
-        "Games",
-        "TV",
-        "Tuition",
-        "Student Loan",
-        "Books & Supplies",
-        "General Shopping",
-        "Department Store",
-        "Clothing",
-        "Home",
-        "Books",
-        "Electronics & Software",
-        "Hobbies",
-        "Sporting Goods",
-        "Hair",
-        "Laundry",
-        "Beauty",
-        "Spa & Massage",
-        "Dentist",
-        "Doctor",
-        "Eye care",
-        "Pharmacy",
-        "Gym",
-        "Pets",
-        "Sports",
-        "Gift",
-        "Charity",
-        "Equities",
-        "Bonds",
-        "Bank products",
-        "Retirement",
-        "Annuities",
-        "Real-estate",
-        "Television",
-        "Home Phone",
-        "Internet",
-        "Mobile Phone",
-        "Utility Bill",
-        "Car Insurance",
-        "Car Payment",
-        "Parking",
-        "Public transport",
-        "Service & Repairs",
-        "Taxi", "Fuel",
-        "Air Travel",
-        "Hotel",
-        "Rental Car",
-        "Vacation",
-        "Service Fee",
-        "Late Fee",
-        "Finance Charge",
-        "ATM Fee",
-        "Bank Fee",
-        "Commissions",
-        "Advertising",
-        "Office Supplies",
-        "Printing",
-        "Shipping",
-        "Legal",
-        "Advisory and Consulting",
-        "Financial Services",
-        "Lawyer",
-        "Tax",
-        "Betting",
-        "Lottery",
-        "Casino",
-        "Rent",
-        "Mortgage",
-        "Secured loans",
-        "Property taxes",
-        "Repairs & Maintenance",
-        "Pension payments",
-        "Long Term insurance",
-        "Short term insurance",
-        "Insurance (short/long)",
-        "Health insurance"
-    ]
-})
+    initStore(actions, {
+        visibleOptions: [],
+        chosenCategory: "",
+        query: "",
+        tagToUpdate: {},
+        tagOptions: [
+            "Income",
+            "Salary/Wages",
+            "Investment",
+            "Returned Purchase",
+            "Bonus",
+            "Interest Income",
+            "Reimbursement",
+            "Rental Income",
+            "Cash", "Check",
+            "Arts", "Music",
+            "Dating",
+            "Movies & DVDs",
+            "Newspaper & Magazines",
+            "Social Club",
+            "Sport",
+            "Games",
+            "TV",
+            "Tuition",
+            "Student Loan",
+            "Books & Supplies",
+            "General Shopping",
+            "Department Store",
+            "Clothing",
+            "Home",
+            "Books",
+            "Electronics & Software",
+            "Hobbies",
+            "Sporting Goods",
+            "Hair",
+            "Laundry",
+            "Beauty",
+            "Spa & Massage",
+            "Dentist",
+            "Doctor",
+            "Eye care",
+            "Pharmacy",
+            "Gym",
+            "Pets",
+            "Sports",
+            "Gift",
+            "Charity",
+            "Equities",
+            "Bonds",
+            "Bank products",
+            "Retirement",
+            "Annuities",
+            "Real-estate",
+            "Television",
+            "Home Phone",
+            "Internet",
+            "Mobile Phone",
+            "Utility Bill",
+            "Car Insurance",
+            "Car Payment",
+            "Parking",
+            "Public transport",
+            "Service & Repairs",
+            "Taxi", "Fuel",
+            "Air Travel",
+            "Hotel",
+            "Rental Car",
+            "Vacation",
+            "Service Fee",
+            "Late Fee",
+            "Finance Charge",
+            "ATM Fee",
+            "Bank Fee",
+            "Commissions",
+            "Advertising",
+            "Office Supplies",
+            "Printing",
+            "Shipping",
+            "Legal",
+            "Advisory and Consulting",
+            "Financial Services",
+            "Lawyer",
+            "Tax",
+            "Betting",
+            "Lottery",
+            "Casino",
+            "Rent",
+            "Mortgage",
+            "Secured loans",
+            "Property taxes",
+            "Repairs & Maintenance",
+            "Pension payments",
+            "Long Term insurance",
+            "Short term insurance",
+            "Insurance (short/long)",
+            "Health insurance"
+        ]
+    })
 }
 
 export default configureStore;

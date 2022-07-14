@@ -53,7 +53,7 @@ const Tagging = ({ name, user }) => {
   const filter = (e) => {
     const keyword = e.target.value;
 
-    dispatch('filter', keyword);
+    // dispatch('filter', keyword);
 
     dispatch('getOneTag', PORT);
     console.log("Here");
