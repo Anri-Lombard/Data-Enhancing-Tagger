@@ -14,7 +14,7 @@ const Tagging = React.memo(({ name, user }) => {
 
   useEffect(() => {
     dispatch('filter', "");
-  }, [state.tagToUpdate])
+  }, [])
 
   useEffect(() => {
     async function getOneTag() {
@@ -32,7 +32,7 @@ const Tagging = React.memo(({ name, user }) => {
     }
 
     getOneTag();
-  }, [state.visibleOptions, state.tagToUpdate]);
+  }, [state.tagToUpdate]);
 
 
   const filter = (e) => {
@@ -104,7 +104,9 @@ const Tagging = React.memo(({ name, user }) => {
       },
     });
 
-    dispatch('updateTag', updatedTagOptions)
+    
+    // dispatch('updateTag', updatedTagOptions)
+    // dispatch('filter', "")
 
     document.getElementById("tagBtn").disabled = true;
   }
@@ -128,6 +130,7 @@ const Tagging = React.memo(({ name, user }) => {
         {/* Filter */}
         <div className="form-box search-box shadow-none">
           <input
+            id="search-input"
             type="search"
             value={state.query}
             onChange={filter}
