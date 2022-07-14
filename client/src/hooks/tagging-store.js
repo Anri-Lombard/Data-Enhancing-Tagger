@@ -15,77 +15,13 @@ const configureStore = () => {
             }
             const updatedQuery = keyword;
 
-            console.log("Hi");
-
             return {
                 ...curState,
                 visibleOptions: updatedVisibleOptions,
                 query: updatedQuery,
             }
         },
-        updateTag: async (curState, PORT, user) => {
-            let dataTagged = false;
-            let userCategoriesArray = [];
-            let usersTaggedArray = [];
-            let editedTag = [];
-            let updatedChosenCategory = "";
-            let updatedTagOptions = "";
-
-            // userCategories
-            if (curState.tagToUpdate.userCategories === undefined) {
-                userCategoriesArray = new Array(curState.chosenCategory);
-            } else {
-                curState.tagToUpdate.userCategories.push(curState.chosenCategory);
-                userCategoriesArray = curState.tagToUpdate.userCategories;
-            }
-
-            // usersTagged
-            if (curState.tagToUpdate.usersTagged === undefined) {
-                usersTaggedArray = new Array(user);
-            } else {
-                curState.tagToUpdate.usersTagged.push(user);
-                usersTaggedArray = curState.tagToUpdate.usersTagged;
-            }
-
-            if (userCategoriesArray.length === 1) {
-                updatedChosenCategory = userCategoriesArray[0];
-                // setChosenCategory(userCategoriesArray[0])
-            } else if (userCategoriesArray.length === 2) {
-                if (userCategoriesArray[0] !== userCategoriesArray[1]) {
-                    // Decision state
-                    updatedTagOptions = [userCategoriesArray[0], userCategoriesArray[1]]
-                    updatedChosenCategory = userCategoriesArray[1];
-                    // setChosenCategory(userCategoriesArray[1]);
-                } else {
-                    // Agrees
-                    dataTagged = true;
-                }
-            } else {
-                dataTagged = true;
-                updatedChosenCategory = userCategoriesArray[2];
-                // setChosenCategory(userCategoriesArray[2]);
-            }
-
-            // userCategoriesArray is undefined
-            editedTag = {
-                id: curState.tagToUpdate.id,
-                date: curState.tagToUpdate.date,
-                description: curState.tagToUpdate.description,
-                balance: curState.tagToUpdate.balance,
-                transactionValue: curState.tagToUpdate.transactionValue,
-                category: updatedChosenCategory,
-                usersTagged: usersTaggedArray,
-                userCategories: userCategoriesArray,
-                tagged: dataTagged
-            };
-            await fetch(`http://localhost:${PORT}/update/${curState.tagToUpdate.id}/`, {
-                method: "POST",
-                body: JSON.stringify(editedTag),
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-            });
-
+        updateTag: async (curState, updatedTagOptions) => {
             return {
                 ...curState,
                 visibleOptions: updatedTagOptions,

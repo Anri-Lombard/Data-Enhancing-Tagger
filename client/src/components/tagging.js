@@ -9,12 +9,11 @@ import { useStore } from '../hooks/store';
 
 const PORT = 2000;
 
-const Tagging = ({ name, user }) => {
+const Tagging = React.memo(({ name, user }) => {
   const [state, dispatch] = useStore();
 
   useEffect(() => {
     dispatch('filter', "");
-    console.log(state.tagToUpdate);
   }, [])
 
   useEffect(() => {
@@ -29,27 +28,88 @@ const Tagging = ({ name, user }) => {
 
       const tag = await response.json();
 
-      console.log(tag);
       dispatch('setTagToUpdate', tag)
     }
 
     getOneTag();
-  }, []);
+  }, [state.visibleOptions]);
 
 
   const filter = (e) => {
     const keyword = e.target.value;
 
     dispatch('filter', keyword);
-    console.log(state.visibleOptions);
   };
 
 
   async function onSubmitHandler(e) {
     e.preventDefault();
 
-    dispatch('updateTag', PORT, user);
+    let dataTagged = false;
+    let userCategoriesArray = [];
+    let usersTaggedArray = [];
+    let editedTag = [];
+    let updatedChosenCategory = "";
+    let updatedTagOptions = "";
+
+    // userCategories
+    if (state.tagToUpdate.userCategories === undefined) {
+      userCategoriesArray = new Array(state.chosenCategory);
+    } else {
+      state.tagToUpdate.userCategories.push(state.chosenCategory);
+      userCategoriesArray = state.tagToUpdate.userCategories;
+    }
+
+    // usersTagged
+    if (state.tagToUpdate.usersTagged === undefined) {
+      usersTaggedArray = new Array(user);
+    } else {
+      state.tagToUpdate.usersTagged.push(user);
+      usersTaggedArray = state.tagToUpdate.usersTagged;
+    }
+
+    if (userCategoriesArray.length === 1) {
+      updatedChosenCategory = userCategoriesArray[0];
+      // setChosenCategory(userCategoriesArray[0])
+    } else if (userCategoriesArray.length === 2) {
+      if (userCategoriesArray[0] !== userCategoriesArray[1]) {
+        // Decision state
+        updatedTagOptions = [userCategoriesArray[0], userCategoriesArray[1]]
+        updatedChosenCategory = userCategoriesArray[1];
+        // setChosenCategory(userCategoriesArray[1]);
+      } else {
+        // Agrees
+        dataTagged = true;
+      }
+    } else {
+      dataTagged = true;
+      updatedChosenCategory = userCategoriesArray[2];
+      // setChosenCategory(userCategoriesArray[2]);
+    }
+
+    // userCategoriesArray is undefined
+    editedTag = {
+      id: state.tagToUpdate.id,
+      date: state.tagToUpdate.date,
+      description: state.tagToUpdate.description,
+      balance: state.tagToUpdate.balance,
+      transactionValue: state.tagToUpdate.transactionValue,
+      category: updatedChosenCategory,
+      usersTagged: usersTaggedArray,
+      userCategories: userCategoriesArray,
+      tagged: dataTagged
+    };
     
+    await fetch(`http://localhost:${PORT}/update/${state.tagToUpdate.id}/`, {
+      method: "POST",
+      body: JSON.stringify(editedTag),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    });
+
+    dispatch('updateTag', updatedTagOptions)
+
     document.getElementById("tagBtn").disabled = true;
   }
 
@@ -85,11 +145,11 @@ const Tagging = ({ name, user }) => {
         <div className="form-box">
           <form onSubmit={onSubmitHandler}>
             <div className="form-box-static">
-            <TagRadios 
-              tagToUpdate={state.tagToUpdate} 
-              visibleOptions={state.visibleOptions} 
-              onChangeHandler={onChangeHandler} 
-            />
+              <TagRadios
+                tagToUpdate={state.tagToUpdate}
+                visibleOptions={state.visibleOptions}
+                onChangeHandler={onChangeHandler}
+              />
             </div>
             <button id="tagBtn" type="submit" disabled>Tag</button>
           </form>
@@ -99,6 +159,6 @@ const Tagging = ({ name, user }) => {
       <Footer />
     </>
   );
-}
+})
 
 export default Tagging;
