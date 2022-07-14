@@ -5,6 +5,7 @@ import Tag from './tag.js';
 import TagRadios from './tagRadios.js';
 import '../css/tagging.css';
 import { useStore } from '../hooks/store';
+import Async from 'react-async';
 
 const PORT = 2000;
 
@@ -170,7 +171,7 @@ const Tagging = ({ name, user }) => {
   // }
 
   return (
-    <>
+    <Async promiseFn={dispatch('getOneTag', PORT)}>
       <NavBar name={name} />
 
       <div className="header">
@@ -207,7 +208,7 @@ const Tagging = ({ name, user }) => {
       </div>
 
       <Footer />
-    </>
+    </Async>
   );
 }
 
