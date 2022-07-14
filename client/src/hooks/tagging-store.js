@@ -1,5 +1,5 @@
 import { initStore } from './store';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const configureStore = () => {
     const actions = {
@@ -98,7 +98,6 @@ const configureStore = () => {
             }
         },
         getOneTag: (curState, PORT) => {
-            let tagToUpdate = {}
 
             async function fetchData() {
                 const response = await fetch(`http://localhost:${PORT}/tag/one`);
@@ -110,21 +109,26 @@ const configureStore = () => {
                 }
 
                 const tag = await response.json();
-                tagToUpdate = tag;
+                console.log(tag);
 
                 // console.log(updatedTagToUpdate);
                 // console.log(curState.tagToUpdate);
             }
-            
             fetchData();
-            console.log("There");
-            console.log(tagToUpdate);
+            
+            // async function updateIt() {
+            //     const tagToUpdate = await fetchData();
+            //     console.log("There");
+            //     console.log(tagToUpdate);
+                
+            //     return {
+            //         ...curState,
+            //         visibleOptions: ["Joke", "On", "You"],
+            //         // tagToUpdate: updatedTagToUpdate,
+            //     }
+            // }
 
-            return {
-                ...curState,
-                visibleOptions: ["Joke", "On", "You"],
-                // tagToUpdate: updatedTagToUpdate,
-            }
+            // updateIt();
         },
         setChosenCategory: (curState, category) => {
             return {
