@@ -99,11 +99,17 @@ const configureStore = () => {
         },
         getOneTag: (curState, PORT) => {
 
-            const tagToUpdate = fetch(`http://localhost:${PORT}/tag/one`)
-                .then(res => (res.ok ? res : Promise.reject(res)))
-                .then(res => res.json())
-            console.log("Genius");
-            console.log(tagToUpdate);
+            // const tagToUpdate = fetch(`http://localhost:${PORT}/tag/one`)
+            //     .then(res => (res.ok ? res : Promise.reject(res)))
+            //     .then(res => {
+            //         return res.json().then((data) => {
+            //             console.log("Genius");
+            //             console.log(data);
+            //             return data;
+            //         })
+            //     })
+            // console.log("Genius2");
+            // console.log(tagToUpdate);
 
             async function fetchData() {
                 const response = await fetch(`http://localhost:${PORT}/tag/one`);
@@ -114,21 +120,29 @@ const configureStore = () => {
                     return;
                 }
 
+
                 const tag = await response.json();
                 console.log("This");
                 console.log(tag);
 
-                return {
-                    ...curState,
-                    visibleOptions: ["Joke", "On", "You"]
-                }
-
-                // console.log(updatedTagToUpdate);
-                // console.log(curState.tagToUpdate);
+                return tag;
             }
+            return {
+                ...curState,
+                visibleOptions: ["Joke", "On", "You"],
+                tagToUpdate: fetchData()
+            }
+            // fetchData()
+            // console.log(curState.tagToUpdate);
+            // const thing1 = fetchData().then(data => data);
+            // console.log(thing1);
+            // return {
+            //     ...curState,
+            //     visibleOptions: ["Joke", "On", "You"]
+            // }
             // fetchData();
-            console.log("That");
-            console.log(fetchData());
+            // console.log("That");
+            // console.log(fetchData());
             
             // async function updateIt() {
             //     const tagToUpdate = await fetchData();
