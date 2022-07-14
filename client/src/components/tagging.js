@@ -89,11 +89,7 @@ const Tagging = React.memo(({ name, user }) => {
 
     // userCategoriesArray is undefined
     editedTag = {
-      id: state.tagToUpdate.id,
-      date: state.tagToUpdate.date,
-      description: state.tagToUpdate.description,
-      balance: state.tagToUpdate.balance,
-      transactionValue: state.tagToUpdate.transactionValue,
+      ...state.tagToUpdate,
       category: updatedChosenCategory,
       usersTagged: usersTaggedArray,
       userCategories: userCategoriesArray,
