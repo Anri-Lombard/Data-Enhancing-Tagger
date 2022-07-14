@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from './navbar.js';
 import Footer from './footer.js';
 import Tag from './tag.js';
@@ -13,10 +13,30 @@ const Tagging = ({ name, user }) => {
   const [state, dispatch] = useStore();
 
   useEffect(() => {
-    dispatch('getOneTag', PORT);
+    // dispatch('getOneTag', PORT);
     dispatch('filter', "");
     console.log(state.tagToUpdate);
   }, [])
+
+  useEffect(() => {
+    async function getOneTag() {
+      const response = await fetch(`http://localhost:${PORT}/tag/one`);
+
+      if (!response.ok) {
+        const message = `An error occurred: ${response.statusText}`;
+        window.alert(message);
+        return;
+      }
+
+      const tag = await response.json();
+
+      // setTagToUpdate(tag);
+      console.log(tag);
+      dispatch('setTagToUpdate', tag)
+    }
+
+    getOneTag();
+  }, []);
 
 
   // const [tagToUpdate, setTagToUpdate] = useState({});
@@ -56,9 +76,9 @@ const Tagging = ({ name, user }) => {
 
     // dispatch('filter', keyword);
 
-    dispatch('getOneTag', PORT);
-    console.log("Here");
-    console.log(state.tagToUpdate);
+    // dispatch('getOneTag', PORT);
+    // console.log("Here");
+    // console.log(state.tagToUpdate);
 
     // console.log("Query");
     // console.log(state.query);

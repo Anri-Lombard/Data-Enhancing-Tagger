@@ -97,7 +97,7 @@ const configureStore = () => {
                 visibleOptions: updatedTagOptions,
             }
         },
-        getOneTag: (curState, PORT) => {
+        setTagToUpdate: (curState, tag) => {
 
             // const tagToUpdate = fetch(`http://localhost:${PORT}/tag/one`)
             //     .then(res => (res.ok ? res : Promise.reject(res)))
@@ -110,27 +110,9 @@ const configureStore = () => {
             //     })
             // console.log("Genius2");
             // console.log(tagToUpdate);
-
-            async function fetchData() {
-                const response = await fetch(`http://localhost:${PORT}/tag/one`);
-
-                if (!response.ok) {
-                    const message = `An error occurred: ${response.statusText}`;
-                    window.alert(message);
-                    return;
-                }
-
-
-                const tag = await response.json();
-                console.log("This");
-                console.log(tag);
-
-                return tag;
-            }
             return {
                 ...curState,
-                visibleOptions: ["Joke", "On", "You"],
-                tagToUpdate: fetchData()
+                tagToUpdate: tag
             }
             // fetchData()
             // console.log(curState.tagToUpdate);
