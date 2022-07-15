@@ -44,7 +44,6 @@ tagRoutes.route("/update/:id").post(function (req, response) {
  console.log(req.params.id);
  let newvalues = {   
    $set: {
-     ...req.body,
      category: req.body.category,
      usersTagged: req.body.usersTagged,
      userCategories: req.body.userCategories,

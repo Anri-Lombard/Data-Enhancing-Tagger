@@ -122,8 +122,6 @@ const Tagging = React.memo(({ name, user }) => {
       <NavBar name={name} />
 
       <div className="header">
-        <h3>Tag Data With Following Details:</h3>
-
         {/* Details */}
         <Tag tag={state.tagToUpdate} />
 

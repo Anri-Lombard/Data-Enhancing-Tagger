@@ -54,7 +54,7 @@ body {
   background: #FFFFFF;
   border-radius: 0 0 10px 10px;
   max-width: 370px;
-  height: 260px;
+  height: 220px;
   overflow-y: scroll;
   padding-left: 16px;
 
@@ -122,22 +122,6 @@ body {
 
 }
 
-.paragraph {
-  color: rgb(255, 255, 255);
-  font-size: 15pt;
-  line-height: 15pt;
-  text-align: center;
-  /* aligned text */
-}
-
-
-.header {
-  padding: 30px;
-  color: rgb(125, 244, 133);
-  font-size: 30px;
-  text-align: left;
-
-}
 
 h3 {
   text-align: center;
