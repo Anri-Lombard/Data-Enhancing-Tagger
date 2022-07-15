@@ -123,9 +123,10 @@ const Tagging = React.memo(({ name, user }) => {
 
       <div className="header">
         <h3>Tag Data With Following Details:</h3>
-
-        {/* Details */}
+        <div className="TextStyling"> {/* Details */}
         <Tag tag={state.tagToUpdate} />
+        </div>
+       
 
         {/* Filter */}
         <div className="form-box search-box shadow-none">
