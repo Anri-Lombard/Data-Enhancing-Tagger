@@ -56,9 +56,9 @@ body {
   max-width: 370px;
   height: 260px;
   overflow-y: scroll;
-  /* padding-left: 16px; */
+  padding-left: 16px;
 
-  /* margin: 10px auto 0px; */
+  margin: 10px auto 10px;
   /* padding: 5px 30px 30px; */
   text-align: left;
   box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.2), 0 5px 5px 0 rgba(255, 255, 255, 0.24);
@@ -196,6 +196,7 @@ li {
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
+  border-radius: 3%;
 }
 .search-box{
   box-shadow: none;
