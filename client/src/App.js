@@ -1,5 +1,4 @@
-import React, { useEffect, useState, Suspense } from 'react';
-// import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import { Route, Routes, Navigate } from "react-router-dom";
 import './App.css';
 import { gapi } from 'gapi-script'
@@ -8,11 +7,6 @@ import Tagging from './components/tagging'
 import Login from './components/login'
 import Logout from './components/logout'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-
-
-// const Tagging = React.lazy(() => import('./components/tagging'));
-// const Login = React.lazy(() => import('./components/login'));
-// const Logout = React.lazy(() => import('./components/logout'));
 
 const clientId = "209297339002-8oele42ri4qokv2qefi8n7bds2a9jmjk.apps.googleusercontent.com";
 

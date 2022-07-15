@@ -1,3 +1,5 @@
+
+
 .centered-div {
   display: flex;
   align-items: center;
@@ -23,8 +25,6 @@ body {
   margin: 150px auto;
   padding: 0px;
   border-radius: 8px;
-
-
 }
 
 .text {
@@ -196,7 +196,6 @@ li {
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
-  border-radius: 3%;
 }
 .search-box{
   box-shadow: none;
