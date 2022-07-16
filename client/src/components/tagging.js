@@ -18,6 +18,7 @@ const Tagging = React.memo(({ name, user }) => {
 
   // TODO: fix continuous run
   async function getOneTag() {
+    console.log("Called");
     const response = await fetch(`http://localhost:${PORT}/tag/one`);
 
     if (!response.ok) {
@@ -31,9 +32,8 @@ const Tagging = React.memo(({ name, user }) => {
     dispatch('setTagToUpdate', tag)
   }
 
+  // Tag at the start
   useEffect(() => {
-    console.log(state.tagToUpdate);
-
     getOneTag();
   }, []);
 
@@ -41,8 +41,8 @@ const Tagging = React.memo(({ name, user }) => {
   const filter = (e) => {
     const keyword = e.target.value;
 
+    // Update tag for potential changes when typing
     getOneTag();
-    console.log(state.tagToUpdate)
 
     dispatch('filter', keyword);
   };
@@ -114,14 +114,7 @@ const Tagging = React.memo(({ name, user }) => {
       },
     });
 
-    
-    // dispatch('updateTag', updatedTagOptions)
-    // dispatch('filter', "")
-
     document.getElementById("tagBtn").disabled = true;
-
-    // getOneTag();
-    // console.log(state.tagToUpdate)
   }
 
   function onChangeHandler(e) {
