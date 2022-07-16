@@ -1,0 +1,16 @@
+.description-box {
+    background: white;
+    width: 460px;
+    text-align: left;
+    margin: 20px auto;
+    border-radius: 16px;
+}
+
+.description-box-heading {
+    /* margin: 10px auto; */
+    padding-top: 16px;
+}
+.description-box-text {
+    text-align: left;
+    padding: 16px 32px;
+}
