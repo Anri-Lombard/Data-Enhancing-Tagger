@@ -358,9 +358,8 @@ li {
   text-align: center;
   max-width: 370px;
   max-height: 347.8px;
-  margin: 450px;
- 
+  margin: 25%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: left;
 }
