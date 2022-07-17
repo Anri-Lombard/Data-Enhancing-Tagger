@@ -216,6 +216,7 @@ li {
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
+  margin-left: 4.5%;
 }
 
 .styleInfo  {
@@ -259,7 +260,7 @@ li {
   background-color: white !important;
   color:black !important;
   border-color: #000000 !important;
-  margin-left: 5% !important;
+  margin-left: 4% !important;
 
 }
 
