@@ -188,14 +188,17 @@ li {
   outline: 0;
   background-color: #000000;
   background-image: linear-gradient(45deg, #328f8a, #08ac4b);
-  width: 100%;
-  border: 0;
+  width: 280px;
+  border: 10px;
   padding: 15px;
   color: #FFFFFF;
   font-size: 14px;
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
+  position: centre;
+  margin-left: 4.5%;
+
 }
 .search-box{
   box-shadow: none;
@@ -205,7 +208,7 @@ li {
   outline: 0;
   background-color: #000000;
   background-image: linear-gradient(45deg, #19e9df, #2fe77b);
-  width: 100%;
+  width: 280px;
   border: 0;
   padding: 15px;
   color: #FFFFFF;
@@ -256,6 +259,7 @@ li {
   background-color: white !important;
   color:black !important;
   border-color: #000000 !important;
+  margin-left: 5% !important;
 
 }
 
@@ -294,32 +298,7 @@ li {
 
 }
 
-/* TODO: fix for windows */
 
-/* .form-box-static::-webkit-scrollbar {
-  width: 10px;
-  padding-left: 15%;
-}
-
-.form-box-static::-webkit-scrollbar-track {
-  background: rgb(179, 177, 177);
-  border-radius: 10px;
-}
-
-.form-box-static::-webkit-scrollbar-thumb {
-  background: rgb(136, 136, 136);
-  border-radius: 10px;
-}
-
-.form-box-static::-webkit-scrollbar-thumb:hover {
-  background: rgb(100, 100, 100);
-  border-radius: 10px;
-}
-
-.form-box-static::-webkit-scrollbar-thumb:active {
-  background: rgb(68, 68, 68);
-  border-radius: 10px;
-} */
 
 .form-box-static::-webkit-scrollbar {
   background-color: #fff;
@@ -354,12 +333,3 @@ li {
   display: none
 }
 
-.TextStyling{
-  text-align: center;
-  max-width: 370px;
-  max-height: 347.8px;
-  margin: 25%;
-  display: flex;
-  justify-content: center;
-  align-items: left;
-}

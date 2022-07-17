@@ -122,7 +122,7 @@ const Tagging = React.memo(({ name, user }) => {
       <NavBar name={name} />
 
       <div className="header">
-        <h3>Tag Data With Following Details:</h3>
+        {/* <h3>Tag Data With Following:</h3> */}
         <div className="TextStyling"> {/* Details */}
         <Tag tag={state.tagToUpdate} />
         </div>
@@ -151,7 +151,7 @@ const Tagging = React.memo(({ name, user }) => {
                 onChangeHandler={onChangeHandler}
               />
             </div>
-            <button id="tagBtn" type="submit" disabled>Tag</button>
+            <button id="tagBtn" type="submit" disabled>Tag Me</button>
           </form>
         </div>
       </div>
