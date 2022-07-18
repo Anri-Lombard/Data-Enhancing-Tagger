@@ -1,9 +1,11 @@
 .description-box {
     background: white;
     width: 460px;
+    height:180;
     text-align: left;
     margin: 20px auto;
     border-radius: 16px;
+    box-shadow: 0 6px 5px 0  rgb(137, 246, 184), 0 6px 5px 0  rgb(137, 246, 184);
 }
 
 .description-box-heading {
@@ -13,4 +15,15 @@
 .description-box-text {
     text-align: left;
     padding: 16px 32px;
+}
+
+u{
+    font-size: 15px;
+    color: black;
+    text-shadow: 4px 4px 5px rgb(137, 246, 184);
+}
+
+p{
+    font-size: 15px;
+    color: black;
 }
