@@ -123,6 +123,15 @@ const Tagging = React.memo(({ name, user }) => {
     document.getElementById("tagBtn").disabled = false;
   }
 
+  function onKeyPressHandler(e) {
+    if (e.key === "Enter") {
+      console.log("Sumbit this choice");
+    } else if (e.key === " ") {
+      console.log("Scroll to next choice");
+    }
+    // console.log(e);
+  }
+
   return (
     <>
       <NavBar name={name} />
@@ -141,6 +150,8 @@ const Tagging = React.memo(({ name, user }) => {
             className="input form-control shadow-none"
             placeholder="Search"
             autoFocus
+            onKeyPress={onKeyPressHandler}
+
           />
         </div>
 
