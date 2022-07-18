@@ -16,27 +16,33 @@ const Tagging = React.memo(({ name, user }) => {
     dispatch('filter', "");
   }, [])
 
-  useEffect(() => {
-    async function getOneTag() {
-      const response = await fetch(`http://localhost:${PORT}/tag/one`);
+  // TODO: fix continuous run
+  async function getOneTag() {
+    console.log("Called");
+    const response = await fetch(`http://localhost:${PORT}/tag/one`);
 
-      if (!response.ok) {
-        const message = `An error occurred: ${response.statusText}`;
-        window.alert(message);
-        return;
-      }
-
-      const tag = await response.json();
-
-      dispatch('setTagToUpdate', tag)
+    if (!response.ok) {
+      const message = `An error occurred: ${response.statusText}`;
+      window.alert(message);
+      return;
     }
 
+    const tag = await response.json();
+
+    dispatch('setTagToUpdate', tag)
+  }
+
+  // Tag at the start
+  useEffect(() => {
     getOneTag();
-  }, [state.tagToUpdate]);
+  }, []);
 
 
   const filter = (e) => {
     const keyword = e.target.value;
+
+    // Update tag for potential changes when typing
+    getOneTag();
 
     dispatch('filter', keyword);
   };
@@ -44,13 +50,18 @@ const Tagging = React.memo(({ name, user }) => {
 
   async function onSubmitHandler(e) {
     e.preventDefault();
+    console.log("Hi");
+
+    // get tag
+    getOneTag();
+    // update tag
+    getOneTag();
 
     let dataTagged = false;
     let userCategoriesArray = [];
     let usersTaggedArray = [];
     let editedTag = [];
     let updatedChosenCategory = "";
-    let updatedTagOptions = "";
 
     // userCategories
     if (state.tagToUpdate.userCategories === undefined) {
@@ -74,7 +85,6 @@ const Tagging = React.memo(({ name, user }) => {
     } else if (userCategoriesArray.length === 2) {
       if (userCategoriesArray[0] !== userCategoriesArray[1]) {
         // Decision state
-        updatedTagOptions = [userCategoriesArray[0], userCategoriesArray[1]]
         updatedChosenCategory = userCategoriesArray[1];
         // setChosenCategory(userCategoriesArray[1]);
       } else {
@@ -103,10 +113,6 @@ const Tagging = React.memo(({ name, user }) => {
         'Content-Type': 'application/json'
       },
     });
-
-    
-    // dispatch('updateTag', updatedTagOptions)
-    // dispatch('filter', "")
 
     document.getElementById("tagBtn").disabled = true;
   }
