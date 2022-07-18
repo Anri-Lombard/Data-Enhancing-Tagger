@@ -95,7 +95,7 @@ const Tagging = React.memo(({ name, user }) => {
       userCategories: userCategoriesArray,
       tagged: dataTagged
     };
-    
+
     await fetch(`http://localhost:${PORT}/update/${state.tagToUpdate.id}/`, {
       method: "POST",
       body: JSON.stringify(editedTag),
@@ -104,7 +104,7 @@ const Tagging = React.memo(({ name, user }) => {
       },
     });
 
-    
+
     // dispatch('updateTag', updatedTagOptions)
     // dispatch('filter', "")
 
@@ -117,6 +117,12 @@ const Tagging = React.memo(({ name, user }) => {
     document.getElementById("tagBtn").disabled = false;
   }
 
+
+  // TODO: regenerating with this rather than useEffect?
+  // async function getServerSideProps() {
+
+  // }
+
   return (
     <>
       <NavBar name={name} />
@@ -124,9 +130,9 @@ const Tagging = React.memo(({ name, user }) => {
       <div className="header">
         {/* <h3>Tag Data With Following:</h3> */}
         <div className="TextStyling"> {/* Details */}
-        <Tag tag={state.tagToUpdate} />
+          <Tag tag={state.tagToUpdate} />
         </div>
-       
+
 
         {/* Filter */}
         <div className="form-box search-box shadow-none">

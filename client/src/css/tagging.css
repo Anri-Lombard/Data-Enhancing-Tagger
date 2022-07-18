@@ -54,7 +54,7 @@ body {
   background: #FFFFFF;
   border-radius: 0 0 10px 10px;
   max-width: 370px;
-  height: 260px;
+  height: 170px;
   overflow-y: scroll;
   /* padding-left: 16px; */
 
@@ -132,11 +132,10 @@ body {
 
 
 .header {
-  padding: 30px;
+  padding: 10px;
   color: rgb(125, 244, 133);
   font-size: 30px;
   text-align: left;
-
 }
 
 h3 {
