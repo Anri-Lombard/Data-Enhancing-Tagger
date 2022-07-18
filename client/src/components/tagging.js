@@ -16,41 +16,53 @@ const Tagging = React.memo(({ name, user }) => {
     dispatch('filter', "");
   }, [])
 
-  useEffect(() => {
-    async function getOneTag() {
-      const response = await fetch(`http://localhost:${PORT}/tag/one`);
+  // TODO: fix continuous run
+  async function getOneTag() {
+    console.log("Called");
+    const response = await fetch(`http://localhost:${PORT}/tag/one`);
 
-      if (!response.ok) {
-        const message = `An error occurred: ${response.statusText}`;
-        window.alert(message);
-        return;
-      }
-
-      const tag = await response.json();
-
-      dispatch('setTagToUpdate', tag)
+    if (!response.ok) {
+      const message = `An error occurred: ${response.statusText}`;
+      window.alert(message);
+      return;
     }
 
+    const tag = await response.json();
+
+    dispatch('setTagToUpdate', tag)
+  }
+
+  // Tag at the start
+  useEffect(() => {
     getOneTag();
-  }, [state.tagToUpdate]);
+  }, []);
 
 
   const filter = (e) => {
     const keyword = e.target.value;
 
+    // Update tag for potential changes when typing
+    getOneTag();
+
+    // TODO: fix for 2 options
     dispatch('filter', keyword);
   };
 
 
   async function onSubmitHandler(e) {
     e.preventDefault();
+    console.log("Hi");
+
+    // get tag
+    getOneTag();
+    // update tag
+    getOneTag();
 
     let dataTagged = false;
     let userCategoriesArray = [];
     let usersTaggedArray = [];
     let editedTag = [];
     let updatedChosenCategory = "";
-    let updatedTagOptions = "";
 
     // userCategories
     if (state.tagToUpdate.userCategories === undefined) {
@@ -74,7 +86,6 @@ const Tagging = React.memo(({ name, user }) => {
     } else if (userCategoriesArray.length === 2) {
       if (userCategoriesArray[0] !== userCategoriesArray[1]) {
         // Decision state
-        updatedTagOptions = [userCategoriesArray[0], userCategoriesArray[1]]
         updatedChosenCategory = userCategoriesArray[1];
         // setChosenCategory(userCategoriesArray[1]);
       } else {
@@ -104,10 +115,6 @@ const Tagging = React.memo(({ name, user }) => {
       },
     });
 
-
-    // dispatch('updateTag', updatedTagOptions)
-    // dispatch('filter', "")
-
     document.getElementById("tagBtn").disabled = true;
   }
 
@@ -117,11 +124,28 @@ const Tagging = React.memo(({ name, user }) => {
     document.getElementById("tagBtn").disabled = false;
   }
 
+  function onKeyPressHandler(e) {
+    if (e.key === "Enter") {
+      console.log("Sumbit this choice");
+      // tag the first element
+      // findelemntbyid("tagThis").checked = "checked"
+      // if pressed update
+    } else if (e.key === " ") {
+      console.log("Scroll to next choice");
+    }
+    // console.log(e);
+  }
 
-  // TODO: regenerating with this rather than useEffect?
-  // async function getServerSideProps() {
+  // TODO: getServerSideProps() rather than useEffect()
+  async function getServerSideProps(context) {
 
-  // }
+
+    return {
+      props: {
+        
+      }
+    }
+  }
 
   return (
     <>
@@ -144,6 +168,8 @@ const Tagging = React.memo(({ name, user }) => {
             className="input form-control shadow-none"
             placeholder="Search"
             autoFocus
+            onKeyPress={onKeyPressHandler}
+
           />
         </div>
 

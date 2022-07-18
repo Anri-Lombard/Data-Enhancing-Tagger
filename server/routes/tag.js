@@ -26,6 +26,7 @@ tagRoutes.route("/tag/one").get(function (req, res) {
  // TODO $and
  let myquery = { $or: [{tagged: false}, {tagged: undefined}] };
 //  let myquery = { tagged: true };
+
  db_connect
      .collection("transactions")
      .findOne(myquery, function (err, result) {
@@ -49,6 +50,12 @@ tagRoutes.route("/update/:id").post(function (req, response) {
      userCategories: req.body.userCategories,
      tagged: req.body.tagged
    }, 
+  // $set: {
+  //   category: "",
+  //   usersTagged: [],
+  //   userCategories: [],
+  //   tagged: false
+  // }, 
   }
   
   db_connect.collection("transactions").findOneAndUpdate(
