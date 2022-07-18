@@ -44,6 +44,7 @@ const Tagging = React.memo(({ name, user }) => {
     // Update tag for potential changes when typing
     getOneTag();
 
+    // TODO: fix for 2 options
     dispatch('filter', keyword);
   };
 
@@ -126,10 +127,24 @@ const Tagging = React.memo(({ name, user }) => {
   function onKeyPressHandler(e) {
     if (e.key === "Enter") {
       console.log("Sumbit this choice");
+      // tag the first element
+      // findelemntbyid("tagThis").checked = "checked"
+      // if pressed update
     } else if (e.key === " ") {
       console.log("Scroll to next choice");
     }
     // console.log(e);
+  }
+
+  // TODO: getServerSideProps() rather than useEffect()
+  async function getServerSideProps(context) {
+
+
+    return {
+      props: {
+        
+      }
+    }
   }
 
   return (
