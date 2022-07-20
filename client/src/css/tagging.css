@@ -198,6 +198,7 @@ li {
   cursor: pointer;
   position: centre;
   margin-left: 4.5%;
+  border: 1px solid black;
 
 }
 .search-box{
@@ -205,6 +206,7 @@ li {
 }
 #tagBtn:hover {
   background-image: linear-gradient(45deg, #19e9df, #2fe77b);
+  border: 1px solid black;
 }
 #tagBtn:disabled {
   background-image: linear-gradient(45deg, #484848, #4b4b4b);
@@ -217,6 +219,7 @@ li {
   transition: all 0.3 ease;
   cursor: pointer;
   margin-left: 4.5%;
+  border: 1px solid black;
 }
 
 .styleInfo  {
@@ -279,11 +282,6 @@ li {
   box-shadow: none;
 }
 
-.Results_found{
-  text-align: left;
-  color: black;
-  font-family: Lucida Console;
-}
 .form-control{
   border-color: rgba(126, 239, 104, 0.8) !important;
   box-shadow: linear-gradient(45deg, #328f8a, #08ac4b)!important;
@@ -334,4 +332,3 @@ li {
 .form-box-static::-webkit-scrollbar-button {
   display: none
 }
-
