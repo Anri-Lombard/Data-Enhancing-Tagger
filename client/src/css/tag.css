@@ -10,8 +10,22 @@
 
 .description-box-heading {
     /* margin: 10px auto; */
-    padding-top: 16px;
+    padding-top: 10px;
+    background: linear-gradient(#ffffff 0%, #ffffff 49%, #000000 50%, #000000 51%, #ffffff 52%, #ffffff 100%);
+    border-radius: 50%;
+   
+
 }
+
+.description-box-heading span{
+    background: #fff;
+    padding: 0 20px;
+    position: relative;
+    z-index: 5;
+    margin-top: 5%;
+}
+
+
 .description-box-text {
     text-align: left;
     padding: 16px 32px;

@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/tagRadios.css';
 
 const TagRadios = (props) => {
     let visibleOptions = props.visibleOptions;
@@ -53,7 +54,7 @@ const TagRadios = (props) => {
                     </li>
                 ))
             ) : (
-                <p className="Results_found">No results found!</p>
+                <h5 className="Results_found">No results found!</h5>
             )}
         </ul>
     )

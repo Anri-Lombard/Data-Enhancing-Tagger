@@ -41,7 +41,7 @@ body {
   z-index: 1;
   background: #FFFFFF;
   border-radius: 0 0 10px 10px;
-  max-width: 370px;
+  max-width: 460px;
   margin: 10px auto 0px;
   padding: 5px 30px 30px;
   text-align: left;
@@ -57,6 +57,7 @@ body {
   height: 170px;
   overflow-y: scroll;
   padding-left: 1%;
+  margin-left: 3.5%;
 
   /* margin: 10px auto 0px; */
   /* padding: 5px 30px 30px; */
@@ -79,6 +80,7 @@ body {
   /* TODO: removed the padded for alignment. Maybe instead of adding padding, we can make the label and the radio inline to prevent alignment complications */
   /* padding-left: 55px; */
   position: relative;
+
 
 }
 
@@ -110,17 +112,6 @@ body {
 
 }
 
-.form-box label input:checked+.circle {
-  border-color: rgb(25, 133, 33);
-
-
-}
-
-.form-box label input:checked+.circle+span {
-  color: rgb(25, 133, 33);
-
-
-}
 
 .paragraph {
   color: rgb(255, 255, 255);
@@ -188,7 +179,7 @@ li {
   outline: 0;
   background-color: #000000;
   background-image: linear-gradient(45deg, #328f8a, #08ac4b);
-  width: 280px;
+  width: 335px;
   border: 10px;
   padding: 15px;
   color: #FFFFFF;
@@ -197,7 +188,8 @@ li {
   transition: all 0.3 ease;
   cursor: pointer;
   position: centre;
-  margin-left: 4.5%;
+  margin-left: 8.2%;
+  border: 1px solid black;
 
 }
 .search-box{
@@ -205,10 +197,12 @@ li {
 }
 #tagBtn:hover {
   background-image: linear-gradient(45deg, #19e9df, #2fe77b);
+  border: 1px solid black;
+  width: 335px;
 }
 #tagBtn:disabled {
   background-image: linear-gradient(45deg, #484848, #4b4b4b);
-  width: 280px;
+  width: 335px;
   border: 0;
   padding: 15px;
   color: #FFFFFF;
@@ -216,7 +210,8 @@ li {
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
-  margin-left: 4.5%;
+  margin-left: 8.5%;
+  border: 1px solid black;
 }
 
 .styleInfo  {
@@ -279,15 +274,14 @@ li {
   box-shadow: none;
 }
 
-.Results_found{
-  text-align: left;
-  color: black;
-  font-family: Lucida Console;
-}
 .form-control{
   border-color: rgba(126, 239, 104, 0.8) !important;
   box-shadow: linear-gradient(45deg, #328f8a, #08ac4b)!important;
   outline: 0 none !important;
+  width: 460px !important;
+  margin-left: -12% !important;
+  position: relative !important;
+
 }
 
 .btn-check:checked +label{
@@ -334,4 +328,3 @@ li {
 .form-box-static::-webkit-scrollbar-button {
   display: none
 }
-

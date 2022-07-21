@@ -4,7 +4,7 @@ import "../css/tag.css"
 const Tag = React.memo((props) => {
     return (
         <div className="description-box">
-            <h3 className="description-box-heading">Details</h3>
+            <h3 className="description-box-heading"><span>Information</span></h3>
             <div className="description-box-text">
                 {
                     props.tag === null ?
