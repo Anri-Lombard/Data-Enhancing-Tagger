@@ -116,8 +116,9 @@ const Tagging = React.memo(({ name, user }) => {
       document.getElementById("details").classList.remove("fade");
     }, 1000)
 
-    document.getElementById("search-input").value = "";
+    // document.getElementById("search-input").value = "";
     dispatch('filter', "");
+    document.getElementById("search-input").focus();
 
     await fetch(`http://localhost:${PORT}/update/${state.tagToUpdate.id}/`, {
       method: "POST",
