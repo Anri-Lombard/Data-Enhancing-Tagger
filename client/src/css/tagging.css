@@ -329,7 +329,7 @@ li {
 }
 
 .fade {
-  animation: fade ease-in-out 1s;
+  animation: fade ease-in-out 2s;
 }
 
 @keyframes fade {
@@ -337,6 +337,7 @@ li {
     opacity: 0;
   }
   100% {
-    opacity: 1;
+    opacity:1;
   }
 }
+

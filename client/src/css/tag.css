@@ -41,3 +41,12 @@ p{
     font-size: 15px;
     color: black;
 }
+
+.highlight{
+    text-align: centre;
+    color: black;
+    font-family: Lucida Console;
+    text-shadow: 4px 4px 5px rgb(137, 246, 184);
+    margin-left: 24.5%;
+    font-size: large;
+}

@@ -52,7 +52,6 @@ const Tagging = React.memo(({ name, user }) => {
 
   async function onSubmitHandler(e) {
     e.preventDefault();
-    console.log("Hi");
 
     // get tag
     getOneTag();
@@ -145,6 +144,11 @@ const Tagging = React.memo(({ name, user }) => {
     }
   }
 
+  function myFunction() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+  }
+
   // TODO: getServerSideProps() rather than useEffect()
   async function getServerSideProps(context) {
 
@@ -192,7 +196,7 @@ const Tagging = React.memo(({ name, user }) => {
                 onChangeHandler={onChangeHandler}
               />
             </div>
-            <button id="tagBtn" type="submit" disabled>Tag Me</button>
+            <button id="tagBtn" type="submit" disabled >Tag</button>
           </form>
         </div>
       </div>

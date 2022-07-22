@@ -8,12 +8,12 @@ const Tag = React.memo((props) => {
             <div className="description-box-text">
                 {
                     props.tag === null ?
-                        <p>No data left to tag</p> :
+                        <p className="highlight">No data left to tag</p> :
                         <>
-                            <p><u className="highlight">Description:</u> {props.tag.description}</p>
+                            <p><u>Description:</u> {props.tag.description}</p>
+                            <p><u>Balance:</u> {props.tag.balance === undefined || props.tag.balance === null ? "Zero" : props.tag.balance}</p>
+                            <p><u>Date:</u> {props.tag.date === undefined || props.tag.date === null ? "Unknown Date" : props.tag.date}</p>
                             <p><u>Current Category:</u> {props.tag.category}</p>
-                            <p><u>Number of Users Who Tagged:</u> {props.tag.usersTagged === undefined || props.tag.usersTagged === null ? "No One" : props.tag.usersTagged.length}</p>
-                            <p><u>User Categories:</u> {props.tag.userCategories === undefined || props.tag.userCategories === null ? "No Categories" : props.tag.userCategories}</p>
                         </>
                 }
             </div>
