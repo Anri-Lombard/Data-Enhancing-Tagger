@@ -127,7 +127,6 @@ body {
   color: rgb(125, 244, 133);
   font-size: 30px;
   text-align: left;
-
 }
 
 h3 {
@@ -327,4 +326,17 @@ li {
 /* set button(top and bottom of the scrollbar) */
 .form-box-static::-webkit-scrollbar-button {
   display: none
+}
+
+.fade {
+  animation: fade ease-in-out 1s;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

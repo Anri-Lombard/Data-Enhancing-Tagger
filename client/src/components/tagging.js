@@ -108,6 +108,17 @@ const Tagging = React.memo(({ name, user }) => {
       tagged: dataTagged
     };
     
+    document.getElementById("tagBtn").disabled = true;
+
+    // add class to details element when submitting
+    document.getElementById("details").classList.add("fade");
+    setTimeout(() => {
+      document.getElementById("details").classList.remove("fade");
+    }, 1000)
+
+    document.getElementById("search-input").value = "";
+    dispatch('filter', "");
+
     await fetch(`http://localhost:${PORT}/update/${state.tagToUpdate.id}/`, {
       method: "POST",
       body: JSON.stringify(editedTag),
@@ -116,7 +127,6 @@ const Tagging = React.memo(({ name, user }) => {
       },
     });
 
-    document.getElementById("tagBtn").disabled = true;
   }
 
   function onChangeHandler(e) {
@@ -151,8 +161,8 @@ const Tagging = React.memo(({ name, user }) => {
 
       <div className="header">
         {/* <h3>Tag Data With Following:</h3> */}
-        <div className="TextStyling"> {/* Details */}
-        <Tag tag={state.tagToUpdate} />
+        <div id="details"> {/* Details */}
+          <Tag tag={state.tagToUpdate} />
         </div>
        
 
