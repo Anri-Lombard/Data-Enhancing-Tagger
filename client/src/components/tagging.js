@@ -11,6 +11,7 @@ const PORT = 2000;
 
 const Tagging = React.memo(({ name, user }) => {
   const [state, dispatch] = useStore();
+  let optionSelection = 0;
 
   useEffect(() => {
     dispatch('filter', "");
@@ -127,13 +128,10 @@ const Tagging = React.memo(({ name, user }) => {
   function onKeyPressHandler(e) {
     if (e.key === "Enter") {
       console.log("Sumbit this choice");
-      // tag the first element
-      // findelemntbyid("tagThis").checked = "checked"
-      // if pressed update
+      document.getElementById(optionSelection).checked = "checked";
     } else if (e.key === " ") {
       console.log("Scroll to next choice");
     }
-    // console.log(e);
   }
 
   // TODO: getServerSideProps() rather than useEffect()

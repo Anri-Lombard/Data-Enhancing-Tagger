@@ -35,6 +35,8 @@ tagRoutes.route("/tag/one").get(function (req, res) {
      });
 });
 
+// transient
+
 
 // TODO: updateMany: tagged = false
 // This section will help you update a tag by id.
@@ -44,6 +46,7 @@ tagRoutes.route("/update/:id").post(function (req, response) {
  let myquery = { id: req.params.id }; 
  console.log(req.params.id);
  let newvalues = {   
+  // TODO: logic to set final tag
    $set: {
      category: req.body.category,
      usersTagged: req.body.usersTagged,

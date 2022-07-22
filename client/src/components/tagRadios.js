@@ -3,6 +3,7 @@ import '../css/tagRadios.css';
 
 const TagRadios = (props) => {
     let visibleOptions = props.visibleOptions;
+    let idCounter = 0;
 
     if (props.tagToUpdate !== null) {
         const userCategoriesArray = props.tagToUpdate.userCategories;
@@ -44,8 +45,10 @@ const TagRadios = (props) => {
                         )} */}
                         <input
                             className="btn btn-check"
-                            type="radio" id={option}
-                            name="tag" autoComplete="off"
+                            type="radio" 
+                            id={option}
+                            name="tag" 
+                            autoComplete="off"
                             value={option}
                             onChange={props.onChangeHandler}
                         />
