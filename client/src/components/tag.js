@@ -8,7 +8,7 @@ const Tag = React.memo((props) => {
             <div className="description-box-text">
                 {
                     props.tag === null ?
-                        <p>No data left to tag</p> :
+                        <p className="">No data left to tag</p> :
                         <>
                             <p><u className="highlight">Description:</u> {props.tag.description}</p>
                             <p><u>Current Category:</u> {props.tag.category}</p>

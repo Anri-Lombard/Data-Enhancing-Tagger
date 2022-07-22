@@ -24,24 +24,6 @@ const TagRadios = (props) => {
             {visibleOptions && visibleOptions.length > 0 ? (
                 visibleOptions.map((option) => (
                     <li key={option}>
-                        {/* {option === visibleOptions[0] ? (
-                            <input
-                            className="btn btn-check"
-                            type="radio" id={option}
-                            name="tag" autoComplete="off"
-                            value={option}
-                            onChange={props.onChangeHandler}
-                            checked="checked"
-                        />
-                        ) : (
-                            <input
-                                className="btn btn-check"
-                                type="radio" id={option}
-                                name="tag" autoComplete="off"
-                                value={option}
-                                onChange={props.onChangeHandler}
-                            />
-                        )} */}
                         <input
                             className="btn btn-check"
                             type="radio" id={option}
