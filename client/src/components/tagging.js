@@ -49,10 +49,7 @@ const Tagging = React.memo(({ name, user }) => {
     dispatch('filter', keyword);
   };
 
-
-  async function onSubmitHandler(e) {
-    e.preventDefault();
-
+  async function submitProcess() {
     // get tag
     getOneTag();
     // update tag
@@ -106,7 +103,7 @@ const Tagging = React.memo(({ name, user }) => {
       userCategories: userCategoriesArray,
       tagged: dataTagged
     };
-    
+
     document.getElementById("tagBtn").disabled = true;
 
     // add class to details element when submitting
@@ -126,6 +123,21 @@ const Tagging = React.memo(({ name, user }) => {
         'Content-Type': 'application/json'
       },
     });
+  }
+
+  // -
+  //  -
+  //   -
+
+  // -
+  // -
+  // -
+
+
+  function onSubmitHandler(e) {
+    e.preventDefault();
+
+    submitProcess();
 
   }
 
@@ -137,10 +149,12 @@ const Tagging = React.memo(({ name, user }) => {
 
   function onKeyPressHandler(e) {
     if (e.key === "Enter") {
-      console.log("Sumbit this choice");
-      document.getElementById(optionSelection).checked = "checked";
-    } else if (e.key === " ") {
-      console.log("Scroll to next choice");
+      const category = state.visibleOptions[0];
+      console.log(category);
+      dispatch('setChosenCategory', category);
+      console.log(state.category);
+      document.getElementById("tagBtn").disabled = false;
+      submitProcess();
     }
   }
 
@@ -150,16 +164,18 @@ const Tagging = React.memo(({ name, user }) => {
   }
 
   // TODO: getServerSideProps() rather than useEffect()
-  async function getServerSideProps(context) {
+  // async function getServerSideProps(context) {
 
 
-    return {
-      props: {
-        
-      }
-    }
-  }
+  //   return {
+  //     props: {
 
+  //     }
+  //   }
+  // }
+
+  // TODO: submit and tag
+  // TODO: user logic
   return (
     <>
       <NavBar name={name} />
@@ -169,7 +185,7 @@ const Tagging = React.memo(({ name, user }) => {
         <div id="details"> {/* Details */}
           <Tag tag={state.tagToUpdate} />
         </div>
-       
+
 
         {/* Filter */}
         <div className="form-box search-box shadow-none">
@@ -182,7 +198,7 @@ const Tagging = React.memo(({ name, user }) => {
             placeholder="Search"
             autoFocus
             onKeyPress={onKeyPressHandler}
-
+            autoComplete="off"
           />
         </div>
 

@@ -3,11 +3,12 @@ import '../css/tagRadios.css';
 
 const TagRadios = (props) => {
     let visibleOptions = props.visibleOptions;
+    let userCategoriesArray = [];
 
     if (props.tagToUpdate !== null) {
-        const userCategoriesArray = props.tagToUpdate.userCategories;
-
-        if (userCategoriesArray !== undefined) {
+        
+        if (props.tagToUpdate.userCategories !== undefined) {
+            userCategoriesArray = props.tagToUpdate.userCategories;
             if (userCategoriesArray.length === 2) {
                 if (userCategoriesArray[0] !== userCategoriesArray[1]) {
                     // Decision state
@@ -21,6 +22,7 @@ const TagRadios = (props) => {
 
     return (
         <ul className="user-list">
+            {userCategoriesArray.length === 2 ? <li>Warning: explosion</li> : null}
             {visibleOptions && visibleOptions.length > 0 ? (
                 visibleOptions.map((option) => (
                     <li key={option}>
