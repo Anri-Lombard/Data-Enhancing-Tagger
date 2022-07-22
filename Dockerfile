@@ -13,7 +13,7 @@ RUN npm install
 
 # copy local files to app folder
 COPY client/ ./
-RUN ls
+
 
 RUN npm run build
 

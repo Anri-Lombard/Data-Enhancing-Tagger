@@ -26,8 +26,10 @@ const TagRadios = (props) => {
                     <li key={option}>
                         <input
                             className="btn btn-check"
-                            type="radio" id={option}
-                            name="tag" autoComplete="off"
+                            type="radio" 
+                            id={option}
+                            name="tag" 
+                            autoComplete="off"
                             value={option}
                             onChange={props.onChangeHandler}
                         />

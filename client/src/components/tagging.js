@@ -11,6 +11,7 @@ const PORT = 2000;
 
 const Tagging = React.memo(({ name, user }) => {
   const [state, dispatch] = useStore();
+  let optionSelection = 0;
 
   useEffect(() => {
     dispatch('filter', "");
@@ -106,6 +107,17 @@ const Tagging = React.memo(({ name, user }) => {
       tagged: dataTagged
     };
     
+    document.getElementById("tagBtn").disabled = true;
+
+    // add class to details element when submitting
+    document.getElementById("details").classList.add("fade");
+    setTimeout(() => {
+      document.getElementById("details").classList.remove("fade");
+    }, 1000)
+
+    document.getElementById("search-input").value = "";
+    dispatch('filter', "");
+
     await fetch(`http://localhost:${PORT}/update/${state.tagToUpdate.id}/`, {
       method: "POST",
       body: JSON.stringify(editedTag),
@@ -114,7 +126,6 @@ const Tagging = React.memo(({ name, user }) => {
       },
     });
 
-    document.getElementById("tagBtn").disabled = true;
   }
 
   function onChangeHandler(e) {
@@ -126,13 +137,15 @@ const Tagging = React.memo(({ name, user }) => {
   function onKeyPressHandler(e) {
     if (e.key === "Enter") {
       console.log("Sumbit this choice");
-      // tag the first element
-      // findelemntbyid("tagThis").checked = "checked"
-      // if pressed update
+      document.getElementById(optionSelection).checked = "checked";
     } else if (e.key === " ") {
       console.log("Scroll to next choice");
     }
-    // console.log(e);
+  }
+
+  function myFunction() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
   }
 
   // TODO: getServerSideProps() rather than useEffect()
@@ -152,8 +165,8 @@ const Tagging = React.memo(({ name, user }) => {
 
       <div className="header">
         {/* <h3>Tag Data With Following:</h3> */}
-        <div className="TextStyling"> {/* Details */}
-        <Tag tag={state.tagToUpdate} />
+        <div id="details"> {/* Details */}
+          <Tag tag={state.tagToUpdate} />
         </div>
        
 
@@ -182,7 +195,7 @@ const Tagging = React.memo(({ name, user }) => {
                 onChangeHandler={onChangeHandler}
               />
             </div>
-            <button id="tagBtn" type="submit" disabled>Tag</button>
+            <button id="tagBtn" type="submit" disabled >Tag</button>
           </form>
         </div>
       </div>
