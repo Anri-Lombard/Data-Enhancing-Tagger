@@ -3,11 +3,12 @@ import '../css/tagRadios.css';
 
 const TagRadios = (props) => {
     let visibleOptions = props.visibleOptions;
+    let userCategoriesArray = [];
 
     if (props.tagToUpdate !== null) {
-        const userCategoriesArray = props.tagToUpdate.userCategories;
-
-        if (userCategoriesArray !== undefined) {
+        
+        if (props.tagToUpdate.userCategories !== undefined) {
+            userCategoriesArray = props.tagToUpdate.userCategories;
             if (userCategoriesArray.length === 2) {
                 if (userCategoriesArray[0] !== userCategoriesArray[1]) {
                     // Decision state
@@ -21,31 +22,20 @@ const TagRadios = (props) => {
 
     return (
         <ul className="user-list">
+            {userCategoriesArray.length === 2 ? <div style={{
+                fontWeight: "300", 
+                fontSize: "20px", 
+                textAlign: "center"
+            }}>Double Tap Submission Dissabled</div> : null}
             {visibleOptions && visibleOptions.length > 0 ? (
                 visibleOptions.map((option) => (
                     <li key={option}>
-                        {/* {option === visibleOptions[0] ? (
-                            <input
-                            className="btn btn-check"
-                            type="radio" id={option}
-                            name="tag" autoComplete="off"
-                            value={option}
-                            onChange={props.onChangeHandler}
-                            checked="checked"
-                        />
-                        ) : (
-                            <input
-                                className="btn btn-check"
-                                type="radio" id={option}
-                                name="tag" autoComplete="off"
-                                value={option}
-                                onChange={props.onChangeHandler}
-                            />
-                        )} */}
                         <input
                             className="btn btn-check"
-                            type="radio" id={option}
-                            name="tag" autoComplete="off"
+                            type="radio" 
+                            id={option}
+                            name="tag" 
+                            autoComplete="off"
                             value={option}
                             onChange={props.onChangeHandler}
                         />

@@ -15,6 +15,9 @@ function App() {
   const [userName, setUserName] = useState("")
   const [userID, setUserID] = useState("")
 
+  //loader.js
+  window.$ = window.jQuery = require('jquery')
+
   useEffect(() => {
     function start() {
       gapi.auth2.init({

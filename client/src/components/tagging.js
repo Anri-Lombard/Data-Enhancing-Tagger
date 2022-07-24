@@ -48,11 +48,7 @@ const Tagging = React.memo(({ name, user }) => {
     dispatch('filter', keyword);
   };
 
-
-  async function onSubmitHandler(e) {
-    e.preventDefault();
-    console.log("Hi");
-
+  async function submitProcess() {
     // get tag
     getOneTag();
     // update tag
@@ -106,7 +102,19 @@ const Tagging = React.memo(({ name, user }) => {
       userCategories: userCategoriesArray,
       tagged: dataTagged
     };
-    
+
+    document.getElementById("tagBtn").disabled = true;
+
+    // add class to details element when submitting
+    document.getElementById("details").classList.add("fade");
+    setTimeout(() => {
+      document.getElementById("details").classList.remove("fade");
+    }, 1000)
+
+    // document.getElementById("search-input").value = "";
+    dispatch('filter', "");
+    document.getElementById("search-input").focus();
+
     await fetch(`http://localhost:${PORT}/update/${state.tagToUpdate.id}/`, {
       method: "POST",
       body: JSON.stringify(editedTag),
@@ -114,8 +122,14 @@ const Tagging = React.memo(({ name, user }) => {
         'Content-Type': 'application/json'
       },
     });
+  }
 
-    document.getElementById("tagBtn").disabled = true;
+
+  function onSubmitHandler(e) {
+    e.preventDefault();
+
+    submitProcess();
+
   }
 
   function onChangeHandler(e) {
@@ -126,37 +140,34 @@ const Tagging = React.memo(({ name, user }) => {
 
   function onKeyPressHandler(e) {
     if (e.key === "Enter") {
-      console.log("Sumbit this choice");
-      // tag the first element
-      // findelemntbyid("tagThis").checked = "checked"
-      // if pressed update
-    } else if (e.key === " ") {
-      console.log("Scroll to next choice");
-    }
-    // console.log(e);
-  }
-
-  // TODO: getServerSideProps() rather than useEffect()
-  async function getServerSideProps(context) {
-
-
-    return {
-      props: {
-        
-      }
+      const category = state.visibleOptions[0];
+      console.log(category);
+      dispatch('setChosenCategory', category);
+      document.getElementById(category).checked = true;
+      document.getElementById("tagBtn").disabled = false;
+      document.getElementById(category).focus();
+      // submitProcess();
     }
   }
 
+  // window.addEventListener('keydown', (e) => {
+  //   e.preventDefault();
+
+  //   console.log(e.key);
+  // })
+
+  // TODO: submit and tag
+  // TODO: user logic
   return (
     <>
       <NavBar name={name} />
 
       <div className="header">
-        {/* <h3>Tag Data With Following:</h3> */}
-        <div className="TextStyling"> {/* Details */}
-        <Tag tag={state.tagToUpdate} />
+        {/* Details */}
+        <div id="details"> 
+          <Tag tag={state.tagToUpdate} />
         </div>
-       
+
 
         {/* Filter */}
         <div className="form-box search-box shadow-none">
@@ -169,7 +180,7 @@ const Tagging = React.memo(({ name, user }) => {
             placeholder="Search"
             autoFocus
             onKeyPress={onKeyPressHandler}
-
+            autoComplete="off"
           />
         </div>
 
@@ -183,7 +194,7 @@ const Tagging = React.memo(({ name, user }) => {
                 onChangeHandler={onChangeHandler}
               />
             </div>
-            <button id="tagBtn" type="submit" disabled>Tag Me</button>
+            <button id="tagBtn" type="submit" disabled >Tag</button>
           </form>
         </div>
       </div>
