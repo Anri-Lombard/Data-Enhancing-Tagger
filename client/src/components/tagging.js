@@ -11,7 +11,6 @@ const PORT = 2000;
 
 const Tagging = React.memo(({ name, user }) => {
   const [state, dispatch] = useStore();
-  let optionSelection = 0;
 
   useEffect(() => {
     dispatch('filter', "");
@@ -49,10 +48,7 @@ const Tagging = React.memo(({ name, user }) => {
     dispatch('filter', keyword);
   };
 
-
-  async function onSubmitHandler(e) {
-    e.preventDefault();
-
+  async function submitProcess() {
     // get tag
     getOneTag();
     // update tag
@@ -106,7 +102,7 @@ const Tagging = React.memo(({ name, user }) => {
       userCategories: userCategoriesArray,
       tagged: dataTagged
     };
-    
+
     document.getElementById("tagBtn").disabled = true;
 
     // add class to details element when submitting
@@ -126,6 +122,13 @@ const Tagging = React.memo(({ name, user }) => {
         'Content-Type': 'application/json'
       },
     });
+  }
+
+
+  function onSubmitHandler(e) {
+    e.preventDefault();
+
+    submitProcess();
 
   }
 
@@ -137,39 +140,34 @@ const Tagging = React.memo(({ name, user }) => {
 
   function onKeyPressHandler(e) {
     if (e.key === "Enter") {
-      console.log("Sumbit this choice");
-      document.getElementById(optionSelection).checked = "checked";
-    } else if (e.key === " ") {
-      console.log("Scroll to next choice");
+      const category = state.visibleOptions[0];
+      console.log(category);
+      dispatch('setChosenCategory', category);
+      document.getElementById(category).checked = true;
+      document.getElementById("tagBtn").disabled = false;
+      document.getElementById(category).focus();
+      // submitProcess();
     }
   }
 
-  function myFunction() {
-    var popup = document.getElementById("myPopup");
-    popup.classList.toggle("show");
-  }
+  // window.addEventListener('keydown', (e) => {
+  //   e.preventDefault();
 
-  // TODO: getServerSideProps() rather than useEffect()
-  async function getServerSideProps(context) {
+  //   console.log(e.key);
+  // })
 
-
-    return {
-      props: {
-        
-      }
-    }
-  }
-
+  // TODO: submit and tag
+  // TODO: user logic
   return (
     <>
       <NavBar name={name} />
 
       <div className="header">
-        {/* <h3>Tag Data With Following:</h3> */}
-        <div id="details"> {/* Details */}
+        {/* Details */}
+        <div id="details"> 
           <Tag tag={state.tagToUpdate} />
         </div>
-       
+
 
         {/* Filter */}
         <div className="form-box search-box shadow-none">
@@ -182,7 +180,7 @@ const Tagging = React.memo(({ name, user }) => {
             placeholder="Search"
             autoFocus
             onKeyPress={onKeyPressHandler}
-
+            autoComplete="off"
           />
         </div>
 

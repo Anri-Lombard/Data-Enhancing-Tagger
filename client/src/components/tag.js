@@ -13,7 +13,7 @@ const Tag = React.memo((props) => {
                             <p><u>Description:</u> {props.tag.description}</p>
                             <p><u>Balance:</u> {props.tag.balance === undefined || props.tag.balance === null ? "Zero" : props.tag.balance}</p>
                             <p><u>Date:</u> {props.tag.date === undefined || props.tag.date === null ? "Unknown Date" : props.tag.date}</p>
-                            <p><u>Current Category:</u> {props.tag.category}</p>
+                            <p><u>Current Category:</u> {props.tag.category === undefined || props.tag.category === null ? "Untagged" : props.tag.category}</p>
                         </>
                 }
             </div>
