@@ -11,7 +11,6 @@ const PORT = 2000;
 
 const Tagging = React.memo(({ name, user }) => {
   const [state, dispatch] = useStore();
-  let optionSelection = 0;
 
   useEffect(() => {
     dispatch('filter', "");
@@ -125,14 +124,6 @@ const Tagging = React.memo(({ name, user }) => {
     });
   }
 
-  // -
-  //  -
-  //   -
-
-  // -
-  // -
-  // -
-
 
   function onSubmitHandler(e) {
     e.preventDefault();
@@ -152,27 +143,18 @@ const Tagging = React.memo(({ name, user }) => {
       const category = state.visibleOptions[0];
       console.log(category);
       dispatch('setChosenCategory', category);
-      console.log(state.category);
+      document.getElementById(category).checked = true;
       document.getElementById("tagBtn").disabled = false;
-      submitProcess();
+      document.getElementById(category).focus();
+      // submitProcess();
     }
   }
 
-  function myFunction() {
-    var popup = document.getElementById("myPopup");
-    popup.classList.toggle("show");
-  }
+  // window.addEventListener('keydown', (e) => {
+  //   e.preventDefault();
 
-  // TODO: getServerSideProps() rather than useEffect()
-  // async function getServerSideProps(context) {
-
-
-  //   return {
-  //     props: {
-
-  //     }
-  //   }
-  // }
+  //   console.log(e.key);
+  // })
 
   // TODO: submit and tag
   // TODO: user logic
@@ -181,8 +163,8 @@ const Tagging = React.memo(({ name, user }) => {
       <NavBar name={name} />
 
       <div className="header">
-        {/* <h3>Tag Data With Following:</h3> */}
-        <div id="details"> {/* Details */}
+        {/* Details */}
+        <div id="details"> 
           <Tag tag={state.tagToUpdate} />
         </div>
 
