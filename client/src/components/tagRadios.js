@@ -22,7 +22,11 @@ const TagRadios = (props) => {
 
     return (
         <ul className="user-list">
-            {userCategoriesArray.length === 2 ? <li>Warning: explosion</li> : null}
+            {userCategoriesArray.length === 2 ? <div style={{
+                fontWeight: "300", 
+                fontSize: "20px", 
+                textAlign: "center"
+            }}>Double Tap Submission Dissabled</div> : null}
             {visibleOptions && visibleOptions.length > 0 ? (
                 visibleOptions.map((option) => (
                     <li key={option}>
